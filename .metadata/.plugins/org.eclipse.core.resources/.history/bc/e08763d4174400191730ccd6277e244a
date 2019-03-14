@@ -1,0 +1,33 @@
+package packProyecto;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class conecta {
+
+    public static void main(String[] args){
+
+        try {
+
+            //1- CREAR CONEXION
+            Connection miConexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyectois","root","");
+
+            //2-STATEMENT
+            Statement miStatement = miConexion.createStatement();
+
+            //3- EJECUTAR SQL
+            ResultSet miResultset = miStatement.executeQuery("SELECT * FROM peliculas");
+
+            //4- LEER EL RESULTSET
+
+            while (miResultset.next()){
+                System.out.println(miResultset.getString("idpelicula")+" "+miResultset.getString("nombre"));
+            }
+        }catch (Exception e){
+            System.out.println("NO CONECTA");
+            e.printStackTrace();
+        }
+    }
+}
