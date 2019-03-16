@@ -29,9 +29,7 @@ public class conecta {
 
             while (miResultset.next()){
                 System.out.println(miResultset.getString("idpeli")+"-->"+miResultset.getString("nombre"));
-                
             }
-            
         }catch (Exception e){
             System.out.println("NO CONECTA");
             e.printStackTrace();
