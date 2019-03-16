@@ -106,7 +106,6 @@ public class InterfazGrafica extends JDialog {
 				if(e.getSource().equals(btnNewButton_1))
 				{
 					pruebaGrafica pG = new pruebaGrafica();
-					pG.setVisible(true);
 				}
 					
 				

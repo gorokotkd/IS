@@ -95,20 +95,6 @@ public class InterfazGrafica extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource().equals(cancelButton))
 					dispose();
-			}
-			
-		});
-		
-		btnNewButton_1.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(e.getSource().equals(btnNewButton_1))
-				{
-					pruebaGrafica pG = new pruebaGrafica();
-					pG.setVisible(true);
-				}
-					
 				
 			}
 		});
