@@ -50,7 +50,6 @@ public class FileChooser extends JFrame {
 		if(seleccion==JFileChooser.APPROVE_OPTION)
 		{
 			File fichero = fileChooser.getSelectedFile();
-			//ListaPeliculas.getListaPeliculas().leerFichero(fichero);
 			return fichero;
 		}
 		else

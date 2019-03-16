@@ -1,0 +1,9 @@
+package packProyecto;
+
+public class TablaPeliculas {
+
+	public TablaPeliculas()
+	{
+		
+	}
+}

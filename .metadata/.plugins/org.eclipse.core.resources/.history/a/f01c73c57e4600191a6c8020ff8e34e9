@@ -1,0 +1,43 @@
+package packProyecto;
+
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class TablaResena {
+
+	private static TablaResena mTabla;
+	
+	private TablaResena()
+	{
+	}
+	public static TablaPeliculas getTablaResena()
+	{
+		if(mTabla==null)
+			mTabla=new TablaResena();
+		return mTabla;
+	}
+	
+	public void generarTabla(Statement st)
+	{
+		crearTabla(st);
+		introducirDatos(st);
+	}
+	private void crearTabla(Statement st)
+	{
+		String comando = "create table resena(idpeli int not null, nombre varchar(100), primary key(idpeli));";
+		try {
+			st.executeUpdate(comando);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	private void introducirDatos(Statement st)
+	{
+		try {
+			String comando = "load data infile 'D:/IngenierIa_Software/Proyecto/movie-titles.csv' into table peliculas fields terminated by ';' enclosed by '\"' lines terminated by '\r\n' (idpeli, nombre);";
+			st.executeUpdate(comando);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
