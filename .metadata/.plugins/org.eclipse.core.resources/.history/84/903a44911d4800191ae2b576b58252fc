@@ -87,19 +87,7 @@ public class InterfazGrafica extends JDialog {
 						.addComponent(cancelButton))
 			);
 			buttonPane.setLayout(gl_buttonPane);
-			
 		}
-		cancelButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(e.getSource().equals(cancelButton))
-					dispose();
-				
-			}
-		});
-		
-		
 	}
 	private JButton getBtnNewButton() {
 		if (btnNewButton == null) {

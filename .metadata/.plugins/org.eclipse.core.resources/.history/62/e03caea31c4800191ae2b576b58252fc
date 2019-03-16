@@ -22,10 +22,6 @@ public class conecta {
             //3- EJECUTAR SQL
             /**miStatement.execute("load data local infile 'D:\\IngenierIa_Software\\Proyecto\\movie-titles.csv' into table peliculas fields terminated by"
             		+ "';' enclosed by '\"' lines terminated by '\r\n' (idpeli, nombre)");**/
-<<<<<<< HEAD
-/*<<<<<<< HEAD
-=======
->>>>>>> 224cb8e9d8836984a38b8bf10c24f6d99f0bc38e
             /*miStatement.executeUpdate("load data local infile 'D:/IngenierIa_Software/Proyecto/movie-titles.csv' into table peliculas fields terminated by"
 =======
            /* miStatement.executeUpdate("load data local infile 'D:/IngenierIa_Software/Proyecto/movie-titles.csv' into table peliculas fields terminated by"
@@ -39,8 +35,8 @@ public class conecta {
            //     System.out.println(miResultset.getString("idpeli")+"-->"+miResultset.getString("nombre"));
                 FileChooser f = new FileChooser();
                 String c = f.leerFichero().getAbsolutePath();
-                String resul = c.replace("\\", "/");
-                System.out.println(resul);
+                String resul = c.replace("\\", "//");
+                System.out.println();
           //  }
             
         }catch (Exception e){

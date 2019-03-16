@@ -94,7 +94,7 @@ public class InterfazGrafica extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource().equals(cancelButton))
-					dispose();
+					contentPanel.show(false);
 				
 			}
 		});
