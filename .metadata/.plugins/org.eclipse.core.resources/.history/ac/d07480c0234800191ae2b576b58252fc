@@ -22,10 +22,10 @@ public class conecta {
             //3- EJECUTAR SQL
             /**miStatement.execute("load data local infile 'D:\\IngenierIa_Software\\Proyecto\\movie-titles.csv' into table peliculas fields terminated by"
             		+ "';' enclosed by '\"' lines terminated by '\r\n' (idpeli, nombre)");**/
-               // FileChooser f = new FileChooser();
-          /*      String c = f.leerFichero().getAbsolutePath();
+                FileChooser f = new FileChooser();
+                String c = f.leerFichero().getAbsolutePath();
                 String resul = c.replace("\\", "/");
-                System.out.println(resul);*/
+                System.out.println(resul);
           //  }
             
         }catch (Exception e){
