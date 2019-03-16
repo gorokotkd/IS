@@ -35,8 +35,8 @@ public class conecta {
            //     System.out.println(miResultset.getString("idpeli")+"-->"+miResultset.getString("nombre"));
                 FileChooser f = new FileChooser();
                 String c = f.leerFichero().getAbsolutePath();
-                String resul = c.replace("\\", "/");
-                System.out.println(resul);
+                String resul = c.replace("\\", "//");
+                System.out.println();
           //  }
             
         }catch (Exception e){
