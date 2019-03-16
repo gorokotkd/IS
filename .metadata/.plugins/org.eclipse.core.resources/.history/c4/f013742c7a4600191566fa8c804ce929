@@ -1,0 +1,17 @@
+package packProyecto;
+
+public class TablaPeliculas {
+
+	public TablaPeliculas()
+	{
+		
+	}
+	private void crearTabla()
+	{
+		
+	}
+	private void introducirDatos()
+	{
+		
+	}
+}

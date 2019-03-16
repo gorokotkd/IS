@@ -21,7 +21,11 @@ public class conecta {
             //3- EJECUTAR SQL
             /**miStatement.execute("load data local infile 'D:\\IngenierIa_Software\\Proyecto\\movie-titles.csv' into table peliculas fields terminated by"
             		+ "';' enclosed by '\"' lines terminated by '\r\n' (idpeli, nombre)");**/
+<<<<<<< HEAD
             /*miStatement.executeUpdate("load data local infile 'D:/IngenierIa_Software/Proyecto/movie-titles.csv' into table peliculas fields terminated by"
+=======
+           /* miStatement.executeUpdate("load data local infile 'D:/IngenierIa_Software/Proyecto/movie-titles.csv' into table peliculas fields terminated by"
+>>>>>>> 472a2a9708be28bf41a5f8774833891475ce819f
             		+ "';' enclosed by '\"' lines terminated by '\r\n' (idpeli, nombre)");*/
             ResultSet miResultset = miStatement.executeQuery("SELECT * FROM peliculas");
 

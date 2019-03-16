@@ -1,0 +1,37 @@
+package packProyecto;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
+public class BaseDatos {
+	
+	public static void main(String[] str)
+	{
+		cargarBd();
+	}
+
+	public static void cargarBd()
+	{
+		try
+		{
+			//Class.forName("com.mysql.jdbc.Driver");
+			
+			//Inicio Conexion
+			
+			Connection miConexion = DriverManager.getConnection("jdbc:mysql://localhost/?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","");
+			
+			//Creacion BD
+			
+			Statement st = miConexion.createStatement();
+			String comando = "create database euskoflix";
+			st.executeUpdate(comando);
+			
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+}
