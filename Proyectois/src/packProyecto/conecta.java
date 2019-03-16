@@ -21,7 +21,7 @@ public class conecta {
             //3- EJECUTAR SQL
             /**miStatement.execute("load data local infile 'D:\\IngenierIa_Software\\Proyecto\\movie-titles.csv' into table peliculas fields terminated by"
             		+ "';' enclosed by '\"' lines terminated by '\r\n' (idpeli, nombre)");**/
-<<<<<<< HEAD
+/*<<<<<<< HEAD
             /*miStatement.executeUpdate("load data local infile 'D:/IngenierIa_Software/Proyecto/movie-titles.csv' into table peliculas fields terminated by"
 =======
            /* miStatement.executeUpdate("load data local infile 'D:/IngenierIa_Software/Proyecto/movie-titles.csv' into table peliculas fields terminated by"
