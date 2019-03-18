@@ -22,7 +22,7 @@ public class conecta {
             //3- EJECUTAR SQL
             /**miStatement.execute("load data local infile 'D:\\IngenierIa_Software\\Proyecto\\movie-titles.csv' into table peliculas fields terminated by"
             		+ "';' enclosed by '\"' lines terminated by '\r\n' (idpeli, nombre)");**/
-<<<<<<< HEAD
+
 /*<<<<<<< HEAD
 =======
 >>>>>>> 224cb8e9d8836984a38b8bf10c24f6d99f0bc38e
