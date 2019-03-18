@@ -27,7 +27,7 @@ public class InterfazGrafica extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			//Peliculas.getPeliculas();
+			Peliculas.getPeliculas();
 			InterfazGrafica dialog = new InterfazGrafica();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
@@ -40,7 +40,6 @@ public class InterfazGrafica extends JDialog {
 	 * Create the dialog.
 	 */
 	public InterfazGrafica() {
-		Peliculas.getPeliculas();
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -107,7 +106,6 @@ public class InterfazGrafica extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource().equals(btnNewButton_1))
 				{
-					
 					pruebaGrafica pG = new pruebaGrafica();
 					pG.setVisible(true);
 				}

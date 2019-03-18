@@ -14,10 +14,10 @@ private Connection miConexion;
 
 private BaseDatos() {
 	try {
-		//Class.forName("com.mysql.jdbc.Driver");
+		Class.forName("com.mysql.jdbc.Driver");
 		miConexion = DriverManager.getConnection("jdbc:mysql://localhost/?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","");
 		st = miConexion.createStatement();
-	} catch (Exception e) {
+	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}	
