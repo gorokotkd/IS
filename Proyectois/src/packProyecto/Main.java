@@ -6,7 +6,8 @@ public class Main {
 		// TODO Auto-generated method stub
 		Ratings.getRatings().imprimir(5573);
 		Peliculas.getPeliculas().imprimir(12);;
-		//BaseDatos.getBd().eliminarBD();
+		InterfazGrafica interfaz = new InterfazGrafica();
+		BaseDatos.getBd().eliminarBD();
 	}
 
 }

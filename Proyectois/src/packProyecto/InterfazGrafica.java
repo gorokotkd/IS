@@ -27,6 +27,7 @@ public class InterfazGrafica extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
+			Peliculas.getPeliculas();
 			InterfazGrafica dialog = new InterfazGrafica();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);

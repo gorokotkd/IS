@@ -100,12 +100,13 @@ public class pruebaGrafica extends JDialog {
 	}
 	private JList getList() {
 		if (list == null) {
-			Map<Integer,String> hashpeliculas = new HashMap<>();
-			hashpeliculas.put(1,"Tetanic");
-			hashpeliculas.put(2,"La almeja Maya");
-			hashpeliculas.put(3,"50 tragos de leche");
+			//Map<Integer,String> hashpeliculas = new HashMap<>();
+			//hashpeliculas.put(1,"Tetanic");
+			//hashpeliculas.put(2,"La almeja Maya");
+			//hashpeliculas.put(3,"50 tragos de leche");
+			Peliculas.getPeliculas();
 			Vector<ListItem> items = new Vector<>();
-			for (Map.Entry<Integer,String> entry: hashpeliculas.entrySet()) {
+			for (Map.Entry<Integer,String> entry: Peliculas.getPeliculas().entrySet()) {
 				items.add(new ListItem(entry.getKey(), entry.getValue()));
 			}
 			list = new JList(items);

@@ -3,6 +3,8 @@ package packProyecto;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Map.Entry;
+import java.util.Set;
 
 public class Peliculas {
 
@@ -38,6 +40,8 @@ public class Peliculas {
 	{
 		System.out.println(lista.get(i));
 	}
-	
-	
+
+	public Set<Entry<Integer,String>> entrySet() {
+		return lista.entrySet();
+	}	
 }
