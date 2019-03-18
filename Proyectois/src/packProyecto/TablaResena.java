@@ -34,7 +34,10 @@ public class TablaResena {
 	private void introducirDatos(Statement st)
 	{
 		try {
-			String comando = "load data infile 'D:/IngenierIa_Software/Proyecto/movie-ratings.csv' into table resena fields terminated by ',' enclosed by '\"' lines terminated by '\n' (idusu, idpeli, nota);";
+			String path = System.getProperty("user.dir");
+			path = path.replace("\\", "/");
+			path = path+"/movie-ratings.csv";
+			String comando = "load data infile '"+path+"' into table resena fields terminated by ',' enclosed by '\"' lines terminated by '\n' (idusu, idpeli, nota);";
 			st.executeUpdate(comando);
 		}catch(Exception e) {
 			e.printStackTrace();

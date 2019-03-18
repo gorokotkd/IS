@@ -1,0 +1,16 @@
+package packProyecto;
+
+import java.util.ArrayList;
+
+public class PeliRating {
+	
+	private int idPeli;
+	private double nota;
+	
+	private PeliRating(int pIdpeli, double pNota)
+	{
+		idPeli = pIdpeli;
+		nota = pNota;
+	}
+	
+}
