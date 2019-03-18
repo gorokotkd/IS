@@ -9,6 +9,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Vector;
+import java.util.Map;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollBar;
 import javax.swing.GroupLayout;
@@ -77,7 +80,9 @@ public class pruebaGrafica extends JDialog {
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						lblNewLabel.setText("BuruHandi");
+						if (e.getSource().equals(cancelButton)) {
+							dispose();
+						}
 					}
 				});
 				cancelButton.setActionCommand("Cancel");
@@ -95,7 +100,16 @@ public class pruebaGrafica extends JDialog {
 	}
 	private JList getList() {
 		if (list == null) {
-			list = new JList();
+			Map<Integer,String> hashpeliculas = new HashMap<>();
+			hashpeliculas.put(1,"Tetanic");
+			hashpeliculas.put(2,"La almeja Maya");
+			hashpeliculas.put(3,"50 tragos de leche");
+			Vector<ListItem> items = new Vector<>();
+			for (Map.Entry<Integer,String> entry: hashpeliculas.entrySet()) {
+				items.add(new ListItem(entry.getKey(), entry.getValue()));
+			}
+			list = new JList(items);
+			list.setListData(items);
 		}
 		return list;
 	}
@@ -104,5 +118,20 @@ public class pruebaGrafica extends JDialog {
 			scrollBar = new JScrollBar();
 		}
 		return scrollBar;
+	}
+}
+
+class ListItem{
+	private int Id;
+	private String nombrepeli;
+	
+	ListItem (int pid,String pNombrepeli){
+		this.Id=pid;
+		this.nombrepeli=pNombrepeli;
+	}
+	
+	@Override
+	public String toString() {
+		return Id + "    " + nombrepeli;
 	}
 }
