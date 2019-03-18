@@ -34,7 +34,10 @@ public class TablaPeliculas {
 	private void introducirDatos(Statement st)
 	{
 		try {
-			String comando = "load data infile 'D:/IngenierIa_Software/Proyecto/movie-titles.csv' into table peliculas fields terminated by ';' enclosed by '\"' lines terminated by '\r\n' (idpeli, nombre);";
+			String path = System.getProperty("user.dir");
+			path = path.replace("\\", "/");
+			path = path+"/movie-titles.csv";
+			String comando = "load data infile"+"'"+path+"' into table peliculas fields terminated by ';' enclosed by '\"' lines terminated by '\r\n' (idpeli, nombre);";
 			st.executeUpdate(comando);
 		}catch(Exception e) {
 			e.printStackTrace();

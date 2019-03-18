@@ -2,6 +2,7 @@ package packProyecto;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class BaseDatos {
@@ -38,9 +39,20 @@ public class BaseDatos {
 			TablaTiene.getTablaTiene().generarTabla(st);
 			System.out.println("Base De Datos Generada.");
 			
+			
 		}
 		catch (Exception e)
 		{
+			e.printStackTrace();
+		}
+	}
+	
+	private static void eliminarBD(Statement st)
+	{
+		String comando = "drop database euskoflix;";
+		try {
+			st.executeUpdate(comando);
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}

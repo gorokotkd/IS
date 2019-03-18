@@ -36,7 +36,10 @@ private static TablaTag mTabla;
 	private void introducirDatos(Statement st)
 	{
 		try {
-			String comando = "load data infile 'D:/IngenierIa_Software/Proyecto/movie-tags.csv' ignore into table tag fields terminated by ';' enclosed by '\"' lines terminated by '\r\n' (@dummy, nombreTag);";
+			String path = System.getProperty("user.dir");
+			path = path.replace("\\", "/");
+			path = path+"/movie-tags.csv";
+			String comando = "load data infile"+ "'"+path+"' ignore into table tag fields terminated by ';' enclosed by '\"' lines terminated by '\r\n' (@dummy, nombreTag);";
 			st.executeUpdate(comando);
 			comando="load data infile 'D:/IngenierIa_Software/Proyecto/movie-tags.csv' into table tag_aux fields terminated by ';' enclosed by '\"' lines terminated by '\r\n' (idpeli,nombretag);";
 			st.executeUpdate(comando);
