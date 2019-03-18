@@ -1,0 +1,8 @@
+package packProyecto;
+
+import java.util.ArrayList;
+
+public class Peli_Rating {
+	//private ArrayList<Integer> lista;
+	private HashMap<Integer, ArrayList<Integer>> lista;
+}

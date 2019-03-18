@@ -1,0 +1,18 @@
+package packProyecto;
+
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class PeliRating {
+	
+	private HashMap<Integer, ArrayList<Integer>> lista;
+	private static PeliRating mPeliRating;
+	
+	private PeliRating()
+	{
+		String sql = "";
+		ResultSet consulta = BaseDatos.getBd().hacerConsulta(sql);
+	}
+	
+}
