@@ -1,0 +1,22 @@
+package packProyecto;
+
+import java.sql.ResultSet;
+import java.util.HashMap;
+
+public class Peliculas {
+
+	private HashMap<Integer,String> lista;
+	private Peliculas mPeliculas;
+	
+	private Peliculas()
+	{
+		lista = new HashMap<Integer, String>();
+		String sql = "select * from peliculas;";
+		ResultSet consulta = BaseDatos.getBd().hacerConsulta(sql);
+		
+		
+		
+	}
+	
+	
+}

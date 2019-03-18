@@ -1,0 +1,9 @@
+package packProyecto;
+
+public class Peliculas {
+
+	private HashMap<Integer,String> lista;
+	private Peliculas mPeliculas;
+	
+	
+}
