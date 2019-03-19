@@ -30,7 +30,7 @@ public class Ratings {
 				//lista.put(i, new ArrayList<PeliRating>());
 				sql = "select count(*) from resena where idusu="+i+";";
 				consulta = BaseDatos.getBd().hacerConsulta(sql);
-				int tam = 0;
+				int tam ;
 				int j = 0;
 				if(consulta.next())
 					tam = Integer.parseInt(consulta.getString("count(*)"));
