@@ -96,7 +96,10 @@ public class InterfazGrafica extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource().equals(cancelButton))
+				{
+					BaseDatos.getBd().eliminarBD();
 					dispose();
+				}
 			}
 			
 		});
@@ -106,17 +109,24 @@ public class InterfazGrafica extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource().equals(btnNewButton_1))
-				{
-					
+				{					
 					pruebaGrafica pG = new pruebaGrafica();
 					pG.setVisible(true);
-				}
-					
-				
+				}	
 			}
 		});
 		
-		
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource().equals(btnNewButton))
+				{
+					InterfazTag iG = new InterfazTag();
+					iG.setVisible(true);
+				}
+			}
+		});
 	}
 	private JButton getBtnNewButton() {
 		if (btnNewButton == null) {

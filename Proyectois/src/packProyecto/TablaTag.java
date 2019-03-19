@@ -4,6 +4,7 @@ import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class TablaTag {
 
@@ -50,16 +51,18 @@ private static TablaTag mTabla;
 		}
 	}
 	
-	public Array tablaArray()
+	public ArrayList<String> tablaArray()
 	{
 		try
 		{
 			String comando = "select * from tag;";
 			ResultSet sql = BaseDatos.getBd().hacerConsulta(comando);
-			if(sql.next())
-				return sql.getArray(1);
-			else
-				return null;
+			ArrayList<String> resul = new ArrayList<String>();
+			while(sql.next())
+			{
+				resul.add(sql.getString(1));
+			}
+			return resul;
 		}
 		catch(Exception e)
 		{
