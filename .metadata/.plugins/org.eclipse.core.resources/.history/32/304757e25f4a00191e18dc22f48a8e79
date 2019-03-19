@@ -28,19 +28,14 @@ public class Ratings {
 			while(i<max+1)
 			{
 				//lista.put(i, new ArrayList<PeliRating>());
-				sql = "select count(*) from resena where idusu="+i+";";
-				consulta = BaseDatos.getBd().hacerConsulta(sql);
-				int tam = 0;
-				int j = 0;
-				if(consulta.next())
-					tam = Integer.parseInt(consulta.getString("count(*)"));
-				PeliRating[] aux = new PeliRating[tam];
 				sql = "select idpeli,nota from resena where idusu="+i+";";
 				consulta = BaseDatos.getBd().hacerConsulta(sql);
+				sql = "select count(*) from resena where idusu="+i+";";
+				ResultSet maxPerUser = BaseDatos.getBd().hacerConsulta(sql);
+				PeliRating[] aux = new PeliRating[maxPerUser.getInt(1)];
 				while(consulta.next())
 				{
-					aux[j]=new PeliRating(Integer.parseInt(consulta.getString("idpeli")),Double.parseDouble(consulta.getString("nota")));
-					j++;
+					aux.add(new PeliRating(Integer.parseInt(consulta.getString("idpeli")),Double.parseDouble(consulta.getString("nota"))));
 				}
 				lista.put(i, aux);
 				i++;
@@ -62,8 +57,11 @@ public class Ratings {
 	
 	public void imprimir(int i)
 	{
-		//System.out.println(i+"-->"+lista.get(i));
-		//lista.get(i)[8].imprimir();
-
+		System.out.println(i+"-->"+lista.get(i));
+		Iterator<PeliRating> itr = lista.get(i).iterator();
+		while(itr.hasNext())
+		{
+			itr.next().imprimir();
+		}
 	}
 }
