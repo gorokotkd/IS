@@ -50,23 +50,12 @@ private static TablaTag mTabla;
 		}
 	}
 	
-	public Array tablaArray()
+	public void tablaArray()
 	{
-		try
-		{
-			String comando = "select * from tag;";
-			ResultSet sql = BaseDatos.getBd().hacerConsulta(comando);
-			if(sql.next())
-				return sql.getArray(1);
-			else
-				return null;
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-			return null;
-		}
-	
-			
+		String comando = "select * from tag;";
+		ResultSet sql = BaseDatos.getBd().hacerConsulta(comando);
+		//Array lista = sql.getArray(1);
+		if(sql.next())
+			Array lista = sql.getArray(1);
 	}
 }

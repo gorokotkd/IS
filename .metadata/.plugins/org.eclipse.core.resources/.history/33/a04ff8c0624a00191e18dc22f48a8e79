@@ -1,7 +1,5 @@
 package packProyecto;
 
-import java.sql.Array;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -48,25 +46,5 @@ private static TablaTag mTabla;
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public Array tablaArray()
-	{
-		try
-		{
-			String comando = "select * from tag;";
-			ResultSet sql = BaseDatos.getBd().hacerConsulta(comando);
-			if(sql.next())
-				return sql.getArray(1);
-			else
-				return null;
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-			return null;
-		}
-	
-			
 	}
 }

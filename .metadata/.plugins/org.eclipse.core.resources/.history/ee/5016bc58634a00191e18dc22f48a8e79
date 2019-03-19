@@ -54,12 +54,13 @@ private static TablaTag mTabla;
 	{
 		try
 		{
-			String comando = "select * from tag;";
-			ResultSet sql = BaseDatos.getBd().hacerConsulta(comando);
-			if(sql.next())
-				return sql.getArray(1);
-			else
-				return null;
+				String comando = "select * from tag;";
+		ResultSet sql = BaseDatos.getBd().hacerConsulta(comando);
+		//Array lista = sql.getArray(1);
+		if(sql.next())
+			return sql.getArray(1);
+		else
+			return null;
 		}
 		catch(Exception e)
 		{
