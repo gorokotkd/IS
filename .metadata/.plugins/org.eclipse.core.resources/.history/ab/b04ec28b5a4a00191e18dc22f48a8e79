@@ -41,7 +41,7 @@ private static TablaTag mTabla;
 			path = path+"/movie-tags.csv";
 			String comando = "load data infile"+ "'"+path+"' ignore into table tag fields terminated by ';' enclosed by '\"' lines terminated by '\r\n' (@dummy, nombreTag);";
 			st.executeUpdate(comando);
-			comando="load data infile '"+path+"' into table tag_aux fields terminated by ';' enclosed by '\"' lines terminated by '\r\n' (idpeli,nombretag);";
+			comando="load data infile 'D:/IngenierIa_Software/Proyecto/movie-tags.csv' into table tag_aux fields terminated by ';' enclosed by '\"' lines terminated by '\r\n' (idpeli,nombretag);";
 			st.executeUpdate(comando);
 		}catch(Exception e) {
 			e.printStackTrace();
