@@ -6,29 +6,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Set;
+import java.util.Map.Entry;
 
 public class BaseDatos {
 	
 private static BaseDatos mBd = new BaseDatos();
 private Statement st;
 private Connection miConexion;
-private TablaPeliculas tablaPeliculas;
-private TablaResena tablaResena;
-private TablaTag tablaTag;
-private TablaTiene tablaTiene;
+private Peliculas peliculas;
+private Ratings ratings;
+private TagsPorPeli tagsPorPeli;
 
-private BaseDatos() {
-	try {
-		miConexion = DriverManager.getConnection("jdbc:mysql://localhost/?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","");
-		st = miConexion.createStatement();
-		String comando = "create database euskoflix";
-		st.executeUpdate(comando);
-		miConexion = DriverManager.getConnection("jdbc:mysql://localhost/euskoflix?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","");
-		st = miConexion.createStatement();
-	} catch (Exception e) {
-		e.printStackTrace();
+	private BaseDatos() {
+		cargarBd();
 	}
-}
 
 	public static BaseDatos getBd()
 	{
@@ -41,13 +33,11 @@ private BaseDatos() {
 		{
 			
 			System.out.println("Generando tabla peliculas...\n");
-			tablaPeliculas = new TablaPeliculas();
+			peliculas = new Peliculas();
 			System.out.println("Generando tabla resena...\n");
-			tablaResena = new TablaResena();
-			System.out.println("Generando tabla tag...\n");
-			tablaTag = new TablaTag();
-			System.out.println("Generando tabla tiene...\n");
-			tablaTiene = new TablaTiene();
+			ratings = new Ratings();
+			System.out.println("Generando tabla tagsPorPeli...\n");
+			tagsPorPeli = new TagsPorPeli();
 			System.out.println("Base De Datos Generada.");	
 		}
 		catch (Exception e)
@@ -56,48 +46,15 @@ private BaseDatos() {
 		}
 	}
 	
-	public void eliminarBD()
-	{
-		String comando = "drop database euskoflix;";
-		try {
-			st.executeUpdate(comando);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	public ArrayList<Integer> devolKeys() {
+		return ratings.devolKeys();
+	}
+	public ArrayList<Tupla<Integer,Double>> getRatingsPorId(Integer pId) {
+		return ratings.getRatingsPorId(pId);
 	}
 	
-	public void actualizar(String sql)
-	{
-		try {
-			st.executeUpdate(sql);
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
+	public Set<Entry<Integer,String>> entrySet() {
+		return peliculas.entrySet();
+	}	
 	
-	public ResultSet hacerConsulta(String sql)
-	{
-		try {
-			ResultSet resul = st.executeQuery(sql);
-			return resul;
-			
-		}catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public ArrayList<String> tagArray()
-	{
-		return tablaTag.tablaArray();
-	}
-	
-	/*private void generarFicheroSql()
-	{
-		try {
-			
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}*/
 }

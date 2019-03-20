@@ -81,7 +81,6 @@ public class InterfazGrafica extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource().equals(cancelButton))
 				{
-					BaseDatos.getBd().eliminarBD();
 					dispose();
 				}
 			}

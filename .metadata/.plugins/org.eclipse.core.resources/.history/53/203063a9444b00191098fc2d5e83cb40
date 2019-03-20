@@ -1,0 +1,25 @@
+package packProyecto;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class TagsPorPeli {
+
+	private HashMap<Integer,ArrayList<Tupla<String, Integer>>> lista;
+	
+	public TagsPorPeli()
+	{
+		String path = System.getProperty("user.dir")+"\\movie-tags.csv";
+		lista = new HashMap<Integer,Tupla<String, Integer>>();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(path));
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

@@ -1,5 +1,7 @@
 package packProyecto;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -9,59 +11,52 @@ import java.util.Set;
 
 public class Ratings {
 	
-	private HashMap<Integer, PeliRating[]> lista;
-	private static Ratings mRating;
+	private HashMap<Integer, ArrayList<Tupla<Integer,Double>>> lista;
 	
-	private Ratings()
+	public Ratings()
 	{
-		lista = new HashMap<Integer, PeliRating[]>();
+		lista = new HashMap<Integer, ArrayList<Tupla<Integer,Double>>>();
 		try
 		{
-			int i = 1;
-			String sql="select max(idusu) from resena;";
-			ResultSet consulta = BaseDatos.getBd().hacerConsulta(sql);
-			int max;
-			if(consulta.next())
-				max = Integer.parseInt(consulta.getString("max(idusu)"));
-			else 
-				max = 0;
-			while(i<max+1)
+			String path = System.getProperty("user.dir")+"/movie-ratings.csv";
+			BufferedReader br = new BufferedReader(new FileReader(path));
+			String lectura=" ";
+			ArrayList<Tupla<Integer,Double>> aux = new ArrayList<Tupla<Integer,Double>>();
+			lectura = br.readLine();
+			String[] str = lectura.split(",");
+			int usuAct = Integer.parseInt(str[0]);
+			while(lectura!=null)
 			{
-				sql = "select count(*) from resena where idusu="+i+";";
-				consulta = BaseDatos.getBd().hacerConsulta(sql);
-				int tam = 0;
-				int j = 0;
-				if(consulta.next())
-					tam = Integer.parseInt(consulta.getString("count(*)"));
-				PeliRating[] aux = new PeliRating[tam];
-				sql = "select idpeli,nota from resena where idusu="+i+";";
-				consulta = BaseDatos.getBd().hacerConsulta(sql);
-				while(consulta.next())
-				{
-					aux[j]=new PeliRating(Integer.parseInt(consulta.getString("idpeli")),Double.parseDouble(consulta.getString("nota")));
-					j++;
+				
+				if(Integer.parseInt(str[0])==usuAct)
+				{	
+					aux.add(new Tupla(Integer.parseInt(str[1]),Double.parseDouble(str[2])));
+					lectura = br.readLine();
+					if(lectura != null)
+						str = lectura.split(",");
 				}
-				lista.put(i, aux);
-				i++;
+				else
+				{
+					lista.put(usuAct, aux);
+					aux = new ArrayList<Tupla<Integer,Double>>();
+					usuAct = Integer.parseInt(str[0]);
+				}
+				
 			}
+			System.out.println("TErminado");
 		}
-		catch (SQLException e)
+		catch (Exception e)
 		{
+			System.out.println("Peto");
 			e.printStackTrace();
 		}
 	}
 	
-	public static Ratings getRatings()
-	{
-		if(mRating==null)
-			mRating = new Ratings();
-		return mRating;
-	}
 	public ArrayList<Integer> devolKeys() {
 		return new ArrayList<>(lista.keySet()); 
 	}
 	
-	public PeliRating[] getRatingsPorId(Integer pId) {
+	public ArrayList<Tupla<Integer,Double>> getRatingsPorId(Integer pId) {
 		return lista.get(pId);
 	}
 }

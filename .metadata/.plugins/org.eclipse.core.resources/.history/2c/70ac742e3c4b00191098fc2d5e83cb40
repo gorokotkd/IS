@@ -1,0 +1,29 @@
+package packProyecto;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.HashSet;
+
+public class Tags {
+
+	private HashSet<String> lista;
+	
+	public Tags()
+	{
+		String path = System.getProperty("user.dir")+"\\movie-tags.csv";
+		lista = new HashSet<String>();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(path));
+			String lectura;
+			while((lectura=br.readLine())!=null)
+			{
+				String[] str = lectura.split(";");
+				lista.add(str[1]);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

@@ -1,0 +1,14 @@
+package packProyecto;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class TagsPorPeli {
+
+	private HashMap<Integer,ArrayList<Tupla<String, Integer>>> lista;
+	
+	public TagsPorPeli()
+	{
+		
+	}
+}

@@ -98,9 +98,8 @@ public class pruebaGrafica extends JDialog {
 	}
 	private JList getList() {
 		if (list == null) {
-			Peliculas.getPeliculas();
 			Vector<ListItem> items = new Vector<>();
-			for (Map.Entry<Integer,String> entry: Peliculas.getPeliculas().entrySet()) {
+			for (Map.Entry<Integer,String> entry: BaseDatos.getBd().entrySet()) {
 				items.add(new ListItem(entry.getKey(), entry.getValue()));
 			}
 			list = new JList(items);

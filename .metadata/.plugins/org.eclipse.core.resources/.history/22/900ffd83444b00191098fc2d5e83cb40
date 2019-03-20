@@ -1,0 +1,17 @@
+package packProyecto;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class TagsPorPeli {
+
+	private HashMap<Integer,ArrayList<Tupla<String, Integer>>> lista;
+	
+	public TagsPorPeli()
+	{
+		String path = System.getProperty("user.dir")+"\\movie-tags.csv";
+		BufferedReader br = new BufferedReader(new FileReader(path));
+	}
+}

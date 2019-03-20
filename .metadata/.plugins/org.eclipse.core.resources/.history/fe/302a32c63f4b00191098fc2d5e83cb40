@@ -1,0 +1,65 @@
+package packProyecto;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
+
+public class Ratings {
+	
+	private HashMap<Integer, ArrayList<PeliRating>> lista;
+	private static Ratings mRating;
+	
+	private Ratings()
+	{
+		lista = new HashMap<Integer, ArrayList<PeliRating>>();
+		try
+		{
+			String path = System.getProperty("user.dir")+"\\movie-ratings.csv";
+			BufferedReader br = new BufferedReader(new FileReader(path));
+			String lectura=" ";
+			ArrayList<PeliRating> aux = new ArrayList<PeliRating>();
+			while(lectura!=null)
+			{
+				lectura = br.readLine();
+				String[] str = lectura.split(",");
+				int usuAct = Integer.parseInt(str[0]);
+				if(Integer.parseInt(str[0])==usuAct)
+				{	
+					aux.add(new PeliRating(Integer.parseInt(str[1]),Double.parseDouble(str[2])));
+					lectura = br.readLine();
+					str = lectura.split(",");
+				}
+				else
+				{
+					lista.put(usuAct, aux);
+					aux = new ArrayList<PeliRating>();
+					aux.add(new PeliRating(Integer.parseInt(str[1]),Double.parseDouble(str[2])));
+				}
+				
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public static Ratings getRatings()
+	{
+		if(mRating==null)
+			mRating = new Ratings();
+		return mRating;
+	}
+	public ArrayList<Integer> devolKeys() {
+		return new ArrayList<>(lista.keySet()); 
+	}
+	
+	public ArrayList<PeliRating> getRatingsPorId(Integer pId) {
+		return lista.get(pId);
+	}
+}

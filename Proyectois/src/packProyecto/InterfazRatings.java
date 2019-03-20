@@ -55,15 +55,6 @@ public class InterfazRatings extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	/*public static void main(String[] args) {
-		try {
-			InterfazRatings dialog = new InterfazRatings();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}*/
 
 	/**
 	 * Create the dialog.
@@ -82,11 +73,11 @@ public class InterfazRatings extends JDialog {
 					String valor = txtIntroduceId.getText();
 					if (isNumeric(valor)) {
 							Integer numero = Integer.parseInt(valor);
-						if (Ratings.getRatings().devolKeys().contains(numero)){
-							PeliRating[] listaaux = Ratings.getRatings().getRatingsPorId(numero);
+						if (BaseDatos.getBd().devolKeys().contains(numero)){
+							ArrayList<Tupla<Integer,Double>> listaaux = BaseDatos.getBd().getRatingsPorId(numero);
 							Vector<ListPeliNota> items1 = new Vector<>();
-							for (int i=0;i<listaaux.length;i++) {
-								items1.add(new ListPeliNota(listaaux[i].getPeli(),listaaux[i].getNota()));
+							for (int i=0;i<listaaux.size();i++) {
+								items1.add(new ListPeliNota(listaaux.get(i).getX(),listaaux.get(i).getY()));
 							}
 							/*DefaultListModel listModel1 = new DefaultListModel();
 							for(int i=0; i<listaaux.length;i++) {
@@ -156,7 +147,7 @@ public class InterfazRatings extends JDialog {
 	private JList getList_1() {
 		if (list == null) {
 			DefaultListModel listModel = new DefaultListModel();
-			ArrayList<Integer> lista = Ratings.getRatings().devolKeys();
+			ArrayList<Integer> lista = BaseDatos.getBd().devolKeys();
 			for (int i=0; i<lista.size();i++) {
 				listModel.add(i, lista.get(i));
 			}
@@ -208,7 +199,7 @@ public class InterfazRatings extends JDialog {
 			btnResetId.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					DefaultListModel listModel = new DefaultListModel();
-					ArrayList<Integer> lista = Ratings.getRatings().devolKeys();
+					ArrayList<Integer> lista = BaseDatos.getBd().devolKeys();
 					for (int i=0; i<lista.size();i++) {
 						listModel.add(i, lista.get(i));}
 					list.setModel(listModel);
