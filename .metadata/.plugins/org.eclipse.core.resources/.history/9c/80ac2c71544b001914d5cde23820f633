@@ -42,7 +42,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JScrollBar;
 
 
-public class InterfazRatings extends JDialog {
+public class InterfazTag extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JList list;
@@ -59,7 +59,7 @@ public class InterfazRatings extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public InterfazRatings() {
+	public InterfazTag() {
 		setBounds(100, 100, 450, 300);
 		setSize(600, 350);
 		getContentPane().setLayout(new BorderLayout());

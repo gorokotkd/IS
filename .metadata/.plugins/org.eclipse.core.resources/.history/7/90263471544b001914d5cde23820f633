@@ -52,6 +52,23 @@ public class Ratings {
 		}
 	}
 	
+<<<<<<< HEAD
+=======
+	public static Ratings getRatings()
+	{
+		if(mRating==null)
+			mRating = new Ratings();
+		return mRating;
+	}
+	
+	public void imprimir(int i)
+	{
+		//System.out.println(i+"-->"+lista.get(i));
+		//lista.get(i)[8].imprimir();
+
+	}
+	
+>>>>>>> 33957e3c9da2100ea93167d5895a6caf5fe33cc9
 	public ArrayList<Integer> devolKeys() {
 		return new ArrayList<>(lista.keySet()); 
 	}
