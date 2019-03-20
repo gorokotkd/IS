@@ -16,13 +16,10 @@ public class PeliRating {
 	
 	public double getNota()
 	{return nota;}
-<<<<<<< HEAD
 
 	
 	public void imprimir()
 	{
 		System.out.println("("+idPeli+" --> "+nota+")");
 	}
-=======
->>>>>>> 1398a65c048d45ccdef2be145f0406416fe291a5
 }

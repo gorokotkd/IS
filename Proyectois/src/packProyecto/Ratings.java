@@ -57,7 +57,6 @@ public class Ratings {
 			mRating = new Ratings();
 		return mRating;
 	}
-<<<<<<< HEAD
 	
 	public void imprimir(int i)
 	{
@@ -66,8 +65,6 @@ public class Ratings {
 
 	}
 	
-=======
->>>>>>> 1398a65c048d45ccdef2be145f0406416fe291a5
 	public ArrayList<Integer> devolKeys() {
 		return new ArrayList<>(lista.keySet()); 
 	}

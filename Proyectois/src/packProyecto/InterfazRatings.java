@@ -213,6 +213,7 @@ public class InterfazRatings extends JDialog {
 						listModel.add(i, lista.get(i));}
 					list.setModel(listModel);
 					lblIdusuario.setText("IDUsuario");
+					txtIntroduceId.setText("");
 				}
 			});
 		}

@@ -21,17 +21,11 @@ public class TablaPeliculas {
 			String path = System.getProperty("user.dir");
 			path = path.replace("\\", "/");
 			path = path+"/movie-titles.csv";
-			String comando = "load data infile"+"'"+path+"' into table peliculas fields terminated by ';' enclosed by '\"' lines terminated by '\r\n' (idpeli, nombre);";
+			String comando = "load data infile"+"'"+path+"' into table peliculas fields terminated by ';' enclosed by '\"' lines terminated by '\n' (idpeli, nombre);";
 			BaseDatos.getBd().actualizar(comando);
 			Peliculas.getPeliculas();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 1398a65c048d45ccdef2be145f0406416fe291a5
 	}
 }
