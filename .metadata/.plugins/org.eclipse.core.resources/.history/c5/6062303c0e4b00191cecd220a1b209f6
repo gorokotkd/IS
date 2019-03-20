@@ -91,13 +91,5 @@ private BaseDatos() {
 	{
 		return tablaTag.tablaArray();
 	}
-	
-	/*private void generarFicheroSql()
-	{
-		try {
-			
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}*/
+
 }

@@ -57,6 +57,15 @@ public class Ratings {
 			mRating = new Ratings();
 		return mRating;
 	}
+<<<<<<< HEAD
+	
+	public void imprimir(int i)
+	{
+		//System.out.println(i+"-->"+lista.get(i));
+		//lista.get(i)[8].imprimir();
+
+	}
+	
 	public ArrayList<Integer> devolKeys() {
 		return new ArrayList<>(lista.keySet()); 
 	}
@@ -64,4 +73,6 @@ public class Ratings {
 	public PeliRating[] getRatingsPorId(Integer pId) {
 		return lista.get(pId);
 	}
+=======
+>>>>>>> 18db53e19c85521820aaff354e7ffdba5edbd763
 }
