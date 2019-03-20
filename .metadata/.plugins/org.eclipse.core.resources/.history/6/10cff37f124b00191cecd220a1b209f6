@@ -34,7 +34,7 @@ public class pruebaGrafica extends JDialog {
 	public pruebaGrafica() {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
-		setSize(600, 350);
+		setSize(600, 450);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 

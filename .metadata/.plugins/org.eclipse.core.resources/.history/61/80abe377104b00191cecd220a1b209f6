@@ -66,8 +66,6 @@ public class Ratings {
 
 	}
 	
-=======
->>>>>>> 1398a65c048d45ccdef2be145f0406416fe291a5
 	public ArrayList<Integer> devolKeys() {
 		return new ArrayList<>(lista.keySet()); 
 	}
@@ -75,4 +73,6 @@ public class Ratings {
 	public PeliRating[] getRatingsPorId(Integer pId) {
 		return lista.get(pId);
 	}
+=======
+>>>>>>> 18db53e19c85521820aaff354e7ffdba5edbd763
 }

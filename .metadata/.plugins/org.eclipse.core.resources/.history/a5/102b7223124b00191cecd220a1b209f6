@@ -34,7 +34,7 @@ public class pruebaGrafica extends JDialog {
 	public pruebaGrafica() {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
-		setSize(600, 350);
+		contentPanel.setSize(300, 300);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 
@@ -43,7 +43,7 @@ public class pruebaGrafica extends JDialog {
 			gl_contentPanel.setHorizontalGroup(
 				gl_contentPanel.createParallelGroup(Alignment.LEADING)
 					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 440, GroupLayout.PREFERRED_SIZE)
-					.addComponent(getScrollPane(), GroupLayout.PREFERRED_SIZE, 500, GroupLayout.PREFERRED_SIZE)
+					.addComponent(getScrollPane(), GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
 			);
 			gl_contentPanel.setVerticalGroup(
 				gl_contentPanel.createParallelGroup(Alignment.LEADING)
