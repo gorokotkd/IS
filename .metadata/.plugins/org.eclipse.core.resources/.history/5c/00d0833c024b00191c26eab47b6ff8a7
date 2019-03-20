@@ -1,0 +1,29 @@
+package packProyecto;
+
+public class TablaPeliculas {
+	
+	public TablaPeliculas()
+	{
+		generarTabla();
+	}
+	
+	private void generarTabla()
+	{
+		crearTabla();
+		introducirDatos();
+	}
+	private void crearTabla()
+	{
+		String comando = "create table peliculas(idpeli int not null, nombre varchar(300), primary key(idpeli));";
+		BaseDatos.getBd().actualizar(comando);
+	}
+	private void introducirDatos()
+	{
+
+		String path = System.getProperty("user.dir");
+		path = path.replace("\\", "/");
+		path = path+"/movie-titles.csv";
+		String comando = "load data infile"+"'"+path+"' into table peliculas fields terminated by ';' enclosed by '\"' lines terminated by '\r\n' (idpeli, nombre);";
+		BaseDatos.getBd().actualizar(comando);
+	}
+}

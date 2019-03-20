@@ -1,38 +1,23 @@
 package packProyecto;
 
-import java.sql.SQLException;
-import java.sql.Statement;
-
 public class TablaPeliculas {
-
-	private static TablaPeliculas mTabla;
-	
-	private TablaPeliculas()
+		
+	private void generarTabla()
 	{
+		crearTabla();
+		introducirDatos();
 	}
-	public static TablaPeliculas getTablaPeliculas()
-	{
-		if(mTabla==null)
-			mTabla=new TablaPeliculas();
-		return mTabla;
+	public TablaPeliculas() {
+		generarTabla();
 	}
-	
-	public void generarTabla(Statement st)
-	{
-		crearTabla(st);
-		introducirDatos(st);
-	}
-	private void crearTabla(Statement st)
+	private void crearTabla()
 	{
 		String comando = "create table peliculas(idpeli int not null, nombre varchar(300), primary key(idpeli));";
-		try {
-			st.executeUpdate(comando);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		BaseDatos.getBd().actualizar(comando);
 	}
-	private void introducirDatos(Statement st)
+	private void introducirDatos()
 	{
+<<<<<<< HEAD
 		try {
 			String path = System.getProperty("user.dir");
 			path = path.replace("\\", "/");
@@ -42,5 +27,14 @@ public class TablaPeliculas {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+=======
+
+		String path = System.getProperty("user.dir");
+		path = path.replace("\\", "/");
+		path = path+"/movie-titles.csv";
+		String comando = "load data infile"+"'"+path+"' into table peliculas fields terminated by ';' enclosed by '\"' lines terminated by '\r\n' (idpeli, nombre);";
+		BaseDatos.getBd().actualizar(comando);
+		Peliculas.getPeliculas();
+>>>>>>> 18db53e19c85521820aaff354e7ffdba5edbd763
 	}
 }

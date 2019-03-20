@@ -1,0 +1,29 @@
+package packProyecto;
+
+public class TablaResena {
+
+	
+	public TablaResena()
+	{
+		generarTabla();
+	}	
+	public void generarTabla()
+	{
+		crearTabla();
+		introducirDatos();
+	}
+	private void crearTabla()
+	{
+		String comando = "create table resena(idusu int not null, idpeli int not null, nota dec(2,1), primary key(idusu,idpeli), foreign key(idpeli) references peliculas(idpeli) on update cascade);";
+		BaseDatos.getBd().actualizar(comando);
+	}
+	private void introducirDatos()
+	{
+		String path = System.getProperty("user.dir");
+		path = path.replace("\\", "/");
+		path = path+"/movie-ratings.csv";
+		String comando = "load data infile '"+path+"' into table resena fields terminated by ',' enclosed by '\"' lines terminated by '\n' (idusu, idpeli, nota);";
+		BaseDatos.getBd().actualizar(comando);
+		Ratings.getRatings();
+	}
+}

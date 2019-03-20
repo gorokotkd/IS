@@ -35,11 +35,6 @@ public class Peliculas {
 			mPeliculas = new Peliculas();
 		return mPeliculas;
 	}
-	
-	public void imprimir(int i)
-	{
-		System.out.println(lista.get(i));
-	}
 
 	public Set<Entry<Integer,String>> entrySet() {
 		return lista.entrySet();

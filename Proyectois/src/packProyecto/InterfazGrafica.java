@@ -21,26 +21,10 @@ public class InterfazGrafica extends JDialog {
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			//Peliculas.getPeliculas();
-			InterfazGrafica dialog = new InterfazGrafica();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	/**
 	 * Create the dialog.
 	 */
 	public InterfazGrafica() {
-		Peliculas.getPeliculas();
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -96,7 +80,10 @@ public class InterfazGrafica extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource().equals(cancelButton))
+				{
+					BaseDatos.getBd().eliminarBD();
 					dispose();
+				}
 			}
 			
 		});
@@ -106,13 +93,10 @@ public class InterfazGrafica extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource().equals(btnNewButton_1))
-				{
-					
+				{					
 					pruebaGrafica pG = new pruebaGrafica();
 					pG.setVisible(true);
-				}
-					
-				
+				}	
 			}
 		});
 		btnNewButton_2.addActionListener(new ActionListener() {
@@ -130,14 +114,23 @@ public class InterfazGrafica extends JDialog {
 			}
 		});
 		
-		
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource().equals(btnNewButton))
+				{
+					InterfazTag iG = new InterfazTag();
+					iG.setVisible(true);
+				}
+			}
+		});
 	}
 	private JButton getBtnNewButton() {
 		if (btnNewButton == null) {
 			btnNewButton = new JButton("Tags");
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					//lblNewLabel.setText("BuruHandi");
 				}
 			});
 		}

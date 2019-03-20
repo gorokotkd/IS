@@ -1,0 +1,14 @@
+package packProyecto;
+
+import javax.swing.JPanel;
+
+public class InterfazTag extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	public InterfazTag() {
+
+	}
+
+}

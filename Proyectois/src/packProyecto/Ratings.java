@@ -25,10 +25,8 @@ public class Ratings {
 				max = Integer.parseInt(consulta.getString("max(idusu)"));
 			else 
 				max = 0;
-			System.out.println("Empieza lo bueno...\n");
 			while(i<max+1)
 			{
-				//lista.put(i, new ArrayList<PeliRating>());
 				sql = "select count(*) from resena where idusu="+i+";";
 				consulta = BaseDatos.getBd().hacerConsulta(sql);
 				int tam = 0;
@@ -46,7 +44,6 @@ public class Ratings {
 				lista.put(i, aux);
 				i++;
 			}
-			System.out.println("Terminado");
 		}
 		catch (SQLException e)
 		{
@@ -60,6 +57,7 @@ public class Ratings {
 			mRating = new Ratings();
 		return mRating;
 	}
+<<<<<<< HEAD
 	
 	public void imprimir(int i)
 	{
@@ -75,4 +73,6 @@ public class Ratings {
 	public PeliRating[] getRatingsPorId(Integer pId) {
 		return lista.get(pId);
 	}
+=======
+>>>>>>> 18db53e19c85521820aaff354e7ffdba5edbd763
 }
