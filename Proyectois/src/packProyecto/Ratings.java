@@ -57,7 +57,6 @@ public class Ratings {
 			mRating = new Ratings();
 		return mRating;
 	}
-<<<<<<< HEAD
 	
 	public void imprimir(int i)
 	{
@@ -73,6 +72,4 @@ public class Ratings {
 	public PeliRating[] getRatingsPorId(Integer pId) {
 		return lista.get(pId);
 	}
-=======
->>>>>>> 18db53e19c85521820aaff354e7ffdba5edbd763
 }
