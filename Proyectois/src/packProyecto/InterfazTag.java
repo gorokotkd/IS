@@ -31,7 +31,7 @@ public class InterfazTag extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		try {
 			InterfazTag dialog = new InterfazTag();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -39,7 +39,7 @@ public class InterfazTag extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	/**
 	 * Create the dialog.
@@ -102,7 +102,7 @@ public class InterfazTag extends JDialog {
 	private JList getList() {
 		if (list == null) {
 			DefaultListModel listModel = new DefaultListModel();
-			ArrayList<String> lista = TablaTag.getTablaTag().tablaArray();
+			ArrayList<String> lista = BaseDatos.getBd().tagArray();
 			for(int i=0; i<lista.size();i++)
 				listModel.add(i, lista.get(i));
 			list = new JList(listModel);

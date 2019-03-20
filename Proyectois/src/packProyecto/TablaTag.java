@@ -7,48 +7,33 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class TablaTag {
-
-private static TablaTag mTabla;
 	
-	private TablaTag()
+	public TablaTag()
 	{
-	}
-	public static TablaTag getTablaTag()
-	{
-		if(mTabla==null)
-			mTabla=new TablaTag();
-		return mTabla;
+		generarTabla();
 	}
 	
-	public void generarTabla(Statement st)
+	public void generarTabla()
 	{
-		crearTabla(st);
-		introducirDatos(st);
+		crearTabla();
+		introducirDatos();
 	}
-	private void crearTabla(Statement st)
+	private void crearTabla()
 	{
 		String comando = "create table tag(nombreTag varchar(300) not null, primary key(nombreTag));";
-		try {
-			st.executeUpdate(comando);
-			comando = "create table tag_aux(idpeli int, nombreTag varchar(300));";
-			st.executeUpdate(comando);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		BaseDatos.getBd().actualizar(comando);
+		comando = "create table tag_aux(idpeli int, nombreTag varchar(300));";
+		BaseDatos.getBd().actualizar(comando);
 	}
-	private void introducirDatos(Statement st)
+	private void introducirDatos()
 	{
-		try {
-			String path = System.getProperty("user.dir");
-			path = path.replace("\\", "/");
-			path = path+"/movie-tags.csv";
-			String comando = "load data infile"+ "'"+path+"' ignore into table tag fields terminated by ';' enclosed by '\"' lines terminated by '\r\n' (@dummy, nombreTag);";
-			st.executeUpdate(comando);
-			comando="load data infile '"+path+"' into table tag_aux fields terminated by ';' enclosed by '\"' lines terminated by '\r\n' (idpeli,nombretag);";
-			st.executeUpdate(comando);
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+		String path = System.getProperty("user.dir");
+		path = path.replace("\\", "/");
+		path = path+"/movie-tags.csv";
+		String comando = "load data infile"+ "'"+path+"' ignore into table tag fields terminated by ';' enclosed by '\"' lines terminated by '\r\n' (@dummy, nombreTag);";
+		BaseDatos.getBd().actualizar(comando);
+		comando="load data infile '"+path+"' into table tag_aux fields terminated by ';' enclosed by '\"' lines terminated by '\r\n' (idpeli,nombretag);";
+		BaseDatos.getBd().actualizar(comando);
 	}
 	
 	public ArrayList<String> tablaArray()

@@ -25,7 +25,7 @@ public class InterfazGrafica extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		try {
 			//Peliculas.getPeliculas();
 			InterfazGrafica dialog = new InterfazGrafica();
@@ -34,13 +34,13 @@ public class InterfazGrafica extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	/**
 	 * Create the dialog.
 	 */
 	public InterfazGrafica() {
-		Peliculas.getPeliculas();
+		//Peliculas.getPeliculas();
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

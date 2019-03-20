@@ -25,12 +25,12 @@ public class pruebaGrafica extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JScrollPane scrollPane;
 	private JList list;
-	private JScrollBar scrollBar;
+//	private JScrollBar scrollBar;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		try {
 			pruebaGrafica dialog = new pruebaGrafica();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -38,13 +38,12 @@ public class pruebaGrafica extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	/**
 	 * Create the dialog.
 	 */
 	public pruebaGrafica() {
-		Ratings.getRatings();
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -104,16 +103,12 @@ public class pruebaGrafica extends JDialog {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
 			scrollPane.setViewportView(getList());
-			scrollPane.setRowHeaderView(getScrollBar());
+		//	scrollPane.setRowHeaderView(getScrollBar());
 		}
 		return scrollPane;
 	}
 	private JList getList() {
 		if (list == null) {
-			//Map<Integer,String> hashpeliculas = new HashMap<>();
-			//hashpeliculas.put(1,"Tetanic");
-			//hashpeliculas.put(2,"La almeja Maya");
-			//hashpeliculas.put(3,"50 tragos de leche");
 			Peliculas.getPeliculas();
 			Vector<ListItem> items = new Vector<>();
 			for (Map.Entry<Integer,String> entry: Peliculas.getPeliculas().entrySet()) {
@@ -124,12 +119,12 @@ public class pruebaGrafica extends JDialog {
 		}
 		return list;
 	}
-	private JScrollBar getScrollBar() {
+	/*private JScrollBar getScrollBar() {
 		if (scrollBar == null) {
 			scrollBar = new JScrollBar();
 		}
 		return scrollBar;
-	}
+	}*/
 }
 
 class ListItem{

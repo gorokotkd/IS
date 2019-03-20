@@ -24,7 +24,6 @@ public class Ratings {
 				max = Integer.parseInt(consulta.getString("max(idusu)"));
 			else 
 				max = 0;
-			System.out.println("Empieza lo bueno...\n");
 			while(i<max+1)
 			{
 				//lista.put(i, new ArrayList<PeliRating>());
@@ -45,7 +44,6 @@ public class Ratings {
 				lista.put(i, aux);
 				i++;
 			}
-			System.out.println("Terminado");
 		}
 		catch (SQLException e)
 		{
