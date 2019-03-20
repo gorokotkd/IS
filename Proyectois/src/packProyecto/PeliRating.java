@@ -23,4 +23,5 @@ public class PeliRating {
 	{
 		System.out.println("("+idPeli+" --> "+nota+")");
 	}
+	
 }

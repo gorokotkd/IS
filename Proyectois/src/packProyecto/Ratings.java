@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Set;
 
 public class Ratings {
 	
@@ -65,5 +66,13 @@ public class Ratings {
 		//System.out.println(i+"-->"+lista.get(i));
 		//lista.get(i)[8].imprimir();
 
+	}
+	
+	public ArrayList<Integer> devolKeys() {
+		return new ArrayList<>(lista.keySet()); 
+	}
+	
+	public PeliRating[] getRatingsPorId(Integer pId) {
+		return lista.get(pId);
 	}
 }

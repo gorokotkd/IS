@@ -115,6 +115,20 @@ public class InterfazGrafica extends JDialog {
 				
 			}
 		});
+		btnNewButton_2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource().equals(btnNewButton_2))
+				{
+					
+					InterfazRatings pG = new InterfazRatings();
+					pG.setVisible(true);
+				}
+					
+				
+			}
+		});
 		
 		
 	}
