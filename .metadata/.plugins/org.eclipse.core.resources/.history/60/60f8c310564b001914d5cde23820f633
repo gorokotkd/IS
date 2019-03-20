@@ -46,7 +46,7 @@ private TagsPorPeli tagsPorPeli;
 		}
 	}
 	
-	public ArrayList<Integer> ratingsDevolKeys() {
+	public ArrayList<Integer> devolKeys() {
 		return ratings.devolKeys();
 	}
 	public ArrayList<Tupla<Integer,Double>> getRatingsPorId(Integer pId) {
@@ -57,11 +57,4 @@ private TagsPorPeli tagsPorPeli;
 		return peliculas.entrySet();
 	}	
 	
-	public ArrayList<Integer> tagsDevolKeys() {
-		return tagsPorPeli.tagsDevolKeys(); 
-	}
-	
-	public ArrayList<Tupla<String, Integer>> getTagsPorId(Integer pId) {
-		return tagsPorPeli.getTagsPorId(pId);
-	}
 }

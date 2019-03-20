@@ -73,11 +73,11 @@ public class InterfazTag extends JDialog {
 					String valor = txtIntroduceId.getText();
 					if (isNumeric(valor)) {
 							Integer numero = Integer.parseInt(valor);
-						if (BaseDatos.getBd().devolKeys().contains(numero)){
-							ArrayList<Tupla<Integer,Double>> listaaux = BaseDatos.getBd().getRatingsPorId(numero);
-							Vector<ListPeliNota> items1 = new Vector<>();
+						if (BaseDatos.getBd().tagsDevolKeys().contains(numero)){
+							ArrayList<Tupla<String, Integer>> listaaux = BaseDatos.getBd().getTagsPorId(numero);
+							Vector<ListTagCont> items1 = new Vector<>();
 							for (int i=0;i<listaaux.size();i++) {
-								items1.add(new ListPeliNota(listaaux.get(i).getX(),listaaux.get(i).getY()));
+								items1.add(new ListTagCont(listaaux.get(i).getX(),listaaux.get(i).getY()));
 							}
 							/*DefaultListModel listModel1 = new DefaultListModel();
 							for(int i=0; i<listaaux.length;i++) {
@@ -147,7 +147,7 @@ public class InterfazTag extends JDialog {
 	private JList getList_1() {
 		if (list == null) {
 			DefaultListModel listModel = new DefaultListModel();
-			ArrayList<Integer> lista = BaseDatos.getBd().devolKeys();
+			ArrayList<Integer> lista = BaseDatos.getBd().tagsDevolKeys();
 			for (int i=0; i<lista.size();i++) {
 				listModel.add(i, lista.get(i));
 			}
@@ -158,7 +158,7 @@ public class InterfazTag extends JDialog {
 	}
 	private JLabel getLblIdusuario() {
 		if (lblIdusuario == null) {
-			lblIdusuario = new JLabel("IDUsuario");
+			lblIdusuario = new JLabel("IDPelicula");
 		}
 		return lblIdusuario;
 	}
@@ -179,18 +179,18 @@ public class InterfazTag extends JDialog {
 		    return false;  
 		  }  
 		}
-	class ListPeliNota{
-		private int Id;
-		private double nota;
+	class ListTagCont{
+		private String tag;
+		private int cont;
 		
-		ListPeliNota (int pid,double pnota){
-			this.Id=pid;
-			this.nota=pnota;
+		ListTagCont (String pTag,int pCont){
+			tag=pTag;
+			cont=pCont;
 		}
 		
 		@Override
 		public String toString() {
-			return Id + ":        " + nota;
+			return tag + ":        " + cont;
 		}
 	}
 	private JButton getBtnResetId() {
@@ -199,11 +199,11 @@ public class InterfazTag extends JDialog {
 			btnResetId.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					DefaultListModel listModel = new DefaultListModel();
-					ArrayList<Integer> lista = BaseDatos.getBd().devolKeys();
+					ArrayList<Integer> lista = BaseDatos.getBd().tagsDevolKeys();
 					for (int i=0; i<lista.size();i++) {
 						listModel.add(i, lista.get(i));}
 					list.setModel(listModel);
-					lblIdusuario.setText("IDUsuario");
+					lblIdusuario.setText("IDPelicula");
 				}
 			});
 		}

@@ -57,11 +57,4 @@ private TagsPorPeli tagsPorPeli;
 		return peliculas.entrySet();
 	}	
 	
-	public ArrayList<Integer> tagsDevolKeys() {
-		return tagsPorPeli.tagsDevolKeys(); 
-	}
-	
-	public ArrayList<Tupla<String, Integer>> getTagsPorId(Integer pId) {
-		return tagsPorPeli.getTagsPorId(pId);
-	}
 }

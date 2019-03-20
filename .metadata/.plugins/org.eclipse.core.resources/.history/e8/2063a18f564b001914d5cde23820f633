@@ -58,10 +58,10 @@ private TagsPorPeli tagsPorPeli;
 	}	
 	
 	public ArrayList<Integer> tagsDevolKeys() {
-		return tagsPorPeli.tagsDevolKeys(); 
+		return new ArrayList<>(lista.keySet()); 
 	}
 	
 	public ArrayList<Tupla<String, Integer>> getTagsPorId(Integer pId) {
-		return tagsPorPeli.getTagsPorId(pId);
+		return lista.get(pId);
 	}
 }

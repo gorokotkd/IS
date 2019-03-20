@@ -15,7 +15,6 @@ public class Peliculas {
 	
 	public Peliculas()
 	{
-		lista = new HashMap<Integer,String>();
 		try
 		{
 			String path = System.getProperty("user.dir")+"/movie-titles.csv";
@@ -25,11 +24,13 @@ public class Peliculas {
 			while(lectura!=null)
 			{	
 				String[] str = lectura.split(";");
+				System.out.println(str[0]+"-->"+str[1]);
 				String sr = str[1];
 				int key = Integer.parseInt(str[0]);
-				lista.put(key, sr);
+				lista.put(Integer.parseInt(key, sr);
 				lectura=br.readLine();
 			}
+			System.out.println("Terminado");
 		}
 		catch(Exception e)
 		{

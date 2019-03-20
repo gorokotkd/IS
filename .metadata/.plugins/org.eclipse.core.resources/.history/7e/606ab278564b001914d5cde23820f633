@@ -59,7 +59,7 @@ public class TagsPorPeli {
 		}
 	}
 	
-	public ArrayList<Integer> tagsDevolKeys() {
+	public ArrayList<Integer> TagsevolKeys() {
 		return new ArrayList<>(lista.keySet()); 
 	}
 	

@@ -58,12 +58,4 @@ public class TagsPorPeli {
 			e.printStackTrace();
 		}
 	}
-	
-	public ArrayList<Integer> tagsDevolKeys() {
-		return new ArrayList<>(lista.keySet()); 
-	}
-	
-	public ArrayList<Tupla<String, Integer>> getTagsPorId(Integer pId) {
-		return lista.get(pId);
-	}
 }

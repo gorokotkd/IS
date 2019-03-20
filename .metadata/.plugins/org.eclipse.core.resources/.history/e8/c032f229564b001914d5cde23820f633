@@ -147,7 +147,7 @@ public class InterfazRatings extends JDialog {
 	private JList getList_1() {
 		if (list == null) {
 			DefaultListModel listModel = new DefaultListModel();
-			ArrayList<Integer> lista = BaseDatos.getBd().ratingsDevolKeys();
+			ArrayList<Integer> lista = BaseDatos.getBd().devolKeys();
 			for (int i=0; i<lista.size();i++) {
 				listModel.add(i, lista.get(i));
 			}
@@ -199,7 +199,7 @@ public class InterfazRatings extends JDialog {
 			btnResetId.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					DefaultListModel listModel = new DefaultListModel();
-					ArrayList<Integer> lista = BaseDatos.getBd().ratingsDevolKeys();
+					ArrayList<Integer> lista = BaseDatos.getBd().devolKeys();
 					for (int i=0; i<lista.size();i++) {
 						listModel.add(i, lista.get(i));}
 					list.setModel(listModel);

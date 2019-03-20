@@ -73,7 +73,7 @@ public class InterfazRatings extends JDialog {
 					String valor = txtIntroduceId.getText();
 					if (isNumeric(valor)) {
 							Integer numero = Integer.parseInt(valor);
-						if (BaseDatos.getBd().ratingsDevolKeys().contains(numero)){
+						if (BaseDatos.getBd().devolKeys().contains(numero)){
 							ArrayList<Tupla<Integer,Double>> listaaux = BaseDatos.getBd().getRatingsPorId(numero);
 							Vector<ListPeliNota> items1 = new Vector<>();
 							for (int i=0;i<listaaux.size();i++) {
@@ -147,7 +147,7 @@ public class InterfazRatings extends JDialog {
 	private JList getList_1() {
 		if (list == null) {
 			DefaultListModel listModel = new DefaultListModel();
-			ArrayList<Integer> lista = BaseDatos.getBd().ratingsDevolKeys();
+			ArrayList<Integer> lista = BaseDatos.getBd().devolKeys();
 			for (int i=0; i<lista.size();i++) {
 				listModel.add(i, lista.get(i));
 			}
@@ -199,7 +199,7 @@ public class InterfazRatings extends JDialog {
 			btnResetId.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					DefaultListModel listModel = new DefaultListModel();
-					ArrayList<Integer> lista = BaseDatos.getBd().ratingsDevolKeys();
+					ArrayList<Integer> lista = BaseDatos.getBd().devolKeys();
 					for (int i=0; i<lista.size();i++) {
 						listModel.add(i, lista.get(i));}
 					list.setModel(listModel);
