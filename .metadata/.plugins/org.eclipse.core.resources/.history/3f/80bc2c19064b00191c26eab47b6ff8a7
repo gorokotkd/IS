@@ -26,6 +26,7 @@ public class Ratings {
 				max = 0;
 			while(i<max+1)
 			{
+				//lista.put(i, new ArrayList<PeliRating>());
 				sql = "select count(*) from resena where idusu="+i+";";
 				consulta = BaseDatos.getBd().hacerConsulta(sql);
 				int tam = 0;
@@ -55,5 +56,12 @@ public class Ratings {
 		if(mRating==null)
 			mRating = new Ratings();
 		return mRating;
+	}
+	
+	public void imprimir(int i)
+	{
+		//System.out.println(i+"-->"+lista.get(i));
+		//lista.get(i)[8].imprimir();
+
 	}
 }

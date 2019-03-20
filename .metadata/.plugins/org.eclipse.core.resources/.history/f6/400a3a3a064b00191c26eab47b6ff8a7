@@ -13,7 +13,7 @@ public class TablaTag {
 		generarTabla();
 	}
 	
-	private void generarTabla()
+	public void generarTabla()
 	{
 		crearTabla();
 		introducirDatos();

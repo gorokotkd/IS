@@ -9,6 +9,8 @@ public class Main {
 		InterfazGrafica interfaz = new InterfazGrafica();
 		interfaz.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		interfaz.setVisible(true);
+		//BaseDatos.getBd().cargarBd();
+	//	BaseDatos.getBd().eliminarBD();
 	}
 
 }

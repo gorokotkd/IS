@@ -8,6 +8,8 @@ public class TablaPeliculas {
 		introducirDatos();
 	}
 	public TablaPeliculas() {
+		super();
+		// TODO Auto-generated constructor stub
 		generarTabla();
 	}
 	private void crearTabla()

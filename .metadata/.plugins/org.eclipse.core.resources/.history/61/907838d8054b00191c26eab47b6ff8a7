@@ -48,7 +48,10 @@ private BaseDatos() {
 			tablaTag = new TablaTag();
 			System.out.println("Generando tabla tiene...\n");
 			tablaTiene = new TablaTiene();
-			System.out.println("Base De Datos Generada.");	
+			System.out.println("Base De Datos Generada.");
+			
+			
+			
 		}
 		catch (Exception e)
 		{

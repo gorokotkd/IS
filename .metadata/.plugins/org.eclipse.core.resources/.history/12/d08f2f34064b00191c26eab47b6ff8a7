@@ -7,7 +7,7 @@ public class TablaResena {
 	{
 		generarTabla();
 	}	
-	private void generarTabla()
+	public void generarTabla()
 	{
 		crearTabla();
 		introducirDatos();

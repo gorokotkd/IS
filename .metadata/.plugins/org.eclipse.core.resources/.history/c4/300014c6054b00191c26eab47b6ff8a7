@@ -25,10 +25,13 @@ private BaseDatos() {
 		st.executeUpdate(comando);
 		miConexion = DriverManager.getConnection("jdbc:mysql://localhost/euskoflix?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","");
 		st = miConexion.createStatement();
+	//	cargarBd();
 	} catch (Exception e) {
+		// TODO Auto-generated catch block
 		e.printStackTrace();
+	}	
+	//cargarBd();
 	}
-}
 
 	public static BaseDatos getBd()
 	{
@@ -48,7 +51,10 @@ private BaseDatos() {
 			tablaTag = new TablaTag();
 			System.out.println("Generando tabla tiene...\n");
 			tablaTiene = new TablaTiene();
-			System.out.println("Base De Datos Generada.");	
+			System.out.println("Base De Datos Generada.");
+			
+			
+			
 		}
 		catch (Exception e)
 		{
