@@ -38,7 +38,7 @@ public class pruebaGrafica extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 
-			JLabel lblNewLabel = new JLabel("Etiqueta");
+			JLabel lblNewLabel = new JLabel("Id---Nombre de la Pelicula");
 			GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
 			gl_contentPanel.setHorizontalGroup(
 				gl_contentPanel.createParallelGroup(Alignment.LEADING)
@@ -59,21 +59,7 @@ public class pruebaGrafica extends JDialog {
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				JButton okButton = new JButton("OK");
-				okButton.addActionListener(new ActionListener() {
-					
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						if(e.getSource().equals(okButton))
-							dispose();
-						
-					}
-				});
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
-			}
+			
 			{
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.addActionListener(new ActionListener() {

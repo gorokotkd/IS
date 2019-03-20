@@ -87,7 +87,7 @@ public class InterfazRatings extends JDialog {
 							list.setListData(items1);
 							//list_1 = new JList(items1);
 							//list_1.setListData(items1);
-							lblIdusuario.setText("IdPeli---Nota");
+							lblIdusuario.setText("Id de la Pelicula---Nota");
 						}
 					}
 				}
@@ -158,7 +158,7 @@ public class InterfazRatings extends JDialog {
 	}
 	private JLabel getLblIdusuario() {
 		if (lblIdusuario == null) {
-			lblIdusuario = new JLabel("IDUsuario");
+			lblIdusuario = new JLabel("Id del Usuario");
 		}
 		return lblIdusuario;
 	}
@@ -203,7 +203,8 @@ public class InterfazRatings extends JDialog {
 					for (int i=0; i<lista.size();i++) {
 						listModel.add(i, lista.get(i));}
 					list.setModel(listModel);
-					lblIdusuario.setText("IDUsuario");
+					lblIdusuario.setText("Id del Usuario");
+					txtIntroduceId.setText("");
 				}
 			});
 		}
