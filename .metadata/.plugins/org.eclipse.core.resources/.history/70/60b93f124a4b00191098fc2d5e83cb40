@@ -32,7 +32,7 @@ public class TablaTag {
 		path = path+"/movie-tags.csv";
 		String comando = "load data infile"+ "'"+path+"' ignore into table tag fields terminated by ';' enclosed by '\"' lines terminated by '\r\n' (@dummy, nombreTag);";
 		BaseDatos.getBd().actualizar(comando);
-		comando="load data infile '"+path+"' into table tag_aux fields terminated by ';' enclosed by '\"' lines terminated by '\r\n' (idpeli,nombretag);";
+		comando="load data infile '"+path+"' into table tag_aux fields terminated by ';' enclosed by '\"' lines terminated by '\n' (idpeli,nombretag);";
 		BaseDatos.getBd().actualizar(comando);
 	}
 	

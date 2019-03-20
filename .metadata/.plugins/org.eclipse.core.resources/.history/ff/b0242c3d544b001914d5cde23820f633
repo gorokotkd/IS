@@ -52,7 +52,8 @@ public class Ratings {
 		}
 	}
 	
-
+<<<<<<< HEAD
+=======
 	public static Ratings getRatings()
 	{
 		if(mRating==null)
@@ -67,7 +68,7 @@ public class Ratings {
 
 	}
 	
-
+>>>>>>> 33957e3c9da2100ea93167d5895a6caf5fe33cc9
 	public ArrayList<Integer> devolKeys() {
 		return new ArrayList<>(lista.keySet()); 
 	}
