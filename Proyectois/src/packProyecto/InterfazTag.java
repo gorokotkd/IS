@@ -87,7 +87,7 @@ public class InterfazTag extends JDialog {
 							list.setListData(items1);
 							//list_1 = new JList(items1);
 							//list_1.setListData(items1);
-							lblIdusuario.setText("IdPeli---Nota");
+							lblIdusuario.setText("NomTag-----Apariciones");
 						}
 					}
 				}
