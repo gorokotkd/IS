@@ -93,7 +93,7 @@ public class InterfazGrafica extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource().equals(btnNewButton_1))
 				{					
-					pruebaGrafica pG = new pruebaGrafica();
+					InterfazPeliculas pG = new InterfazPeliculas();
 					pG.setVisible(true);
 				}	
 			}

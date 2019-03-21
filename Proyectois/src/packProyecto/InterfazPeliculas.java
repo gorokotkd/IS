@@ -21,7 +21,7 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.BoxLayout;
 
-public class pruebaGrafica extends JDialog {
+public class InterfazPeliculas extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JScrollPane scrollPane;
@@ -31,7 +31,7 @@ public class pruebaGrafica extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public pruebaGrafica() {
+	public InterfazPeliculas() {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		setSize(600, 350);
