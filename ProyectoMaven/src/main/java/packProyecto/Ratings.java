@@ -12,9 +12,6 @@ import java.util.Set;
 public class Ratings {
 	
 	private HashMap<Integer, ArrayList<Tupla<Integer,Double>>> lista;
-	//key del hashmap es el usuario
-	//ArrayList --> Pelis calificadas por el usuario
-	//La tupla --> nota a una peli
 	
 	public Ratings()
 	{
@@ -55,34 +52,10 @@ public class Ratings {
 	}
 	
 	public ArrayList<Integer> devolKeys() {
-		return new ArrayList<>(lista.keySet()); 
+		return new ArrayList<Integer>(lista.keySet()); 
 	}
 	
 	public ArrayList<Tupla<Integer,Double>> getRatingsPorId(Integer pId) {
 		return lista.get(pId);
-	}
-	public int size()
-	{return lista.size();}
-	
-	
-	public double obtenerNota(int pIdUsu, int pIdPeli)
-	{
-		double nota = -1;
-		ArrayList<Tupla<Integer,Double>> listaAux = lista.get(pIdUsu);
-		Iterator<Tupla<Integer,Double>> itr = listaAux.iterator();
-		boolean salir = false;
-		
-		while(!salir && itr.hasNext())
-		{
-			Tupla<Integer,Double> tAux = itr.next();
-			if(tAux.getX()==pIdPeli)
-			{
-				nota=tAux.getY();
-				salir = true;
-			}
-		}
-		
-		return nota;
-	
 	}
 }

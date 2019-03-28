@@ -64,7 +64,4 @@ private TagsPorPeli tagsPorPeli;
 	public ArrayList<Tupla<String, Integer>> getTagsPorId(Integer pId) {
 		return tagsPorPeli.getTagsPorId(pId);
 	}
-	
-	public Ratings getRatings()
-	{return ratings;}
 }

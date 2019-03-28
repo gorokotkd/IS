@@ -12,7 +12,7 @@ public class TagsPorPeli {
 	
 	public TagsPorPeli()
 	{
-		String path = System.getProperty("user.dir")+"/movie-tags.csv";
+		String path = System.getProperty("user.dir")+"/ProyectoMaven/src/main/movie-tags.csv";
 		lista = new HashMap<Integer,ArrayList<Tupla<String, Integer>>>();
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(path));
@@ -59,7 +59,7 @@ public class TagsPorPeli {
 	}
 	
 	public ArrayList<Integer> tagsDevolKeys() {
-		return new ArrayList<>(lista.keySet()); 
+		return new ArrayList<Integer>(lista.keySet()); 
 	}
 	
 	public ArrayList<Tupla<String, Integer>> getTagsPorId(Integer pId) {

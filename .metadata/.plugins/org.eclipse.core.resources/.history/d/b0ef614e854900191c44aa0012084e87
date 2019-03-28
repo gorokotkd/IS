@@ -1,5 +1,0 @@
-package packProyecto;
-
-public class Peli_Rating {
-	private HashMap<Integer, ArrayList<Integer>> lista;
-}
