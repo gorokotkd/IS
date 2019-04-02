@@ -17,13 +17,17 @@ private Connection miConexion;
 private Peliculas peliculas;
 private Ratings ratings;
 private TagsPorPeli tagsPorPeli;
+private Similitud similitud;
 
 	private BaseDatos() {
-		cargarBd();
+		//cargarBd();
 	}
 
 	public static BaseDatos getBd()
 	{
+		if (mBd==null) {
+			mBd = new BaseDatos();
+		}
 		return mBd;
 	}
 
@@ -38,6 +42,12 @@ private TagsPorPeli tagsPorPeli;
 			ratings = new Ratings();
 			System.out.println("Generando tabla tagsPorPeli...\n");
 			tagsPorPeli = new TagsPorPeli();
+			System.out.println("Cargando valoraciones\n");
+			ratings.cargarValoraciones();
+			System.out.println("Normalizando...\n");
+			ratings.normalizar();
+			similitud = new Similitud();
+			this.filtradoProducto();
 			System.out.println("Base De Datos Generada.");	
 		}
 		catch (Exception e)
@@ -65,6 +75,21 @@ private TagsPorPeli tagsPorPeli;
 		return tagsPorPeli.getTagsPorId(pId);
 	}
 	
-	public Ratings getRatings()
-	{return ratings;}
+	public Ratings getRatings(){
+		if (this.ratings==null) {
+			ratings = new Ratings();
+		}
+		return ratings;
+	}
+	
+	public Similitud getSimilitud() {
+		if (similitud==null) {
+			similitud = new Similitud();
+		}
+		return similitud;
+	}
+	
+	public void filtradoProducto() {
+		this.peliculas.initMatrizSimilitudes();
+	}
 }
