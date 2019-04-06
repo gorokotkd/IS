@@ -541,3 +541,4 @@
 =======
 2019-04-03 11:07:49,571 [Worker-1: Loading available Gradle versions] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
 >>>>>>> parent of d02a486... Recomendacion Basada En contenido
+2019-04-06 16:02:52,469 [Worker-4: Loading available Gradle versions] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.

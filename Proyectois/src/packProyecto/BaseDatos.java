@@ -100,13 +100,9 @@ private Similitud similitud;
 		this.peliculas.initMatrizSimilitudes();
 	}
 	
-	public void kk()
+	public double getIdoneidad(int pUsus, int pPelicula)
 	{
-		System.out.println("Usuario: 4045	Pelicula: 2164	--> "+tagsPorPeli.getIdoneidad(4045,2164));
-		System.out.println("Usuario: 4045	Pelicula: 63	--> "+tagsPorPeli.getIdoneidad(4045,63));
-		System.out.println("Usuario: 4045	Pelicula: 807	--> "+tagsPorPeli.getIdoneidad(4045,807));
-		System.out.println("Usuario: 4045	Pelicula: 187	--> "+tagsPorPeli.getIdoneidad(4045,187));
-		System.out.println("Usuario: 4045	Pelicula: 11	--> "+tagsPorPeli.getIdoneidad(4045,11));
+		return tagsPorPeli.getIdoneidad(pUsus, pPelicula);
 	}
 	
 	public int cuantasPelis()
