@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -15,7 +16,7 @@ import java.util.Set;
 public class Peliculas {
 
 	private HashMap<Integer,String> lista; //idPeli + NombrePelicula
-	private HashMap<Integer,HashMap<Integer,Double>> similiProductos; //idProducto + idProducto
+	private HashMap<Integer,HashMap<Integer,Double>> similiProductos; //idProducto + HashMap<idProducto + similitudes>
 	
 	public Peliculas()
 	{
@@ -75,4 +76,81 @@ public class Peliculas {
 		}
 		System.out.println("Se ha creado la matriz de similitud de productos");
 	}
+	
+	public Double calcularIdoneidad(int pUsuario, int pProducto) {
+		this.similiProductos.get(key)
+		
+	}
+	
+	public ArrayList<Double> obtenerNProductos(int pProducto){
+		HashMap<Integer,Double> aux = this.similiProductos.get(pProducto);
+		Collection<Double> values = aux.values();
+		ArrayList<Double> lista = new ArrayList<Double>(values);
+		return
+	}
+	
+	public ArrayList<String> ordenarHash(){
+		ArrayList<String> arrayHash = this.hash2Array();
+		ArrayList<String> ordenado = this.mergeSort(arrayHash);
+		return ordenado;
+	}
+	
+	private ArrayList<Double> hash2Array(){
+		HashMap<Integer,Double> aux = this.similiProductos.get(pProducto);
+		ArrayList<Double> lista = new ArrayList<Double>(aux.values());
+		return lista;
+	}
+	
+	private ArrayList<String> mergeSort(ArrayList<String> entero){
+		ArrayList<String> izq = new ArrayList<String>();
+		ArrayList<String> der = new ArrayList<String>();
+		int ind;
+		if(entero.size() == 1) {
+			return entero;
+		}else {
+			ind = entero.size()/2;
+			for(int i=0; i<ind; i++) {
+				izq.add(entero.get(i));
+			}
+			for(int i=ind;i<entero.size();i++) {
+				der.add(entero.get(i));
+			}
+			izq = mergeSort(izq);
+			der = mergeSort(der);
+			mezcla(izq,der,entero);
+		}
+		return entero;
+	}
+	
+	private void mezcla(ArrayList<String> izq,ArrayList<String> der, ArrayList<String> entero) {
+		int izqIndex = 0;
+		int derIndex = 0;
+		int enteroIndex = 0;
+		while(izqIndex<izq.size() && derIndex<der.size()) {
+			if( (izq.get(izqIndex).compareTo(der.get(derIndex))) <0){
+				entero.set(enteroIndex, izq.get(izqIndex));
+				izqIndex++;
+			}else{
+				entero.set(enteroIndex, der.get(derIndex));
+				derIndex++;
+			}
+			enteroIndex++;
+		} 
+		ArrayList<String> resto;
+		int restoIndex = 0;
+		if(izqIndex >= izq.size()) {
+			resto = der;
+			restoIndex = derIndex;
+		}else {
+			resto = izq;
+			restoIndex = izqIndex;
+		}
+		
+		for(int i=restoIndex; i<resto.size();i++) {
+			entero.set(enteroIndex, resto.get(i));
+			enteroIndex++;
+		}
+	}
+	
+	
 }
