@@ -127,8 +127,8 @@ public class TagsPorPeli {
 		ArrayList<Double> vectorPersona = getFilaPersona(idUsu);
 		ArrayList<Double> vectorPelicula = getFilaProducto(idPeli);
 		
-		
-		return sim.calcularSimilitud(vectorPersona, vectorPelicula);
+		return sim.correlacionDePearson(vectorPersona, vectorPelicula);
+	//	return sim.calcularSimilitud(vectorPersona, vectorPelicula);
 	}
 	
 	private double getTfidfDe(int pIdPeli, String pTag)

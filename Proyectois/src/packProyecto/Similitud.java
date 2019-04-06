@@ -47,4 +47,55 @@ public class Similitud {
 		aux2 = Math.sqrt(aux2);
 		return aux1*aux2;
 	}
+	
+	
+	public Double correlacionDePearson(ArrayList<Double> list1, ArrayList<Double> list2)
+	{
+		int diff = list1.size()-list2.size();
+		if (diff<0) {
+			diff = diff*(-1);
+			for (int i = 0; i < diff; i++) {
+				list1.add(0.0);
+			}
+		}else if (diff>0) {
+			for (int i = 0; i < diff; i++) {
+				list2.add(0.0);
+			}  
+		}
+		double numerador = sumatorioPearson(list1, list2);
+		double deno1 = moduloPearson(list1);
+		double deno2 = moduloPearson(list2);
+		
+		return numerador/(deno1*deno2);
+		
+	}
+	
+	private Double moduloPearson(ArrayList<Double> list)
+	{
+		double resul = 0.0;
+		double media = mediaDeVector(list);
+		for(int i=0; i<list.size();i++)
+			resul = resul + Math.pow(list.get(i)-media, 2.0);
+		return Math.sqrt(resul);
+		
+		
+	}
+	
+	private Double mediaDeVector(ArrayList<Double> list)
+	{
+		Double sum=0.0;
+		for(int i=0;i<list.size();i++)
+			sum = sum+list.get(i);
+		return sum/list.size();
+	}
+	
+	private Double sumatorioPearson(ArrayList<Double> list1, ArrayList<Double> list2)
+	{
+		Double resul = 0.0;
+		double media1 = mediaDeVector(list1);
+		double media2 = mediaDeVector(list2);
+		for(int i=0; i<list1.size();i++)
+			resul = resul + (list1.get(i)-media1)*(list2.get(i)-media2);
+		return resul;
+	}
 }

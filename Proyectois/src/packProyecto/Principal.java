@@ -6,7 +6,6 @@ public class Principal {
 		/*InterfazGrafica interfaz = new InterfazGrafica();
 		interfaz.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		interfaz.setVisible(true);*/
-		System.out.println(ListaTags.getListaTags().tamano());
 		BaseDatos.getBd().cargarBd();
 		System.out.println("Usuario: 4045	Pelicula: 2164	--> "+BaseDatos.getBd().getIdoneidad(4045,2164));
 		System.out.println("Usuario: 4045	Pelicula: 63	--> "+BaseDatos.getBd().getIdoneidad(4045,63));
