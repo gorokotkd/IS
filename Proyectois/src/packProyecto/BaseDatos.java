@@ -17,13 +17,17 @@ private Connection miConexion;
 private Peliculas peliculas;
 private Ratings ratings;
 private TagsPorPeli tagsPorPeli;
+private Similitud similitud;
 
 	private BaseDatos() {
-		cargarBd();
+		//cargarBd();
 	}
 
 	public static BaseDatos getBd()
 	{
+		if (mBd==null) {
+			mBd = new BaseDatos();
+		}
 		return mBd;
 	}
 
@@ -34,10 +38,23 @@ private TagsPorPeli tagsPorPeli;
 			
 			System.out.println("Generando tabla peliculas...\n");
 			peliculas = new Peliculas();
+			peliculas.leerFichero();
 			System.out.println("Generando tabla resena...\n");
 			ratings = new Ratings();
+			ratings.leerFichero();
 			System.out.println("Generando tabla tagsPorPeli...\n");
 			tagsPorPeli = new TagsPorPeli();
+			tagsPorPeli.leerFichero();
+			System.out.println("Generando Modelado De productos\n");
+			tagsPorPeli.generarModeladoDeProductos();
+			System.out.println("Generando Modelado De las personas\n");
+			tagsPorPeli.modeloPersona();
+		/*	System.out.println("Cargando valoraciones\n");
+			ratings.cargarValoraciones();
+			System.out.println("Normalizando...\n");
+			ratings.normalizar();
+			similitud = new Similitud();
+			this.filtradoProducto();*/
 			System.out.println("Base De Datos Generada.");	
 		}
 		catch (Exception e)
@@ -65,6 +82,42 @@ private TagsPorPeli tagsPorPeli;
 		return tagsPorPeli.getTagsPorId(pId);
 	}
 	
-	public Ratings getRatings()
-	{return ratings;}
+	public Ratings getRatings(){
+		if (this.ratings==null) {
+			ratings = new Ratings();
+		}
+		return ratings;
+	}
+	
+	public Similitud getSimilitud() {
+		/*if (similitud==null) {
+			similitud = new Similitud();
+		}*/
+		return similitud;
+	}
+	
+	public void filtradoProducto() {
+		this.peliculas.initMatrizSimilitudes();
+	}
+	
+	public void kk()
+	{
+		System.out.println("Usuario: 4045	Pelicula: 2164	--> "+tagsPorPeli.getIdoneidad(4045,2164));
+		System.out.println("Usuario: 4045	Pelicula: 63	--> "+tagsPorPeli.getIdoneidad(4045,63));
+		System.out.println("Usuario: 4045	Pelicula: 807	--> "+tagsPorPeli.getIdoneidad(4045,807));
+		System.out.println("Usuario: 4045	Pelicula: 187	--> "+tagsPorPeli.getIdoneidad(4045,187));
+		System.out.println("Usuario: 4045	Pelicula: 11	--> "+tagsPorPeli.getIdoneidad(4045,11));
+	}
+	
+	public int cuantasPelis()
+	{
+		return peliculas.size();
+	}
+	
+	public void eliminarBd()
+	{
+		peliculas.eliminar();
+		ratings.eliminar();
+		tagsPorPeli.eliminar();
+	}
 }
