@@ -14,13 +14,9 @@ public class Similitud {
 		int diff = pVPeli1.size()-pVPeli2.size();
 		if (diff<0) {
 			diff = diff*(-1);
-			for (int i = 0; i < diff; i++) {
-				pVPeli1.add(0.0);
-			}
+			pVPeli1 = rellenarCon0(pVPeli1,diff);
 		}else if (diff>0) {
-			for (int i = 0; i < diff; i++) {
-				pVPeli2.add(0.0);
-			}  
+			pVPeli2 = rellenarCon0(pVPeli2,diff);  
 		}
 		Double sumatorio = this.sumatorio(pVPeli1, pVPeli2);
 		Double modulo = this.modulo(pVPeli1, pVPeli2);
@@ -45,5 +41,12 @@ public class Similitud {
 		aux1 = Math.sqrt(aux1);
 		aux2 = Math.sqrt(aux2);
 		return aux1*aux2;
+	}
+	
+	public ArrayList<Double> rellenarCon0(ArrayList<Double> pV, int pCant) {
+		for (int i = 0; i < pCant; i++) {
+			pV.add(0.0);
+		}
+		return pV;
 	}
 }

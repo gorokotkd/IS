@@ -34,7 +34,6 @@ public class Ratings {
 			int usuAct = Integer.parseInt(str[0]);
 			while(lectura!=null)
 			{
-				
 				if(Integer.parseInt(str[0])==usuAct)
 				{	
 					aux.add(new Tupla(Integer.parseInt(str[1]),Double.parseDouble(str[2])));
@@ -48,7 +47,6 @@ public class Ratings {
 					aux = new ArrayList<Tupla<Integer,Double>>();
 					usuAct = Integer.parseInt(str[0]);
 				}
-				
 			}
 		}
 		catch (Exception e)
@@ -115,9 +113,6 @@ public class Ratings {
 				lista.put(entrada.getKey(), aux2);
 			}
 		}
-		/*for (int i = 0; i < lista.get(5567).size(); i++) { Prueba para probar normalización.
-			System.out.println(lista.get(5567).get(i).getX()+" - "+lista.get(5567).get(i).getY());
-		}*/
 	}
 	
 	public ArrayList<Integer> devolKeys() {
@@ -131,10 +126,6 @@ public class Ratings {
 	public ArrayList<Double> getValoraciones(Integer pPeli){
 		return this.valoraciones.get(pPeli);
 	}
-	
-	public int size()
-	{return lista.size();}
-	
 	
 	public double obtenerNota(int pIdUsu, int pIdPeli)
 	{

@@ -47,6 +47,10 @@ public class Peliculas {
 		return lista.entrySet();
 	}	
 	
+	private Double buscarSimilitud(int pPro1, int pPro2) {
+		return this.similiProductos.get(pPro1).get(pPro2);
+	}
+	
 	public void initMatrizSimilitudes() {
 		Set<Map.Entry<Integer,String>> mapaEntrada = lista.entrySet();
 		Iterator<Map.Entry<Integer, String>> itr = mapaEntrada.iterator();
@@ -80,21 +84,34 @@ public class Peliculas {
 	}
 	
 	public Double calcularIdoneidad(int pUsuario, int pProducto) {
-		Double rdo = 0.0;
-		ArrayList<Double> productosSimilares = this.obtenerNProductos(pProducto, 10);
-		
+		Double rdo = this.obtenerNumerador(this.similiProductos.get(pProducto), pUsuario, pProducto);
+		System.out.println("El resultado de la similitud entre el producto :" +pProducto+ " del usuario: "+pUsuario+" es de --> "+rdo);
 		return rdo;
 	}
 	
-	public Double obtenerNumerador(HashMap<Integer,Double> pSimilares, int pUsuarios, int pProducto) {
-		Double sumatorio = 0.0;
+	public Double obtenerNumerador(HashMap<Integer,Double> pSimilares, int pUsuario, int pProducto) {
+		Set<Map.Entry<Integer,Double>> mapaEntrada = pSimilares.entrySet();
+		Iterator<Map.Entry<Integer, Double>> itr = mapaEntrada.iterator();
+		Ratings rating = BaseDatos.getBd().getRatings();
 		Double nota = 0.0;
-		Ratings ratings = BaseDatos.getBd().getRatings();
-		for (int i = 0; i < pSimilares.size(); i++) {
-			nota = (Double) ratings.obtenerNota(pUsuarios, this.similiProductos.);
-			sumatorio = sumatorio + ()
+		Double sumaNumerador = 0.0;
+		Double sumaDenominador = 0.0;
+		Double simil = 0.0;
+		while(itr.hasNext()) {
+			Map.Entry<Integer, Double> entrada = itr.next();
+			nota = rating.obtenerNota(pUsuario, entrada.getKey());
+			if (nota<0) {
+				nota = 0.0;
+			}
+			simil = this.buscarSimilitud(pProducto, entrada.getKey());
+			sumaNumerador = sumaNumerador +(nota*simil);
+			sumaDenominador = sumaDenominador + simil;
 		}
+		
+		return sumaNumerador/sumaDenominador;
 	}
+	
+	
 	
 	public ArrayList<Double> obtenerNProductos(int pProducto,int pCant){ //NO SE UTILIZA EN ESTE SPRINT. TODO LO QUE HAY A PARTIR DE AQUI ES PARA LUEGO
 		ArrayList<Double> lista = this.ordenarHash(pProducto);

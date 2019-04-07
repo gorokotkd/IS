@@ -45,7 +45,7 @@ private Similitud similitud;
 			System.out.println("Cargando valoraciones\n");
 			ratings.cargarValoraciones();
 			System.out.println("Normalizando...\n");
-			ratings.normalizar();
+			//ratings.normalizar();
 			similitud = new Similitud();
 			this.filtradoProducto();
 			System.out.println("Base De Datos Generada.");	
@@ -91,5 +91,6 @@ private Similitud similitud;
 	
 	public void filtradoProducto() {
 		this.peliculas.initMatrizSimilitudes();
+		this.peliculas.calcularIdoneidad(2048, 77);
 	}
 }

@@ -10,6 +10,7 @@ public class Principal {
 		interfaz.setVisible(true);
 		*/
 		BaseDatos.getBd().cargarBd();
+		BaseDatos.getBd().filtradoProducto();
 	}
 
 }
