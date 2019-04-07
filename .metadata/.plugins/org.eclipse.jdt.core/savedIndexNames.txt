@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 INDEX VERSION 1.131+C:\Users\Gorka\eclipse-workspace\.metadata\.plugins\org.eclipse.jdt.core
 3861206012.index
 1794327708.index
@@ -21,3 +22,9 @@ INDEX VERSION 1.131+C:\Users\Gorka\eclipse-workspace\.metadata\.plugins\org.ecli
 904289187.index
 3079686767.index
 3168675332.index
+=======
+INDEX VERSION 1.131+/home/gorka/eclipse-workspace/IS/.metadata/.plugins/org.eclipse.jdt.core
+924873903.index
+903305411.index
+646308851.index
+>>>>>>> parent of 5179f82... Todo Bien solo quedan JUnits

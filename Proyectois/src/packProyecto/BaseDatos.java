@@ -19,7 +19,11 @@ private Ratings ratings;
 private TagsPorPeli tagsPorPeli;
 
 	private BaseDatos() {
+<<<<<<< HEAD
 		cargarBd();
+=======
+		//cargarBd();
+>>>>>>> parent of 5179f82... Todo Bien solo quedan JUnits
 	}
 
 	public static BaseDatos getBd()
@@ -38,6 +42,20 @@ private TagsPorPeli tagsPorPeli;
 			ratings = new Ratings();
 			System.out.println("Generando tabla tagsPorPeli...\n");
 			tagsPorPeli = new TagsPorPeli();
+<<<<<<< HEAD
+=======
+			tagsPorPeli.leerFichero();
+			System.out.println("Generando Modelado De productos\n");
+			tagsPorPeli.generarModeladoDeProductos();
+			System.out.println("Generando Modelado De las personas\n");
+			tagsPorPeli.modeloPersona();
+		/*	System.out.println("Cargando valoraciones\n");
+			ratings.cargarValoraciones();
+			System.out.println("Normalizando...\n");
+			ratings.normalizar();
+			similitud = new Similitud();
+			this.filtradoProducto();*/
+>>>>>>> parent of 5179f82... Todo Bien solo quedan JUnits
 			System.out.println("Base De Datos Generada.");	
 		}
 		catch (Exception e)
@@ -65,6 +83,43 @@ private TagsPorPeli tagsPorPeli;
 		return tagsPorPeli.getTagsPorId(pId);
 	}
 	
+<<<<<<< HEAD
 	public Ratings getRatings()
 	{return ratings;}
+=======
+	public Ratings getRatings(){
+		if (this.ratings==null) {
+			ratings = new Ratings();
+		}
+		return ratings;
+	}
+	
+	public Similitud getSimilitud() {
+		/*if (similitud==null) {
+			similitud = new Similitud();
+		}*/
+		return similitud;
+	}
+	
+	public void filtradoProducto() {
+		this.peliculas.initMatrizSimilitudes();
+	}
+	
+	public double getIdoneidad(int pUsus, int pPelicula)
+	{
+		return tagsPorPeli.getIdoneidad(pUsus, pPelicula);
+	}
+	
+	public int cuantasPelis()
+	{
+		return peliculas.size();
+	}
+	
+	public void eliminarBd()
+	{
+		peliculas.eliminar();
+		ratings.eliminar();
+		tagsPorPeli.eliminar();
+	}
+>>>>>>> parent of 5179f82... Todo Bien solo quedan JUnits
 }
