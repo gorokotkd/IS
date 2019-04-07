@@ -7,7 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
+
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 public class Ratings {
 	
@@ -15,10 +18,15 @@ public class Ratings {
 	//key del hashmap es el usuario
 	//ArrayList --> Pelis calificadas por el usuario
 	//La tupla --> nota a una peli
+	private HashMap<Integer,ArrayList<Double>> valoraciones; //pelicula + lista de valoraciones
 	
 	public Ratings()
 	{
 		lista = new HashMap<Integer, ArrayList<Tupla<Integer,Double>>>();
+	}
+	
+	public void leerFichero()
+	{
 		try
 		{
 			String path = System.getProperty("user.dir")+"/movie-ratings.csv";
@@ -49,12 +57,12 @@ public class Ratings {
 		}
 		catch (Exception e)
 		{
-			System.out.println("Peto");
+			System.out.println("Se ha producido un error");
 			e.printStackTrace();
 		}
 	}
-<<<<<<< HEAD
-=======
+
+	
 	public void cargarValoraciones() {
 		valoraciones = new HashMap();
 		try
@@ -82,7 +90,6 @@ public class Ratings {
 			System.out.println("Se ha producido un error");
 			e.printStackTrace();
 		}
-		System.out.println("adcas");
 	}
 	
 	public synchronized void anadirALista(int pKey, Double pPuntuacion) {
@@ -104,7 +111,6 @@ public class Ratings {
 					aux = aux + entrada.getValue().get(i).getY();
 				}
 				double media = (float) (aux/entrada.getValue().size());
-				
 				ArrayList<Tupla<Integer,Double>> aux2 = new ArrayList<Tupla<Integer,Double>>();
 				for (int i = 0; i < entrada.getValue().size(); i++) {
 					aux2.add(new Tupla<Integer, Double>(entrada.getValue().get(i).getX(), entrada.getValue().get(i).getY()-media));
@@ -112,11 +118,7 @@ public class Ratings {
 				lista.put(entrada.getKey(), aux2);
 			}
 		}
-		/*for (int i = 0; i < lista.get(5567).size(); i++) { Prueba para probar normalizaci�n.
-			System.out.println(lista.get(5567).get(i).getX()+" - "+lista.get(5567).get(i).getY());
-		}*/
 	}
->>>>>>> parent of 5179f82... Todo Bien solo quedan JUnits
 	
 	public ArrayList<Integer> devolKeys() {
 		return new ArrayList<>(lista.keySet()); 
@@ -125,13 +127,10 @@ public class Ratings {
 	public ArrayList<Tupla<Integer,Double>> getRatingsPorId(Integer pId) {
 		return lista.get(pId);
 	}
-	public int size()
-	{return lista.size();}
 	
-	
-	public int size()
-	{return lista.size();}
-	
+	public ArrayList<Double> getValoraciones(Integer pPeli){
+		return this.valoraciones.get(pPeli);
+	}
 	
 	public double obtenerNota(int pIdUsu, int pIdPeli)
 	{
@@ -149,8 +148,12 @@ public class Ratings {
 				salir = true;
 			}
 		}
-		
 		return nota;
 	
+	}
+	
+	public void eliminar()
+	{
+		lista.clear();
 	}
 }

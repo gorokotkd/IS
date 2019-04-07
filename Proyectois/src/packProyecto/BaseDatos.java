@@ -17,17 +17,17 @@ private Connection miConexion;
 private Peliculas peliculas;
 private Ratings ratings;
 private TagsPorPeli tagsPorPeli;
+private Similitud similitud;
 
 	private BaseDatos() {
-<<<<<<< HEAD
-		cargarBd();
-=======
-		//cargarBd();
->>>>>>> parent of 5179f82... Todo Bien solo quedan JUnits
+		
 	}
 
 	public static BaseDatos getBd()
 	{
+		if (mBd==null) {
+			mBd = new BaseDatos();
+		}
 		return mBd;
 	}
 
@@ -38,24 +38,22 @@ private TagsPorPeli tagsPorPeli;
 			
 			System.out.println("Generando tabla peliculas...\n");
 			peliculas = new Peliculas();
+			peliculas.leerFichero();
 			System.out.println("Generando tabla resena...\n");
 			ratings = new Ratings();
+			ratings.leerFichero();
 			System.out.println("Generando tabla tagsPorPeli...\n");
 			tagsPorPeli = new TagsPorPeli();
-<<<<<<< HEAD
-=======
 			tagsPorPeli.leerFichero();
 			System.out.println("Generando Modelado De productos\n");
 			tagsPorPeli.generarModeladoDeProductos();
 			System.out.println("Generando Modelado De las personas\n");
 			tagsPorPeli.modeloPersona();
-		/*	System.out.println("Cargando valoraciones\n");
+			System.out.println("Cargando valoraciones\n");
 			ratings.cargarValoraciones();
 			System.out.println("Normalizando...\n");
-			ratings.normalizar();
 			similitud = new Similitud();
-			this.filtradoProducto();*/
->>>>>>> parent of 5179f82... Todo Bien solo quedan JUnits
+			this.filtradoProducto();
 			System.out.println("Base De Datos Generada.");	
 		}
 		catch (Exception e)
@@ -83,10 +81,6 @@ private TagsPorPeli tagsPorPeli;
 		return tagsPorPeli.getTagsPorId(pId);
 	}
 	
-<<<<<<< HEAD
-	public Ratings getRatings()
-	{return ratings;}
-=======
 	public Ratings getRatings(){
 		if (this.ratings==null) {
 			ratings = new Ratings();
@@ -95,14 +89,7 @@ private TagsPorPeli tagsPorPeli;
 	}
 	
 	public Similitud getSimilitud() {
-		/*if (similitud==null) {
-			similitud = new Similitud();
-		}*/
 		return similitud;
-	}
-	
-	public void filtradoProducto() {
-		this.peliculas.initMatrizSimilitudes();
 	}
 	
 	public double getIdoneidad(int pUsus, int pPelicula)
@@ -115,11 +102,15 @@ private TagsPorPeli tagsPorPeli;
 		return peliculas.size();
 	}
 	
+	public void filtradoProducto() {
+		this.peliculas.initMatrizSimilitudes();
+		this.peliculas.calcularIdoneidad(2048, 77);
+	}
+	
 	public void eliminarBd()
 	{
 		peliculas.eliminar();
 		ratings.eliminar();
 		tagsPorPeli.eliminar();
 	}
->>>>>>> parent of 5179f82... Todo Bien solo quedan JUnits
 }

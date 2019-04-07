@@ -4,16 +4,26 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class TagsPorPeli {
 
 	private HashMap<Integer,ArrayList<Tupla<String, Integer>>> lista;
+	private double[][] modeloProductos;
+	private double[][] modeladoPersona;
 	
 	public TagsPorPeli()
 	{
-		String path = System.getProperty("user.dir")+"/movie-tags.csv";
 		lista = new HashMap<Integer,ArrayList<Tupla<String, Integer>>>();
+		modeloProductos = new double[36956][ListaTags.getListaTags().tamano()];
+		modeladoPersona = new double[ListaUsuarios.getListaUsuarios().size()][ListaTags.getListaTags().tamano()];
+	}
+	
+	public void leerFichero()
+	{
+		String path = System.getProperty("user.dir")+"/movie-tags.csv";
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(path));
 			String lectura = " ";
@@ -57,7 +67,6 @@ public class TagsPorPeli {
 			e.printStackTrace();
 		}
 	}
-	
 	public ArrayList<Integer> tagsDevolKeys() {
 		return new ArrayList<>(lista.keySet()); 
 	}
@@ -65,9 +74,6 @@ public class TagsPorPeli {
 	public ArrayList<Tupla<String, Integer>> getTagsPorId(Integer pId) {
 		return lista.get(pId);
 	}
-<<<<<<< HEAD
-}
-=======
 	
 	public void modeloPersona()
 	{
@@ -122,7 +128,6 @@ public class TagsPorPeli {
 		ArrayList<Double> vectorPelicula = getFilaProducto(idPeli);
 		
 		return sim.correlacionDePearson(vectorPersona, vectorPelicula);
-	//	return sim.calcularSimilitud(vectorPersona, vectorPelicula);
 	}
 	
 	private double getTfidfDe(int pIdPeli, String pTag)
@@ -254,4 +259,3 @@ public class TagsPorPeli {
 			lista.put(key, entrada);
 	}
 }
->>>>>>> parent of 5179f82... Todo Bien solo quedan JUnits
