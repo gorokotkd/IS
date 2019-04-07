@@ -89,7 +89,7 @@ public class Peliculas {
 		return rdo;
 	}
 	
-	public Double obtenerNumerador(HashMap<Integer,Double> pSimilares, int pUsuario, int pProducto) {
+	private Double obtenerNumerador(HashMap<Integer,Double> pSimilares, int pUsuario, int pProducto) {
 		Set<Map.Entry<Integer,Double>> mapaEntrada = pSimilares.entrySet();
 		Iterator<Map.Entry<Integer, Double>> itr = mapaEntrada.iterator();
 		Ratings rating = BaseDatos.getBd().getRatings();
@@ -111,9 +111,7 @@ public class Peliculas {
 		return sumaNumerador/sumaDenominador;
 	}
 	
-	
-	
-	public ArrayList<Double> obtenerNProductos(int pProducto,int pCant){ //NO SE UTILIZA EN ESTE SPRINT. TODO LO QUE HAY A PARTIR DE AQUI ES PARA LUEGO
+	private ArrayList<Double> obtenerNProductos(int pProducto,int pCant){ //NO SE UTILIZA EN ESTE SPRINT. TODO LO QUE HAY A PARTIR DE AQUI ES PARA LUEGO
 		ArrayList<Double> lista = this.ordenarHash(pProducto);
 		ArrayList<Double> rdo = new ArrayList<Double>();
 		for (int i = lista.size()-1; i >= lista.size()-pCant; i--) {
@@ -125,7 +123,7 @@ public class Peliculas {
 		return rdo;
 	}
 	
-	public ArrayList<Double> ordenarHash(int pProducto){
+	private ArrayList<Double> ordenarHash(int pProducto){
 		ArrayList<Double> arrayHash = this.hash2Array(pProducto);
 		ArrayList<Double> ordenado = this.mergeSort(arrayHash);
 		return ordenado;

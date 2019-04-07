@@ -83,7 +83,6 @@ public class Ratings {
 			System.out.println("Se ha producido un error");
 			e.printStackTrace();
 		}
-		System.out.println("adcas");
 	}
 	
 	public synchronized void anadirALista(int pKey, Double pPuntuacion) {
@@ -105,7 +104,6 @@ public class Ratings {
 					aux = aux + entrada.getValue().get(i).getY();
 				}
 				double media = (float) (aux/entrada.getValue().size());
-				
 				ArrayList<Tupla<Integer,Double>> aux2 = new ArrayList<Tupla<Integer,Double>>();
 				for (int i = 0; i < entrada.getValue().size(); i++) {
 					aux2.add(new Tupla<Integer, Double>(entrada.getValue().get(i).getX(), entrada.getValue().get(i).getY()-media));
@@ -143,7 +141,6 @@ public class Ratings {
 				salir = true;
 			}
 		}
-		
 		return nota;
 	
 	}
