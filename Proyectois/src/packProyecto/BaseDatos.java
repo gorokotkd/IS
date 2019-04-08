@@ -48,12 +48,12 @@ private Similitud similitud;
 			System.out.println("Generando Modelado De productos\n");
 			tagsPorPeli.generarModeladoDeProductos();
 			System.out.println("Generando Modelado De las personas\n");
-			tagsPorPeli.modeloPersona();
+			/*tagsPorPeli.modeloPersona();
 			System.out.println("Cargando valoraciones\n");
 			ratings.cargarValoraciones();
 			System.out.println("Normalizando...\n");
 			similitud = new Similitud();
-			this.filtradoProducto();
+			this.filtradoProducto();*/
 			System.out.println("Base De Datos Generada.");	
 		}
 		catch (Exception e)
@@ -129,4 +129,5 @@ private Similitud similitud;
 		peliculas = new Peliculas();
 		peliculas.leerFichero();
 	}
+	
 }

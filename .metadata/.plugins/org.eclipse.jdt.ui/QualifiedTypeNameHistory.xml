@@ -16,4 +16,5 @@
     <fullyQualifiedTypeName name="packProyecto.BaseDatos"/>
     <fullyQualifiedTypeName name="java.sql.SQLException"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="packProyecto.ListaTags"/>
 </qualifiedTypeNameHistroy>

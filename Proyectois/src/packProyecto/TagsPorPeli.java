@@ -258,4 +258,5 @@ public class TagsPorPeli {
 		if(!lista.containsKey(key))
 			lista.put(key, entrada);
 	}
+	
 }
