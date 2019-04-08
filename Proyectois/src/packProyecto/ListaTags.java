@@ -13,7 +13,7 @@ public class ListaTags {
 	{
 		lista = new HashMap<String,Integer>();
 		
-		String path = System.getProperty("user.dir")+"/movie-tags-small.csv";
+		String path = System.getProperty("user.dir")+"/movie-tags.csv";
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(path));
 			String lectura = br.readLine();

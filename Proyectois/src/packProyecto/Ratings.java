@@ -19,6 +19,7 @@ public class Ratings {
 	//ArrayList --> Pelis calificadas por el usuario
 	//La tupla --> nota a una peli
 	private HashMap<Integer,ArrayList<Double>> valoraciones; //pelicula + lista de valoraciones
+	private HashMap<Integer,Double> medias;
 	
 	public Ratings()
 	{
@@ -100,8 +101,9 @@ public class Ratings {
 		}
 	}
 	
-	public void normalizar() {
+	public void normalizar() { //normalización de las valoraciones
 		if (lista.size()!=0) {
+			medias = new HashMap<Integer,Double>();
 			Set<Map.Entry<Integer,ArrayList<Tupla<Integer,Double>>>> mapaEntrada = lista.entrySet();
 			Iterator<Map.Entry<Integer, ArrayList<Tupla<Integer,Double>>>> itr = mapaEntrada.iterator();
 			while (itr.hasNext()) {
@@ -111,6 +113,7 @@ public class Ratings {
 					aux = aux + entrada.getValue().get(i).getY();
 				}
 				double media = (float) (aux/entrada.getValue().size());
+				medias.put(entrada.getKey(),media);
 				ArrayList<Tupla<Integer,Double>> aux2 = new ArrayList<Tupla<Integer,Double>>();
 				for (int i = 0; i < entrada.getValue().size(); i++) {
 					aux2.add(new Tupla<Integer, Double>(entrada.getValue().get(i).getX(), entrada.getValue().get(i).getY()-media));
@@ -118,6 +121,19 @@ public class Ratings {
 				lista.put(entrada.getKey(), aux2);
 			}
 		}
+	}
+	
+	public ArrayList<Tupla<Integer,Double>> desnormalizar(Integer pUsuario) { //desnormalización de las valoraciones
+		Double media = this.medias.get(pUsuario);
+		ArrayList<Tupla<Integer,Double>> lista = new ArrayList<Tupla<Integer,Double>>();
+		for (int i = 0; i < lista.size(); i++) {
+			lista.add(new Tupla(this.lista.get(pUsuario).get(i).getX(),(this.lista.get(pUsuario).get(i).getY())+media));
+		}
+		return lista;
+	}
+	
+	public Double getMedia(int pUsuario) {
+		return this.medias.get(pUsuario);
 	}
 	
 	public ArrayList<Integer> devolKeys() {

@@ -17,7 +17,7 @@ private Connection miConexion;
 private Peliculas peliculas;
 private Ratings ratings;
 private TagsPorPeli tagsPorPeli;
-private Similitud similitud;
+private Filtrado filtrado;
 
 	private BaseDatos() {
 		
@@ -30,31 +30,25 @@ private Similitud similitud;
 		}
 		return mBd;
 	}
+	
 
 	public void cargarBd()
 	{
 		try
 		{
 			
-			System.out.println("Generando tabla peliculas...\n");
 			peliculas = new Peliculas();
 			peliculas.leerFichero();
-			System.out.println("Generando tabla resena...\n");
+			System.out.println("Leido peliculas");
 			ratings = new Ratings();
 			ratings.leerFichero();
-			System.out.println("Generando tabla tagsPorPeli...\n");
-			tagsPorPeli = new TagsPorPeli();
-			tagsPorPeli.leerFichero();
-			System.out.println("Generando Modelado De productos\n");
-			tagsPorPeli.generarModeladoDeProductos();
-			System.out.println("Generando Modelado De las personas\n");
-			tagsPorPeli.modeloPersona();
-			System.out.println("Cargando valoraciones\n");
+			ratings.normalizar();
+			System.out.println("Leido ratings");
+			filtrado = new FiltradoProductos();
+			filtrado.setSimilitud(new Cos());
+			System.out.println("Creado filtrado");
 			ratings.cargarValoraciones();
-			System.out.println("Normalizando...\n");
-			similitud = new Similitud();
-			this.filtradoProducto();
-			System.out.println("Base De Datos Generada.");	
+			peliculas.initMatrizSimilitudes();
 		}
 		catch (Exception e)
 		{
@@ -88,8 +82,9 @@ private Similitud similitud;
 		return ratings;
 	}
 	
-	public Similitud getSimilitud() {
-		return similitud;
+	
+	public Peliculas getPeliculas() {
+		return peliculas;
 	}
 	
 	public ArrayList<Integer> getIdPeliculas()
@@ -112,11 +107,6 @@ private Similitud similitud;
 		return peliculas.getIdMayor();
 	}
 	
-	public void filtradoProducto() {
-		this.peliculas.initMatrizSimilitudes();
-		this.peliculas.calcularIdoneidad(2048, 77);
-	}
-	
 	public void eliminarBd()
 	{
 		peliculas.eliminar();
@@ -129,5 +119,14 @@ private Similitud similitud;
 		peliculas = new Peliculas();
 		peliculas.leerFichero();
 	}
+
+	public SimilitudStrategy getSimilitud() {
+		return filtrado.getSimilitud();
+	}
 	
+	public Filtrado getFiltrado() {
+		return filtrado;
+	}
+
+
 }

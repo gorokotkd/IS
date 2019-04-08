@@ -122,7 +122,7 @@ public class TagsPorPeli {
 	}
 	public double getIdoneidad(int idUsu, int idPeli)
 	{
-		Similitud sim = new Similitud();
+		SimilitudStrategy sim = new SimilitudStrategy();
 		
 		ArrayList<Double> vectorPersona = getFilaPersona(idUsu);
 		ArrayList<Double> vectorPelicula = getFilaProducto(idPeli);

@@ -6,11 +6,18 @@ import java.io.FileReader;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.Comparator;
+
+
 
 public class Peliculas {
 
@@ -73,53 +80,87 @@ public class Peliculas {
 		ArrayList<Double> aux2;
 		while (itr.hasNext()) { // recorremos el HashMap de idPeli + NombrePelicula
 			Map.Entry<Integer, String> entrada = itr.next();
+			
 			Set<Map.Entry<Integer,String>> mapaEntrada2 = lista.entrySet();
-			Iterator<Map.Entry<Integer, String>> itr2 = mapaEntrada.iterator();
+			Iterator<Map.Entry<Integer, String>> itr2 = mapaEntrada2.iterator();
 			hashAux = new HashMap<Integer, Double>();
 			while (itr2.hasNext()) { //recorremos el resto de peliculas, para rellenar la tabla de similiProductos
 				Map.Entry<Integer, String> entrada2 = itr2.next();
-				aux1 = ratings.getValoraciones(entrada.getKey());
-				aux2 = ratings.getValoraciones(entrada2.getKey());
-				if (entrada.getKey()!=entrada2.getKey()) {
-					 simil = BaseDatos.getBd().getSimilitud().calcularSimilitud(aux1,aux2);
-					 hashAux.put(entrada2.getKey(), simil);
+				if (entrada.getKey()!=entrada2.getKey()) {	
+					aux1 = ratings.getValoraciones(entrada.getKey());
+					aux2 = ratings.getValoraciones(entrada2.getKey());
+					
+					if (entrada.getKey()>entrada2.getKey()) {
+						simil = BaseDatos.getBd().getFiltrado().getSimilitud().calcularSimilitud(aux1,aux2);
+					}else {
+						simil = BaseDatos.getBd().getFiltrado().getSimilitud().calcularSimilitud(aux2,aux1);
+					}
+					hashAux.put(entrada2.getKey(), simil);
 				}
 			}
 			if (!hashAux.isEmpty()) {
 				similiProductos.put(entrada.getKey(), hashAux);
 			}
-		}
-		System.out.println("Se ha creado la matriz de similitud de productos");
-		
+		}		
 	}
 	
-	public Double calcularIdoneidad(int pUsuario, int pProducto) {
+	public Double calcularIdoneidad(int pUsuario, int pProducto) {		
 		Double rdo = this.obtenerNumerador(this.similiProductos.get(pProducto), pUsuario, pProducto);
+		rdo = rdo + BaseDatos.getBd().getRatings().getMedia(pUsuario);
+		
 		System.out.println("El resultado de la similitud entre el producto :" +pProducto+ " del usuario: "+pUsuario+" es de --> "+rdo);
 		return rdo;
 	}
 	
 	private Double obtenerNumerador(HashMap<Integer,Double> pSimilares, int pUsuario, int pProducto) {
-		Set<Map.Entry<Integer,Double>> mapaEntrada = pSimilares.entrySet();
-		Iterator<Map.Entry<Integer, Double>> itr = mapaEntrada.iterator();
-		Ratings rating = BaseDatos.getBd().getRatings();
-		Double nota = 0.0;
-		Double sumaNumerador = 0.0;
-		Double sumaDenominador = 0.0;
-		Double simil = 0.0;
-		while(itr.hasNext()) {
-			Map.Entry<Integer, Double> entrada = itr.next();
-			nota = rating.obtenerNota(pUsuario, entrada.getKey());
-			if (nota<0) {
-				nota = 0.0;
+		if (pSimilares==null) {
+			return 0.0;
+		}else {
+			pSimilares = sortByValues(pSimilares); 
+			Set<Map.Entry<Integer,Double>> mapaEntrada = pSimilares.entrySet();
+			Iterator<Map.Entry<Integer, Double>> itr = mapaEntrada.iterator();
+			Ratings rating = BaseDatos.getBd().getRatings();
+			Double nota = 0.0;
+			Double sumaNumerador = 0.0;
+			Double sumaDenominador = 0.0;
+			Double simil = 0.0;
+			int i = 0;
+			while(itr.hasNext() && i< 20) {
+				Map.Entry<Integer, Double> entrada = itr.next();
+				nota = rating.obtenerNota(pUsuario, entrada.getKey());
+				if (nota<0) {
+					nota = 0.0;
+				}
+				simil = this.buscarSimilitud(pProducto, entrada.getKey());
+				sumaNumerador = sumaNumerador +(nota*simil);
+				sumaDenominador = sumaDenominador + simil;
 			}
-			simil = this.buscarSimilitud(pProducto, entrada.getKey());
-			sumaNumerador = sumaNumerador +(nota*simil);
-			sumaDenominador = sumaDenominador + simil;
+			
+			return sumaNumerador/sumaDenominador;
 		}
-		
-		return sumaNumerador/sumaDenominador;
 	}
+	
+	private static HashMap<Integer, Double> sortByValues(HashMap<Integer, Double> map) { 
+	       List list = new LinkedList(map.entrySet());
+	       // Defined Custom Comparator here
+	       Collections.sort(list, new Comparator() {
+	            public int compare(Object o1, Object o2) {
+	               return (-1)*((Comparable) ((Map.Entry) (o1)).getValue())
+	                  .compareTo(((Map.Entry) (o2)).getValue());
+	            }
+	       });
+
+	       // Here I am copying the sorted list in HashMap
+	       // using LinkedHashMap to preserve the insertion order
+	       HashMap sortedHashMap = new LinkedHashMap();
+	       for (Iterator it = list.iterator(); it.hasNext();) {
+	              Map.Entry entry = (Map.Entry) it.next();
+	              sortedHashMap.put(entry.getKey(), entry.getValue());
+	       } 
+	       return sortedHashMap;
+	  }
+	
+	
 	
 	private ArrayList<Double> obtenerNProductos(int pProducto,int pCant){ //NO SE UTILIZA EN ESTE SPRINT. TODO LO QUE HAY A PARTIR DE AQUI ES PARA LUEGO
 		ArrayList<Double> lista = this.ordenarHash(pProducto);
