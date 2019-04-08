@@ -15,7 +15,7 @@ public class ListaUsuarios {
 		
 		try
 		{
-			String path = System.getProperty("user.dir")+"/movie-ratings.csv";
+			String path = System.getProperty("user.dir")+"/movie-ratings-small.csv";
 			BufferedReader bf = new BufferedReader(new FileReader(path));
 			String bfread;
 			
