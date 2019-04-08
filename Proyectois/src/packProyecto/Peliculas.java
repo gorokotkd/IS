@@ -31,7 +31,7 @@ public class Peliculas {
 	{
 		try
 		{
-			String path = System.getProperty("user.dir")+"/movie-titles.csv";
+			String path = System.getProperty("user.dir")+"/testMovies.csv";
 			FileReader fr = new FileReader(path);
 			BufferedReader br = new BufferedReader(fr);
 			String lectura = br.readLine();
@@ -100,25 +100,30 @@ public class Peliculas {
 	}
 	
 	private Double obtenerNumerador(HashMap<Integer,Double> pSimilares, int pUsuario, int pProducto) {
-		Set<Map.Entry<Integer,Double>> mapaEntrada = pSimilares.entrySet();
-		Iterator<Map.Entry<Integer, Double>> itr = mapaEntrada.iterator();
-		Ratings rating = BaseDatos.getBd().getRatings();
-		Double nota = 0.0;
-		Double sumaNumerador = 0.0;
-		Double sumaDenominador = 0.0;
-		Double simil = 0.0;
-		while(itr.hasNext()) {
-			Map.Entry<Integer, Double> entrada = itr.next();
-			nota = rating.obtenerNota(pUsuario, entrada.getKey());
-			if (nota<0) {
-				nota = 0.0;
-			}
-			simil = this.buscarSimilitud(pProducto, entrada.getKey());
-			sumaNumerador = sumaNumerador +(nota*simil);
-			sumaDenominador = sumaDenominador + simil;
-		}
 		
-		return sumaNumerador/sumaDenominador;
+		if (pSimilares!=null) {
+			Set<Map.Entry<Integer,Double>> mapaEntrada = pSimilares.entrySet();
+			Iterator<Map.Entry<Integer, Double>> itr = mapaEntrada.iterator();
+			Ratings rating = BaseDatos.getBd().getRatings();
+			Double nota = 0.0;
+			Double sumaNumerador = 0.0;
+			Double sumaDenominador = 0.0;
+			Double simil = 0.0;
+			while(itr.hasNext()) {
+				Map.Entry<Integer, Double> entrada = itr.next();
+				nota = rating.obtenerNota(pUsuario, entrada.getKey());
+				if (nota<0) {
+					nota = 0.0;
+				}
+				simil = this.buscarSimilitud(pProducto, entrada.getKey());
+				sumaNumerador = sumaNumerador +(nota*simil);
+				sumaDenominador = sumaDenominador + simil;
+			}
+			
+			return sumaNumerador/sumaDenominador;
+			
+		}
+		else return null;
 	}
 	
 	private ArrayList<Double> obtenerNProductos(int pProducto,int pCant){ //NO SE UTILIZA EN ESTE SPRINT. TODO LO QUE HAY A PARTIR DE AQUI ES PARA LUEGO

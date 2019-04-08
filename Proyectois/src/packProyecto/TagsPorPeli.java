@@ -23,7 +23,7 @@ public class TagsPorPeli {
 	
 	public void leerFichero()
 	{
-		String path = System.getProperty("user.dir")+"/movie-tags.csv";
+		String path = System.getProperty("user.dir")+"/testTags.csv";
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(path));
 			String lectura = " ";
@@ -166,6 +166,8 @@ public class TagsPorPeli {
 				Tupla<String,Integer> tupla = itr2.next();
 				double resul = tfidf(i, tupla.getX());
 				int idTag = ListaTags.getListaTags().getIdTag(tupla.getX());
+				System.out.println(i);
+				System.out.println(idTag);
 				modeloProductos[i][idTag] = resul;
 			}
 			modeloProductos[i] = vectorUnitario(modeloProductos[i]);
@@ -250,13 +252,17 @@ public class TagsPorPeli {
 	public void eliminar()
 	{
 		lista.clear();
-		//modeloProductos.clear();
+		modeloProductos = new double[BaseDatos.getBd().idMayorPelicula()+1][ListaTags.getListaTags().tamano()];
+		modeladoPersona = new double[ListaUsuarios.getListaUsuarios().size()][ListaTags.getListaTags().tamano()];
 	}
 	
 	public void anadirEntrada(int key, ArrayList<Tupla<String,Integer>> entrada)
 	{
 		if(!lista.containsKey(key))
 			lista.put(key, entrada);
+	}
+	public boolean estoyVacia() {
+		return lista.isEmpty();
 	}
 	
 }
