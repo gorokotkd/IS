@@ -9,6 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import packProyecto.BaseDatos;
+import packProyecto.ListaTags;
+import packProyecto.ListaUsuarios;
+import packProyecto.Similitud;
 import packProyecto.TagsPorPeli;
 import packProyecto.Tupla;
 
@@ -67,12 +70,23 @@ public class TagsPorPeliTest {
 
 	@Test
 	public void testModeloPersona() {
-		fail("Gorka Es Una Foca y el Ignacio Puede Guardar En su Cabeza a Asier");
+		fail("-------------");
 	}
 
 	@Test
 	public void testGetIdoneidad() {
-		fail("Not yet implemented");
+		
+		BaseDatos.getBd().cargarBd();
+		ListaTags.getListaTags();
+		ListaUsuarios.getListaUsuarios();
+		tags.leerFichero();
+		tags.generarModeladoDeProductos();
+		tags.modeloPersona();
+		Double tmp = 0.4881601826270049;
+		assertTrue(tags.getIdoneidad(3,13)==tmp);
+		tmp = 1.0; //ya que ya la ha visto y ha puesto nota//
+		assertTrue(tags.getIdoneidad(1,13)==tmp);
+		
 	}
 
 	@Test

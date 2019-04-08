@@ -125,8 +125,11 @@ public class TagsPorPeli {
 		Similitud sim = new Similitud();
 		
 		ArrayList<Double> vectorPersona = getFilaPersona(idUsu);
+		System.out.println(vectorPersona);
+		System.out.println("vector pers ^^");
 		ArrayList<Double> vectorPelicula = getFilaProducto(idPeli);
-		
+		System.out.println(vectorPelicula);
+		System.out.println("vector peli ^^");
 		return sim.correlacionDePearson(vectorPersona, vectorPelicula);
 	}
 	
