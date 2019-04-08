@@ -67,7 +67,7 @@ public class TagsPorPeliTest {
 
 	@Test
 	public void testModeloPersona() {
-		
+		fail("Gorka Es Una Foca y el Ignacio Puede Guardar En su Cabeza a Asier");
 	}
 
 	@Test

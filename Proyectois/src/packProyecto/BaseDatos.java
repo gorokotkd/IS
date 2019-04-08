@@ -114,7 +114,7 @@ private Similitud similitud;
 	
 	public void filtradoProducto() {
 		this.peliculas.initMatrizSimilitudes();
-		this.peliculas.calcularIdoneidad(2048, 77);
+		//this.peliculas.calcularIdoneidad(2048, 77);
 	}
 	
 	public void eliminarBd()

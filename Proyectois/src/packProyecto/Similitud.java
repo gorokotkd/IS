@@ -8,7 +8,7 @@ public class Similitud {
 
 	
 	public Similitud() {
-		
+		int prueba;
 	}
 	
 	public Double calcularSimilitud(ArrayList<Double> pVPeli1, ArrayList<Double> pVPeli2) {

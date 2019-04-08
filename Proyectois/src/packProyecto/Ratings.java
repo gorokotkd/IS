@@ -67,7 +67,7 @@ public class Ratings {
 		valoraciones = new HashMap();
 		try
 		{
-			String path = System.getProperty("user.dir")+"/movie-ratings.csv";
+			String path = System.getProperty("user.dir")+"/testRatings.csv";
 			BufferedReader br = new BufferedReader(new FileReader(path));
 			String lectura=" ";
 			ArrayList<Double> aux = new ArrayList<>();

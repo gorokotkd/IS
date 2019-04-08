@@ -95,7 +95,7 @@ public class Peliculas {
 	
 	public Double calcularIdoneidad(int pUsuario, int pProducto) {
 		Double rdo = this.obtenerNumerador(this.similiProductos.get(pProducto), pUsuario, pProducto);
-		System.out.println("El resultado de la similitud entre el producto :" +pProducto+ " del usuario: "+pUsuario+" es de --> "+rdo);
+		//System.out.println("El resultado de la similitud entre el producto :" +pProducto+ " del usuario: "+pUsuario+" es de --> "+rdo);
 		return rdo;
 	}
 	
