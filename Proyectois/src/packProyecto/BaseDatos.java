@@ -92,6 +92,11 @@ private Similitud similitud;
 		return similitud;
 	}
 	
+	public ArrayList<Integer> getIdPeliculas()
+	{
+		return peliculas.getKeys();
+	}
+	
 	public double getIdoneidad(int pUsus, int pPelicula)
 	{
 		return tagsPorPeli.getIdoneidad(pUsus, pPelicula);
@@ -100,6 +105,11 @@ private Similitud similitud;
 	public int cuantasPelis()
 	{
 		return peliculas.size();
+	}
+	
+	public int idMayorPelicula()
+	{
+		return peliculas.getIdMayor();
 	}
 	
 	public void filtradoProducto() {
@@ -112,5 +122,11 @@ private Similitud similitud;
 		peliculas.eliminar();
 		ratings.eliminar();
 		tagsPorPeli.eliminar();
+	}
+	
+	public void cargarSoloPelis()
+	{
+		peliculas = new Peliculas();
+		peliculas.leerFichero();
 	}
 }

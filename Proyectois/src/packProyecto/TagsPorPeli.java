@@ -17,7 +17,7 @@ public class TagsPorPeli {
 	public TagsPorPeli()
 	{
 		lista = new HashMap<Integer,ArrayList<Tupla<String, Integer>>>();
-		modeloProductos = new double[36956][ListaTags.getListaTags().tamano()];
+		modeloProductos = new double[BaseDatos.getBd().idMayorPelicula()+1][ListaTags.getListaTags().tamano()];
 		modeladoPersona = new double[ListaUsuarios.getListaUsuarios().size()][ListaTags.getListaTags().tamano()];
 	}
 	

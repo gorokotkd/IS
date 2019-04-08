@@ -16,12 +16,17 @@ public class Peliculas {
 
 	private HashMap<Integer,String> lista; //idPeli + NombrePelicula
 	private HashMap<Integer,HashMap<Integer,Double>> similiProductos; //idProducto + idProducto
+	private int idMayor;
 	
 	public Peliculas()
 	{
 		lista = new HashMap<Integer,String>();
+		idMayor=-1;
 	}
-	
+	public int getIdMayor()
+	{
+		return idMayor;
+	}
 	public void leerFichero()
 	{
 		try
@@ -35,6 +40,8 @@ public class Peliculas {
 				String[] str = lectura.split(";");
 				String sr = str[1];
 				int key = Integer.parseInt(str[0]);
+				if(key>idMayor)
+					idMayor=key;
 				lista.put(key, sr);
 				lectura=br.readLine();
 			}
@@ -189,6 +196,10 @@ public class Peliculas {
 		}
 	}
 	
+	public ArrayList<Integer> getKeys()
+	{
+		return new ArrayList<>(lista.keySet());
+	}
 	
 	public int size()
 	{
