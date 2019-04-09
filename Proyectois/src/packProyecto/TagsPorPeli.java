@@ -122,12 +122,12 @@ public class TagsPorPeli {
 	}
 	public double getIdoneidad(int idUsu, int idPeli)
 	{
-		SimilitudStrategy sim = new SimilitudStrategy();
+		Pearson sim = new Pearson();
 		
 		ArrayList<Double> vectorPersona = getFilaPersona(idUsu);
 		ArrayList<Double> vectorPelicula = getFilaProducto(idPeli);
 		
-		return sim.correlacionDePearson(vectorPersona, vectorPelicula);
+		return sim.calcularSimilitud(vectorPersona, vectorPelicula);
 	}
 	
 	private double getTfidfDe(int pIdPeli, String pTag)

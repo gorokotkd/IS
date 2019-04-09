@@ -12,8 +12,6 @@ import java.util.Map.Entry;
 public class BaseDatos {
 	
 private static BaseDatos mBd = new BaseDatos();
-private Statement st;
-private Connection miConexion;
 private Peliculas peliculas;
 private Ratings ratings;
 private TagsPorPeli tagsPorPeli;
@@ -42,18 +40,46 @@ private Filtrado filtrado;
 			System.out.println("Leido peliculas");
 			ratings = new Ratings();
 			ratings.leerFichero();
-			ratings.normalizar();
+		//	ratings.normalizar();
 			System.out.println("Leido ratings");
-			filtrado = new FiltradoProductos();
-			filtrado.setSimilitud(new Cos());
-			System.out.println("Creado filtrado");
-			ratings.cargarValoraciones();
-			peliculas.initMatrizSimilitudes();
+		//	filtrado = new FiltradoProductos();
+		//	filtrado.setSimilitud(new Cos());
+			tagsPorPeli = new TagsPorPeli();
+			tagsPorPeli.leerFichero();
+			System.out.println("Leido TagsPorPeli");
+			
+			
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
+	}
+	
+	public void generarTodo()
+	{
+		
+	}
+	
+	public void generarFiltradoContenido()
+	{
+		
+		tagsPorPeli.generarModeladoDeProductos();
+		System.out.println("Modelo Del producto Generado");
+		tagsPorPeli.modeloPersona();
+		System.out.println("Modelo de la persona Generado");
+		
+		
+	}
+	
+	public void generarFiltradoProducto()
+	{
+		ratings.normalizar();
+		filtrado = new FiltradoProductos();
+		filtrado.setSimilitud(new Cos());
+		System.out.println("Creado filtrado");
+		ratings.cargarValoraciones();
+		peliculas.initMatrizSimilitudes();
 	}
 	
 	public ArrayList<Integer> ratingsDevolKeys() {
@@ -92,7 +118,7 @@ private Filtrado filtrado;
 		return peliculas.getKeys();
 	}
 	
-	public double getIdoneidad(int pUsus, int pPelicula)
+	public double filtradoContenido(int pUsus, int pPelicula)
 	{
 		return tagsPorPeli.getIdoneidad(pUsus, pPelicula);
 	}
@@ -112,12 +138,6 @@ private Filtrado filtrado;
 		peliculas.eliminar();
 		ratings.eliminar();
 		tagsPorPeli.eliminar();
-	}
-	
-	public void cargarSoloPelis()
-	{
-		peliculas = new Peliculas();
-		peliculas.leerFichero();
 	}
 
 	public SimilitudStrategy getSimilitud() {

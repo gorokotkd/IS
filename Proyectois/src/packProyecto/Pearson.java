@@ -4,37 +4,37 @@ import java.util.ArrayList;
 
 public class Pearson implements SimilitudStrategy {
 
-	public Double calcularSimilitud(ArrayList<Double> pV1, ArrayList<Double> pV2)
+	public Double calcularSimilitud(ArrayList<Double> list1, ArrayList<Double> list2)
 	{
-		int diff = pV1.size()-pV2.size();
+		int diff = list1.size()-list2.size();
 		if (diff<0) {
 			diff = diff*(-1);
 			for (int i = 0; i < diff; i++) {
-				pV1.add(0.0);
+				list1.add(0.0);
 			}
 		}else if (diff>0) {
 			for (int i = 0; i < diff; i++) {
-				pV2.add(0.0);
+				list2.add(0.0);
 			}  
 		}
-		double numerador = sumatorio(pV1, pV2);
-		double modulo = modulo(pV1,pV2);
+		double numerador = sumatorio(list1, list2);
+		double deno1 = modulo(list1);
+		double deno2 = modulo(list2);
 		
-		return numerador/modulo;
+		return numerador/(deno1*deno2);
 		
 	}
 	
-	public Double modulo(ArrayList<Double> pV1, ArrayList<Double> pV2){
+	private Double modulo(ArrayList<Double> list)
+	{
 		double resul = 0.0;
-		double resul2 = 0.0;
-		double media = mediaDeVector(pV1);
-		for(int i=0; i<pV1.size();i++) {
-			resul = resul + Math.pow(pV1.get(i)-media, 2.0);
-			resul2 = resul2 + Math.pow(pV2.get(i)-media, 2.0);
-		}
-		return Math.sqrt(resul)*Math.sqrt(resul2);
+		double media = mediaDeVector(list);
+		for(int i=0; i<list.size();i++)
+			resul = resul + Math.pow(list.get(i)-media, 2.0);
+		return Math.sqrt(resul);
+		
+		
 	}
-	
 	private Double mediaDeVector(ArrayList<Double> list)
 	{
 		Double sum=0.0;
@@ -53,8 +53,15 @@ public class Pearson implements SimilitudStrategy {
 		return resul;
 	}
 
-	@Override
 	public ArrayList<Double> rellenarCon0(ArrayList<Double> pV, int pCant) {
+		for (int i = 0; i < pCant; i++) {
+			pV.add(0.0);
+		}
+		return pV;
+	}
+
+	@Override
+	public Double modulo(ArrayList<Double> pV1, ArrayList<Double> pV2) {
 		// TODO Auto-generated method stub
 		return null;
 	}
