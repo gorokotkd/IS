@@ -625,3 +625,9 @@ Caused by: java.io.FileNotFoundException: C:\Users\GARCI\Desktop\backup\IS\IS\.m
 2019-04-08 19:37:13,235 [Worker-7: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\GARCI\Desktop\backup\IS\IS\ProyectoMaven\src\main\resources
 2019-04-08 19:37:13,238 [Worker-7: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
 2019-04-08 19:37:13,244 [Worker-7: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\GARCI\Desktop\backup\IS\IS\ProyectoMaven\src\test\resources
+2019-04-09 08:55:46,475 [Worker-3: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2019-04-09 08:58:30,762 [Worker-17: Building workspace] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: eus.ehu.eib:ProyectoMaven:0.0.1-SNAPSHOT @ E:\UNIVERSIDAD\IS\IS\ProyectoMaven\pom.xml.
+2019-04-09 08:58:31,693 [Worker-17: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-04-09 08:58:31,699 [Worker-17: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\UNIVERSIDAD\IS\IS\ProyectoMaven\src\main\resources
+2019-04-09 08:58:31,701 [Worker-17: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-04-09 08:58:31,705 [Worker-17: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\UNIVERSIDAD\IS\IS\ProyectoMaven\src\test\resources

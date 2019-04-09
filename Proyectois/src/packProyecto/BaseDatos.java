@@ -36,19 +36,26 @@ private Filtrado filtrado;
 	{
 		try
 		{
+			if (filtrado instanceof FiltradoProductos) {
+				peliculas = new Peliculas();
+				peliculas.leerFichero();
+				System.out.println("Leido peliculas");
+				
+				ratings = new Ratings();
+				ratings.leerFichero();
+				ratings.normalizar();
+				System.out.println("Leido ratings y normalizado");
+				
+				ratings.cargarValoraciones();
+				peliculas.initMatrizSimilitudes();
+			}else {
+				tagsPorPeli.generarModeladoDeProductos();
+				System.out.println("Modelo Del producto Generado");
+				
+				tagsPorPeli.modeloPersona();
+				System.out.println("Modelo de la persona Generado");
+			}
 			
-			peliculas = new Peliculas();
-			peliculas.leerFichero();
-			System.out.println("Leido peliculas");
-			ratings = new Ratings();
-			ratings.leerFichero();
-			ratings.normalizar();
-			System.out.println("Leido ratings");
-			filtrado = new FiltradoProductos();
-			filtrado.setSimilitud(new Cos());
-			System.out.println("Creado filtrado");
-			ratings.cargarValoraciones();
-			peliculas.initMatrizSimilitudes();
 		}
 		catch (Exception e)
 		{
@@ -126,6 +133,10 @@ private Filtrado filtrado;
 	
 	public Filtrado getFiltrado() {
 		return filtrado;
+	}
+	
+	public void setFiltrado(Filtrado pFil) {
+		this.filtrado = pFil;
 	}
 
 

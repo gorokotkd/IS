@@ -22,7 +22,7 @@ import java.util.Comparator;
 public class Peliculas {
 
 	private HashMap<Integer,String> lista; //idPeli + NombrePelicula
-	private HashMap<Integer,HashMap<Integer,Double>> similiProductos; //idProducto + idProducto
+	private HashMap<Integer,HashMap<Integer,Double>> similiProductos; //idProducto + (idProducto+similitud)
 	private int idMayor;
 	
 	public Peliculas()
@@ -101,7 +101,26 @@ public class Peliculas {
 			if (!hashAux.isEmpty()) {
 				similiProductos.put(entrada.getKey(), hashAux);
 			}
-		}		
+		}		 
+       
+		         
+		/*Set<Integer> keySet = similiProductos.keySet(); 
+		ArrayList<Integer> listOfKeys = new ArrayList<Integer>(keySet); 
+		//this.imprimir(listOfKeys);
+		int val1 = 71;
+		int val2 = 99;
+		System.out.println(listOfKeys.get(val1) +" " +listOfKeys.get(val2));
+		System.out.println((similiProductos.get(listOfKeys.get(val1))).get(listOfKeys.get(val2)));
+		System.out.println((similiProductos.get(listOfKeys.get(val2))).get(listOfKeys.get(val1)));*/
+	}
+	
+	private void imprimir(ArrayList<Integer> listOfKeys) {
+		int i =0;
+		for (i = 0; i < listOfKeys.size(); i++) {
+			System.out.println(listOfKeys.get(i) +" :=> " );
+			System.out.println(similiProductos.get(listOfKeys.get(i)));
+		}
+		System.out.println(i);
 	}
 	
 	public Double calcularIdoneidad(int pUsuario, int pProducto) {		
