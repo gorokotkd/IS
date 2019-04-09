@@ -125,11 +125,7 @@ public class TagsPorPeli {
 		Similitud sim = new Similitud();
 		
 		ArrayList<Double> vectorPersona = getFilaPersona(idUsu);
-		System.out.println(vectorPersona);
-		System.out.println("vector pers ^^");
 		ArrayList<Double> vectorPelicula = getFilaProducto(idPeli);
-		System.out.println(vectorPelicula);
-		System.out.println("vector peli ^^");
 		return sim.correlacionDePearson(vectorPersona, vectorPelicula);
 	}
 	
@@ -169,8 +165,6 @@ public class TagsPorPeli {
 				Tupla<String,Integer> tupla = itr2.next();
 				double resul = tfidf(i, tupla.getX());
 				int idTag = ListaTags.getListaTags().getIdTag(tupla.getX());
-				System.out.println(i);
-				System.out.println(idTag);
 				modeloProductos[i][idTag] = resul;
 			}
 			modeloProductos[i] = vectorUnitario(modeloProductos[i]);
@@ -266,6 +260,32 @@ public class TagsPorPeli {
 	}
 	public boolean estoyVacia() {
 		return lista.isEmpty();
+	}
+	public void imprimirlista() {
+		Iterator<Integer> itr = tagsDevolKeys().iterator();
+		while(itr.hasNext())
+		{
+			int i = itr.next();
+			Iterator<Tupla<String,Integer>> itr2 = lista.get(i).iterator();
+			while(itr2.hasNext())
+			{
+				Tupla<String,Integer> tupla = itr2.next();
+				System.out.println(i+","+tupla.getX()+","+tupla.getY());
+
+			}
+			System.out.println(" ");
+		}
+	}
+	public void imprimirModeloProducto() {
+		for (int x=0; x < modeloProductos.length; x++) {
+			  for (int y=0; y < modeloProductos[x].length; y++) {
+			    System.out.print ("|"+modeloProductos[x][y]+"|");
+			  }
+			  System.out.println("Fila " + x);
+			}
+	}
+	public double[] getFilaModeloProductos(int pFila) {
+		return this.modeloProductos[pFila];
 	}
 	
 }

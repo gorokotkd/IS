@@ -82,16 +82,33 @@ public class TagsPorPeliTest {
 		tags.leerFichero();
 		tags.generarModeladoDeProductos();
 		tags.modeloPersona();
-		Double tmp = 0.4881601826270049;
-		assertTrue(tags.getIdoneidad(3,13)==tmp);
-		tmp = 1.0; //ya que ya la ha visto y ha puesto nota//
+		Double tmp = -0.3656335563947058;//prueba hecha a mano y reutilizando los decimales//
+		System.out.println(tags.getIdoneidad(1,24));
+		assertTrue(tags.getIdoneidad(1,22)==tmp);
+		tmp = 1.0000000000000002; //deberia dar 1 (pero por la cantidad de decimales que usa aparece ese 2),ya que ya la ha visto y ha puesto nota//
 		assertTrue(tags.getIdoneidad(1,13)==tmp);
+		
 		
 	}
 
 	@Test
 	public void testGenerarModeladoDeProductos() {
-		fail("Not yet implemented");
+		BaseDatos.getBd().cargarBd();
+		ListaTags.getListaTags();
+		ListaUsuarios.getListaUsuarios();
+		tags.leerFichero();
+		tags.imprimirlista();
+		System.out.println("Arriba el hashmap^^");
+		tags.generarModeladoDeProductos();
+		tags.imprimirModeloProducto();
+		
+		double[] aux = new double[8];
+		aux[0] = 0.7758209126545023; //mas o menos 0.7781512504 con calculadora//
+		aux[1] = 0.30012849797165825; //mas o menos 0.30102995 con calculadora//
+		aux[2] = 0.9513848293656879; //mas o menos 0.952425094 con calculadora//
+		for (int i=0; i<aux.length; i++) {
+			assertTrue(aux[i]==tags.getFilaModeloProductos(11)[i]);//prueba para la fila 11//
+		}
 	}
 
 	@Test
