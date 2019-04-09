@@ -1,10 +1,5 @@
 package packProyecto;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.Map.Entry;
@@ -12,8 +7,6 @@ import java.util.Map.Entry;
 public class BaseDatos {
 	
 private static BaseDatos mBd = new BaseDatos();
-private Statement st;
-private Connection miConexion;
 private Peliculas peliculas;
 private Ratings ratings;
 private TagsPorPeli tagsPorPeli;
@@ -138,6 +131,5 @@ private Filtrado filtrado;
 	public void setFiltrado(Filtrado pFil) {
 		this.filtrado = pFil;
 	}
-
 
 }
