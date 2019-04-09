@@ -21,7 +21,7 @@ public class Pearson implements SimilitudStrategy {
 		double deno1 = modulo(list1);
 		double deno2 = modulo(list2);
 		
-		return numerador/(deno1*deno2);
+		return Math.abs(numerador/(deno1*deno2));
 		
 	}
 	

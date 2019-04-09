@@ -59,6 +59,10 @@ public class Peliculas {
 		}
 	}
 	
+	public boolean estaId(int id)
+	{
+		return lista.containsKey(id);
+	}
 	
 	public Set<Entry<Integer,String>> entrySet() {
 		return lista.entrySet();

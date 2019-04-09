@@ -81,7 +81,10 @@ private Filtrado filtrado;
 		ratings.cargarValoraciones();
 		peliculas.initMatrizSimilitudes();
 	}
-	
+	public boolean estaPeli(int id)
+	{
+		return peliculas.estaId(id);
+	}
 	public ArrayList<Integer> ratingsDevolKeys() {
 		return ratings.devolKeys();
 	}
@@ -118,10 +121,18 @@ private Filtrado filtrado;
 		return peliculas.getKeys();
 	}
 	
-	public double filtradoContenido(int pUsus, int pPelicula)
+	public double filtradoContenido(int pUsus, int pPeli)
 	{
-		return tagsPorPeli.getIdoneidad(pUsus, pPelicula);
+		return tagsPorPeli.getIdoneidad(pUsus, pPeli);
+		//return tagsPorPeli.estimarValoracion(pUsus, pPelicula, 10);
+		//tagsPorPeli.recomendarNPeliculas(pUsus);
+		//return 0.0;
 	}
+	
+/**	public void recomendar(int pUsus)
+	{
+		tagsPorPeli.recomendarNPeliculas(pUsus);
+	}*/
 	
 	public int cuantasPelis()
 	{
@@ -138,6 +149,11 @@ private Filtrado filtrado;
 		peliculas.eliminar();
 		ratings.eliminar();
 		tagsPorPeli.eliminar();
+	}
+	
+	public double obtenerNotaPeliculas(int idUsu, int idPeli)
+	{
+		return ratings.obtenerNota(idUsu, idPeli);
 	}
 
 	public SimilitudStrategy getSimilitud() {

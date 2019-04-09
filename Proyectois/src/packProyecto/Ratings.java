@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+
 
 public class Ratings {
 	
@@ -101,7 +101,7 @@ public class Ratings {
 		}
 	}
 	
-	public void normalizar() { //normalización de las valoraciones
+	public void normalizar() { //normalizaciï¿½n de las valoraciones
 		if (lista.size()!=0) {
 			medias = new HashMap<Integer,Double>();
 			Set<Map.Entry<Integer,ArrayList<Tupla<Integer,Double>>>> mapaEntrada = lista.entrySet();
@@ -123,7 +123,7 @@ public class Ratings {
 		}
 	}
 	
-	public ArrayList<Tupla<Integer,Double>> desnormalizar(Integer pUsuario) { //desnormalización de las valoraciones
+	public ArrayList<Tupla<Integer,Double>> desnormalizar(Integer pUsuario) { //desnormalizaciï¿½n de las valoraciones
 		Double media = this.medias.get(pUsuario);
 		ArrayList<Tupla<Integer,Double>> lista = new ArrayList<Tupla<Integer,Double>>();
 		for (int i = 0; i < lista.size(); i++) {
@@ -165,7 +165,6 @@ public class Ratings {
 			}
 		}
 		return nota;
-	
 	}
 	
 	public void eliminar()
