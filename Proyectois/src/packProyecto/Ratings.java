@@ -30,7 +30,7 @@ public class Ratings {
 	{
 		try
 		{
-			String path = System.getProperty("user.dir")+"/movie-ratings.csv";
+			String path = System.getProperty("user.dir")+"/movie-ratings-small.csv";
 			BufferedReader br = new BufferedReader(new FileReader(path));
 			String lectura=" ";
 			ArrayList<Tupla<Integer,Double>> aux = new ArrayList<Tupla<Integer,Double>>();
@@ -68,7 +68,7 @@ public class Ratings {
 		valoraciones = new HashMap();
 		try
 		{
-			String path = System.getProperty("user.dir")+"/movie-ratings.csv";
+			String path = System.getProperty("user.dir")+"/movie-ratings-small.csv";
 			BufferedReader br = new BufferedReader(new FileReader(path));
 			String lectura=" ";
 			ArrayList<Double> aux = new ArrayList<>();
@@ -171,5 +171,18 @@ public class Ratings {
 	public void eliminar()
 	{
 		lista.clear();
+	}
+	
+	public void imprimir() {
+		Set<Integer> keySet = lista.keySet();  
+		ArrayList<Integer> listOfKeys = new ArrayList<Integer>(keySet);
+		for (int i = 0; i < listOfKeys.size(); i++) {
+			System.out.println("USUARIO: " + listOfKeys.get(i));
+			ArrayList<Tupla<Integer,Double>> aux = lista.get(listOfKeys.get(i));
+			for (int j = 0; j < aux.size(); j++) {
+				System.out.print(" -> <" + aux.get(j).getX() + " " +aux.get(j).getY());
+			}
+			System.out.println("\n");
+		}
 	}
 }

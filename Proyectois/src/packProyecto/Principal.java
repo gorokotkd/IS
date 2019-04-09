@@ -18,7 +18,10 @@ public class Principal {
 		BaseDatos.getBd().setFiltrado(filtrado);
 		BaseDatos.getBd().cargarBd();
 		BaseDatos.getBd().getFiltrado();
-		System.out.println("Antes daba: 3.037939937776456");
+		
+		BaseDatos.getBd().getFiltrado().filtrar(1,640);
+		
+		/*System.out.println("Antes daba: 3.037939937776456");
 		BaseDatos.getBd().getFiltrado().filtrar(2048, 788);
 		System.out.println();
 		
@@ -33,6 +36,7 @@ public class Principal {
 		System.out.println("Antes daba: 2.7924519607562974 -- 4,3503");
 		BaseDatos.getBd().getFiltrado().filtrar(4045, 641);
 		System.out.println();
+		*/
 	}
 
 }
