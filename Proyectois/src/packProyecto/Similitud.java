@@ -8,7 +8,6 @@ public class Similitud {
 
 	
 	public Similitud() {
-		int prueba;
 	}
 	
 	public Double calcularSimilitud(ArrayList<Double> pVPeli1, ArrayList<Double> pVPeli2) {
@@ -33,6 +32,13 @@ public class Similitud {
 	}
 	
 	public Double modulo(ArrayList<Double> pVPeli1, ArrayList<Double> pVPeli2) {
+		int diff = pVPeli1.size()-pVPeli2.size();
+		if (diff<0) {
+			diff = diff*(-1);
+			pVPeli1 = rellenarCon0(pVPeli1,diff);
+		}else if (diff>0) {
+			pVPeli2 = rellenarCon0(pVPeli2,diff);  
+		}
 		Double aux1 = 0.0;
 		Double aux2 = 0.0;
 		for (int i = 0; i < pVPeli1.size(); i++) {
