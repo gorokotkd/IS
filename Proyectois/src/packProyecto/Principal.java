@@ -16,7 +16,7 @@ public class Principal {
 		BaseDatos.getBd().cargarBd();
 	//	BaseDatos.getBd().generarFiltradoContenido();
 		//BaseDatos.getBd().generarFiltradoProducto();
-		BaseDatos.getBd().recomendar(4045, 161);
+		BaseDatos.getBd().recomendar(1, 161);
 		/*System.out.println("Usuario: 4045	Pelicula: 2164	--> "+BaseDatos.getBd().filtradoContenido(4045,2164));
 		System.out.println("Usuario: 4045	Pelicula: 63	--> "+BaseDatos.getBd().filtradoContenido(4045,63));
 		System.out.println("Usuario: 4045	Pelicula: 807	--> "+BaseDatos.getBd().filtradoContenido(4045,807));

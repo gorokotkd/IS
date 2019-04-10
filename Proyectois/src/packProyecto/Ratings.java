@@ -44,7 +44,7 @@ public class Ratings {
 	{
 		try
 		{
-			String path = System.getProperty("user.dir")+"/movie-ratings.csv";
+			String path = System.getProperty("user.dir")+"/testRatings.csv";
 			BufferedReader br = new BufferedReader(new FileReader(path));
 			String lectura=" ";
 			ArrayList<Tupla<Integer,Double>> aux = new ArrayList<Tupla<Integer,Double>>();

@@ -35,6 +35,7 @@ public class TagsPorPeliTest {
 	@Test
 	public void testLeerFichero() {
 		tags.leerFichero();
+		fail("mirar alguna posicion");
 	}
 
 	@Test
@@ -75,7 +76,7 @@ public class TagsPorPeliTest {
 
 	@Test
 	public void testGetIdoneidad() {
-		
+		fail();
 	}
 
 	@Test

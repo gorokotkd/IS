@@ -30,7 +30,7 @@ public class TagsPorPeli {
 	
 	public void leerFichero()
 	{
-		String path = System.getProperty("user.dir")+"/movie-tags.csv";
+		String path = System.getProperty("user.dir")+"/testTags.csv";
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(path));
 			String lectura = " ";

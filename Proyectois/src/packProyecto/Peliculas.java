@@ -36,7 +36,7 @@ public class Peliculas {
 	public void leerFichero(){
 		try
 		{
-			String path = System.getProperty("user.dir")+"/movie-titles.csv";
+			String path = System.getProperty("user.dir")+"/testMovies.csv";
 			FileReader fr = new FileReader(path);
 			BufferedReader br = new BufferedReader(fr);
 			String lectura = br.readLine();
