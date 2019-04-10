@@ -115,7 +115,7 @@ public class Peliculas {
 			pSimilares = sortByValues(pSimilares); 
 			Set<Map.Entry<Integer,Double>> mapaEntrada = pSimilares.entrySet();
 			Iterator<Map.Entry<Integer, Double>> itr = mapaEntrada.iterator();
-			Ratings rating = BaseDatos.getBd().getRatings();
+			Ratings rating = BaseDatos.getBd().ge8tRatings();
 			Double nota = 0.0;
 			Double sumaNumerador = 0.0;
 			Double sumaDenominador = 0.0;
@@ -181,6 +181,8 @@ public class Peliculas {
 	{
 		return new ArrayList<>(lista.keySet());
 	}
+	
+	//TODO A partir de aqui solo hay metodos de los jUnit
 	
 	public int size()
 	{

@@ -43,6 +43,10 @@ private Filtrado filtrado;
 		return filtrado;
 	}
 	
+	public TagsPorPeli getTagsPorPeli() {
+		return tagsPorPeli;
+	}
+	
 	public void setFiltrado(Filtrado pFil) {
 		this.filtrado = pFil;
 	}
@@ -111,16 +115,6 @@ private Filtrado filtrado;
 			((FiltradoProductos)filtrado).filtrar(pUsus, pPeli);
 	}
 	
-	public void recomendarContenido(int pUsu)
-	{
-		tagsPorPeli.recomendarNPeliculas(pUsu);
-	}
-	
-	public boolean estaPeli(int id) //por que, si puedes hacer BaseDatos.getBD.getPeliculas.estaId(id);
-	{
-		return peliculas.estaId(id);
-	}
-	
 	public ArrayList<Tupla<Integer,Double>> getRatingsPorId(Integer pId) {
 		return ratings.getRatingsPorId(pId);
 	}
@@ -154,17 +148,11 @@ private Filtrado filtrado;
 	}
 
 	
-	public int cuantasPelis()
-	{
-		return peliculas.size();
-	}
-	
+	//TODO A partir de aqui solo hay metodos de los jUnit
 	public int idMayorPelicula()
 	{
 		return peliculas.getIdMayor();
 	}
-	
-	//TODO A partir de aqui solo hay metodos de los jUnit
 	public void eliminarBd()
 	{
 		peliculas.eliminar();
