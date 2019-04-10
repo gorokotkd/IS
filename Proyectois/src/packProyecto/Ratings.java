@@ -26,6 +26,20 @@ public class Ratings {
 		lista = new HashMap<Integer, ArrayList<Tupla<Integer,Double>>>();
 	}
 	
+	public HashMap<Integer, ArrayList<Tupla<Integer,Double>>> getLista(){
+		if (lista==null) {
+			lista = new HashMap<Integer, ArrayList<Tupla<Integer,Double>>>();
+		}
+		return lista;
+	}
+	
+	public HashMap<Integer,ArrayList<Double>> getValoraciones(){
+		if (valoraciones==null) {
+			valoraciones = new HashMap<Integer,ArrayList<Double>>();
+		}
+		return valoraciones;
+	}
+	
 	public void leerFichero()
 	{
 		try
@@ -115,8 +129,8 @@ public class Ratings {
 				double media = (float) (aux/entrada.getValue().size());
 				medias.put(entrada.getKey(),media);
 				ArrayList<Tupla<Integer,Double>> aux2 = new ArrayList<Tupla<Integer,Double>>();
-				for (int i = 0; i < entrada.getValue().size(); i++) {
-					aux2.add(new Tupla<Integer, Double>(entrada.getValue().get(i).getX(), entrada.getValue().get(i).getY()-media));
+				for (int j = 0; j < entrada.getValue().size(); j++) {
+					aux2.add(new Tupla<Integer, Double>(entrada.getValue().get(j).getX(), entrada.getValue().get(j).getY()-media));
 				}
 				lista.put(entrada.getKey(), aux2);
 			}
@@ -125,11 +139,12 @@ public class Ratings {
 	
 	public ArrayList<Tupla<Integer,Double>> desnormalizar(Integer pUsuario) { //desnormalización de las valoraciones
 		Double media = this.medias.get(pUsuario);
-		ArrayList<Tupla<Integer,Double>> lista = new ArrayList<Tupla<Integer,Double>>();
-		for (int i = 0; i < lista.size(); i++) {
-			lista.add(new Tupla(this.lista.get(pUsuario).get(i).getX(),(this.lista.get(pUsuario).get(i).getY())+media));
+		ArrayList<Tupla<Integer,Double>> aux = lista.get(pUsuario);
+		ArrayList<Tupla<Integer,Double>> aux1 = new ArrayList<Tupla<Integer,Double>>();
+		for (int i = 0; i < aux.size(); i++) {
+			aux1.add(new Tupla(this.lista.get(pUsuario).get(i).getX(),(this.lista.get(pUsuario).get(i).getY())+media));
 		}
-		return lista;
+		return aux1;
 	}
 	
 	public Double getMedia(int pUsuario) {
@@ -151,17 +166,19 @@ public class Ratings {
 	public double obtenerNota(int pIdUsu, int pIdPeli)
 	{
 		double nota = -1;
-		ArrayList<Tupla<Integer,Double>> listaAux = lista.get(pIdUsu);
-		Iterator<Tupla<Integer,Double>> itr = listaAux.iterator();
-		boolean salir = false;
-		
-		while(!salir && itr.hasNext())
-		{
-			Tupla<Integer,Double> tAux = itr.next();
-			if(tAux.getX()==pIdPeli)
+		if (lista.get(pIdUsu)!=null && BaseDatos.getBd().getPeliculas().getLista()!=null) {
+			ArrayList<Tupla<Integer,Double>> listaAux = lista.get(pIdUsu);
+			Iterator<Tupla<Integer,Double>> itr = listaAux.iterator();
+			boolean salir = false;
+			
+			while(!salir && itr.hasNext())
 			{
-				nota=tAux.getY();
-				salir = true;
+				Tupla<Integer,Double> tAux = itr.next();
+				if(tAux.getX()==pIdPeli)
+				{
+					nota=tAux.getY();
+					salir = true;
+				}
 			}
 		}
 		return nota;
@@ -171,6 +188,8 @@ public class Ratings {
 	public void eliminar()
 	{
 		lista.clear();
+		valoraciones.clear();
+		medias.clear();
 	}
 	
 	public void imprimir() {

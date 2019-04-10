@@ -32,21 +32,17 @@ private Filtrado filtrado;
 			if (filtrado instanceof FiltradoProductos) {
 				peliculas = new Peliculas();
 				peliculas.leerFichero();
-				System.out.println("Leido peliculas");
 				
 				ratings = new Ratings();
 				ratings.leerFichero();
 				ratings.normalizar();
-				System.out.println("Leido ratings y normalizado");
 				
 				ratings.cargarValoraciones();
 				peliculas.initMatrizSimilitudes();
 			}else {
 				tagsPorPeli.generarModeladoDeProductos();
-				System.out.println("Modelo Del producto Generado");
 				
 				tagsPorPeli.modeloPersona();
-				System.out.println("Modelo de la persona Generado");
 			}
 			
 		}
@@ -54,6 +50,20 @@ private Filtrado filtrado;
 		{
 			e.printStackTrace();
 		}
+	}
+	
+	public void cargarTodo() {
+		peliculas = new Peliculas();
+		peliculas.leerFichero();
+		
+		ratings = new Ratings();
+		ratings.leerFichero();
+		ratings.normalizar();
+		
+		ratings.cargarValoraciones();
+		peliculas.initMatrizSimilitudes();
+		
+		
 	}
 	
 	public ArrayList<Integer> ratingsDevolKeys() {
@@ -112,6 +122,11 @@ private Filtrado filtrado;
 		peliculas.eliminar();
 		ratings.eliminar();
 		tagsPorPeli.eliminar();
+	}
+	
+	public void eliminarParaRatings() {
+		peliculas.eliminar();
+		ratings.eliminar();
 	}
 	
 	public void cargarSoloPelis()

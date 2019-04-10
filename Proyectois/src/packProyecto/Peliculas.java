@@ -28,6 +28,10 @@ public class Peliculas {
 		idMayor=-1;
 		similiProductos = new HashMap<Integer, HashMap<Integer,Double>>();
 	}
+	
+	public HashMap<Integer,String> getLista(){
+		return lista;
+	}
 
 	public void leerFichero(){
 		try

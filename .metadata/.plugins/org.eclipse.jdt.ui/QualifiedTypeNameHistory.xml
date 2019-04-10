@@ -13,15 +13,18 @@
 <fullyQualifiedTypeName name="java.util.Arrays"/>
 <fullyQualifiedTypeName name="javax.swing.DefaultListModel"/>
 <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
-<fullyQualifiedTypeName name="packProyecto.BaseDatos"/>
 <fullyQualifiedTypeName name="java.sql.SQLException"/>
 <fullyQualifiedTypeName name="packProyecto.ListaTags"/>
 <fullyQualifiedTypeName name="packProyecto.Peliculas"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="packProyecto.Cos"/>
 <fullyQualifiedTypeName name="java.util.LinkedList"/>
 <fullyQualifiedTypeName name="com.sun.xml.internal.bind.v2.schemagen.xmlschema.List"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.util.Collections"/>
 <fullyQualifiedTypeName name="java.util.LinkedHashMap"/>
+<fullyQualifiedTypeName name="packProyecto.FiltradoProductos"/>
+<fullyQualifiedTypeName name="packProyecto.Cos"/>
+<fullyQualifiedTypeName name="packProyectoTest.RatingsTest"/>
+<fullyQualifiedTypeName name="packProyecto.BaseDatos"/>
+<fullyQualifiedTypeName name="packProyecto.Ratings"/>
 </qualifiedTypeNameHistroy>
