@@ -12,12 +12,10 @@ import java.util.Map.Entry;
 public class BaseDatos {
 	
 private static BaseDatos mBd = new BaseDatos();
-private Statement st;
-private Connection miConexion;
 private Peliculas peliculas;
 private Ratings ratings;
 private TagsPorPeli tagsPorPeli;
-private Similitud similitud;
+private Filtrado filtrado;
 
 	private BaseDatos() {
 		
@@ -30,38 +28,78 @@ private Similitud similitud;
 		}
 		return mBd;
 	}
+	
+
+	/**public void cargarBd()
+	{
+		try
+		{
+			
+			peliculas = new Peliculas();
+			peliculas.leerFichero();
+			System.out.println("Leido peliculas");
+			ratings = new Ratings();
+			ratings.leerFichero();
+			System.out.println("Leido ratings");
+			tagsPorPeli = new TagsPorPeli();
+			tagsPorPeli.leerFichero();
+			System.out.println("Leido TagsPorPeli");
+			
+			
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}*/
 
 	public void cargarBd()
 	{
 		try
 		{
 			
-			System.out.println("Generando tabla peliculas...\n");
 			peliculas = new Peliculas();
 			peliculas.leerFichero();
-			System.out.println("Generando tabla resena...\n");
 			ratings = new Ratings();
 			ratings.leerFichero();
-			System.out.println("Generando tabla tagsPorPeli...\n");
-			tagsPorPeli = new TagsPorPeli();
-			tagsPorPeli.leerFichero();
-			System.out.println("Generando Modelado De productos\n");
-			tagsPorPeli.generarModeladoDeProductos();
-			System.out.println("Generando Modelado De las personas\n");
-			tagsPorPeli.modeloPersona();
-			System.out.println("Cargando valoraciones\n");
-			ratings.cargarValoraciones();
-			System.out.println("Normalizando...\n");
-			similitud = new Similitud();
-			this.filtradoProducto();
-			System.out.println("Base De Datos Generada.");	
+			if (filtrado instanceof FiltradoProductos) {
+				ratings.normalizar();
+				ratings.cargarValoraciones();
+				peliculas.initMatrizSimilitudes();
+			}else {
+				tagsPorPeli = new TagsPorPeli();
+				tagsPorPeli.leerFichero();
+				tagsPorPeli.inicializarFiltradoContenido();
+			}
+			
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
+}
+	
+	
+	public void generarFiltradoContenido()
+	{	
+		filtrado = new FiltradoContenido();
+		filtrado.setSimilitud(new Cos());
+		tagsPorPeli.inicializarFiltradoContenido();
 	}
 	
+	public void generarFiltradoProducto()
+	{
+		ratings.normalizar();
+		filtrado = new FiltradoProductos();
+		filtrado.setSimilitud(new Cos());
+		System.out.println("Creado filtrado");
+		ratings.cargarValoraciones();
+		peliculas.initMatrizSimilitudes();
+	}
+	public boolean estaPeli(int id)
+	{
+		return peliculas.estaId(id);
+	}
 	public ArrayList<Integer> ratingsDevolKeys() {
 		return ratings.devolKeys();
 	}
@@ -88,8 +126,9 @@ private Similitud similitud;
 		return ratings;
 	}
 	
-	public Similitud getSimilitud() {
-		return similitud;
+	
+	public Peliculas getPeliculas() {
+		return peliculas;
 	}
 	
 	public ArrayList<Integer> getIdPeliculas()
@@ -97,10 +136,31 @@ private Similitud similitud;
 		return peliculas.getKeys();
 	}
 	
-	public double getIdoneidad(int pUsus, int pPelicula)
+		
+	public void recomendar(int pUsus,int pPeli)
 	{
-		return tagsPorPeli.getIdoneidad(pUsus, pPelicula);
+		if(filtrado instanceof FiltradoContenido)
+			((FiltradoContenido)filtrado).recomendar(pUsus);
+		else
+			((FiltradoProductos)filtrado).filtrar(pUsus, pPeli);
 	}
+	
+	public void recomendarContenido(int pUsu)
+	{
+		tagsPorPeli.recomendarNPeliculas(pUsu);
+	}
+	public void eliminarParaRatings() 
+	{
+		peliculas.eliminar();
+		ratings.eliminar();
+	}
+	
+	public void cargarSoloPelis()
+	{
+		peliculas = new Peliculas();
+		peliculas.leerFichero();
+	}
+
 	
 	public int cuantasPelis()
 	{
@@ -112,11 +172,6 @@ private Similitud similitud;
 		return peliculas.getIdMayor();
 	}
 	
-	public void filtradoProducto() {
-		this.peliculas.initMatrizSimilitudes();
-		//this.peliculas.calcularIdoneidad(2048, 77);
-	}
-	
 	public void eliminarBd()
 	{
 		peliculas.eliminar();
@@ -124,10 +179,22 @@ private Similitud similitud;
 		tagsPorPeli.eliminar();
 	}
 	
-	public void cargarSoloPelis()
+	public double obtenerNotaPeliculas(int idUsu, int idPeli)
 	{
-		peliculas = new Peliculas();
-		peliculas.leerFichero();
+		return ratings.obtenerNota(idUsu, idPeli);
+	}
+
+	public SimilitudStrategy getSimilitud() {
+		return filtrado.getSimilitud();
 	}
 	
+	public Filtrado getFiltrado() {
+		return filtrado;
+	}
+	
+	public void setFiltrado(Filtrado pFiltrado) {
+		this.filtrado = pFiltrado;
+	}
+
+
 }

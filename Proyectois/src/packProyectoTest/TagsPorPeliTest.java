@@ -76,19 +76,6 @@ public class TagsPorPeliTest {
 	@Test
 	public void testGetIdoneidad() {
 		
-		BaseDatos.getBd().cargarBd();
-		ListaTags.getListaTags();
-		ListaUsuarios.getListaUsuarios();
-		tags.leerFichero();
-		tags.generarModeladoDeProductos();
-		tags.modeloPersona();
-		Double tmp = -0.3656335563947058;//prueba hecha a mano y reutilizando los decimales//
-		System.out.println(tags.getIdoneidad(1,24));
-		assertTrue(tags.getIdoneidad(1,22)==tmp);
-		tmp = 1.0000000000000002; //deberia dar 1 (pero por la cantidad de decimales que usa aparece ese 2),ya que ya la ha visto y ha puesto nota//
-		assertTrue(tags.getIdoneidad(1,13)==tmp);
-		
-		
 	}
 
 	@Test
@@ -99,7 +86,7 @@ public class TagsPorPeliTest {
 		tags.leerFichero();
 		tags.imprimirlista();
 		System.out.println("Arriba el hashmap^^");
-		tags.generarModeladoDeProductos();
+		tags.inicializarFiltradoContenido();
 		tags.imprimirModeloProducto();
 		
 		double[] aux = new double[8];
