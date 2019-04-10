@@ -57,6 +57,7 @@ private Filtrado filtrado;
 	{
 		try
 		{
+			
 			peliculas = new Peliculas();
 			peliculas.leerFichero();
 			ratings = new Ratings();
