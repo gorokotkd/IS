@@ -94,7 +94,7 @@ public class TagsPorPeli {
 		return lista.get(pId);
 	}
 	
-	public void modeloPersona()
+	private void modeloPersona()
 	{
 		int usu = 1;
 		while(usu<ListaUsuarios.getListaUsuarios().size())
@@ -120,6 +120,14 @@ public class TagsPorPeli {
 		}
 		
 	}
+	
+	public void inicializarFiltradoContenido()
+	{
+		this.generarModeladoDeProductos();
+		System.out.println("Modelo De productos Generado.");
+		this.modeloPersona();
+		System.out.println("Modelo De personas Generado.");
+	}
 
 	
 	private ArrayList<Double> getFilaPersona(int idUsu)
@@ -139,7 +147,7 @@ public class TagsPorPeli {
 			resul.add(modeloProductos[idPeli][i]);
 		return resul;
 	}
-	public double getIdoneidad(int idUsu, int idPeli)
+	private double getIdoneidad(int idUsu, int idPeli)
 	{
 		
 		Cos sim = new Cos();
@@ -150,72 +158,44 @@ public class TagsPorPeli {
 		return sim.calcularSimilitud(vectorPersona, vectorPelicula);
 	}
 	
-/**	public void recomendarNPeliculas(int idUsu)
+	public void recomendarNPeliculas(int idUsu)
 	{
 		HashMap<Integer,Double> list = peliculasIdoneasParaElUsuario(idUsu);
 		list=sortByValues(list);
 		int N = 10;
 		int i = 0;
+		ArrayList<Integer> keys = new ArrayList<Integer>(list.keySet());
+		Iterator<Integer> itr = keys.iterator();
 		System.out.println("Las mejores peliculas para el usuario: " + idUsu+" son: \n");
-		while(i<N-1)
+		while(i<N && itr.hasNext())
 		{
-			System.out.println(i+": "+list.get(i)+"\n");
+			int id = itr.next();
+			System.out.println(i+": IdPelicula: "+id+" Idoneidad: "+list.get(id));
 			i++;
 		}
 		
 	}
+	
 	
 	private HashMap<Integer,Double> peliculasIdoneasParaElUsuario(int idUsu)
 	{
 		int i = 0;
 		HashMap<Integer,Double> list = new HashMap<Integer,Double>();
+		ArrayList<Integer> keys = BaseDatos.getBd().getIdPeliculas();
+		Iterator<Integer> itr = keys.iterator();
 		
-		while(i<BaseDatos.getBd().cuantasPelis())
+		while(itr.hasNext())
+		{
+			i=itr.next();
 			list.put(i, getIdoneidad(idUsu, i));
+		}
+			
 		return list;
 	}
 	
-	*/
-/*	
-	private double idoneidadEntreUsuarios(int usu1, int usu2)
-	{
-		Cos sim = new Cos();
-		
-		ArrayList<Double> vectorPersona = getFilaPersona(usu1);
-		ArrayList<Double> vectorPersona2 = getFilaPersona(usu2);
-		
-		return sim.calcularSimilitud(vectorPersona, vectorPersona2);
-	}
 	
-	private HashMap<Integer,Double> idoneidadDeUsuarioParaTodasLasPelis(int idUsu)
-	{
-		int i=0;
-		HashMap<Integer,Double> lista = new HashMap<Integer,Double>();
-		while(i<BaseDatos.getBd().idMayorPelicula())
-		{
-			if(BaseDatos.getBd().estaPeli(i))
-			{
-				lista.put(i, getIdoneidad(idUsu,i));
-			}
-			i++;
-		}
-		lista = sortByValues(lista);
-		return lista;
-	}
 	
-	private HashMap<Integer,Double> idoneidadDeUsuarioConLosDemas(int idUsu)
-	{
-		HashMap<Integer,Double> lista = new HashMap<Integer,Double>();
-		int i = 0;
-		while(i<ListaUsuarios.getListaUsuarios().size())
-		{
-			if(ListaUsuarios.getListaUsuarios().contains(i))
-				lista.put(i, idoneidadEntreUsuarios(idUsu, i));
-			i++;
-		}
-		return lista;
-	}
-	*/
+	
 	private static HashMap<Integer, Double> sortByValues(HashMap<Integer, Double> map) { 
 	       List list = new LinkedList(map.entrySet());
 	       // Defined Custom Comparator here
@@ -235,52 +215,7 @@ public class TagsPorPeli {
 	       } 
 	       return sortedHashMap;
 	  }
-	/*
-	private double numeradorEstimarValoracion(int idUsu, int idPeli, int N)
-	{
-		int cont = 0;
-		double sumatorio = 0.0;
-		HashMap<Integer,Double> listz = idoneidadDeUsuarioParaTodasLasPelis(idUsu);
-		listz = sortByValues(listz);
-		ArrayList<Integer> keys = new ArrayList<Integer>(listz.keySet());//ids de peliculas
-		Iterator<Integer> itr = keys.iterator();
-		
-		while(itr.hasNext()&&cont<N-1)
-		{
-			int aux = itr.next();
-			BaseDatos.getBd().obtenerNotaPeliculas(idUsu, aux);
-			sumatorio = sumatorio+(listz.get(aux)*BaseDatos.getBd().obtenerNotaPeliculas(idUsu, aux));
-			cont++;
-		}
-		return sumatorio;
-		
-		
-	}
 	
-	private double denominadorEstimarValoraciones(int idUsu, int N)
-	{
-		int cont = 0;
-		double sumatorio = 0.0;
-		HashMap<Integer,Double> lista = idoneidadDeUsuarioParaTodasLasPelis(idUsu);
-		lista = sortByValues(lista);
-		ArrayList<Integer> keys = new ArrayList<Integer>(lista.keySet());
-		
-		Iterator<Integer> itr = keys.iterator();
-		
-		while(itr.hasNext()&&cont<N-1)
-		{
-			sumatorio = sumatorio+lista.get(itr.next());
-			cont++;
-		}
-		return sumatorio;
-	}
-	public double estimarValoracion(int idUsu,int idPeli,int N)
-	{
-		double numera = numeradorEstimarValoracion(idUsu,idPeli,N);
-		double denom = denominadorEstimarValoraciones(idUsu,N);
-		return numera/denom;
-	}
-	*/
 	private double getTfidfDe(int pIdPeli, String pTag)
 	{
 		return modeloProductos[pIdPeli][ListaTags.getListaTags().getIdTag(pTag)];
@@ -305,7 +240,7 @@ public class TagsPorPeli {
 	}
 
 	
-	public void generarModeladoDeProductos()
+	private void generarModeladoDeProductos()
 	{
 		Iterator<Integer> itr = tagsDevolKeys().iterator();
 		while(itr.hasNext())
@@ -323,32 +258,6 @@ public class TagsPorPeli {
 		}
 	//	vectorUnitarioMatriz();
 	
-	}
-	
-	private void vectorUnitarioMatriz()
-	{
-		int i = 0;
-		while(i<modeloProductos[0].length)
-		{
-			double[] list = columnaArray(i);
-			list=vectorUnitario(list);
-			arrayAColumna(i,list);
-			i++;
-		}
-	}
-	
-	private void arrayAColumna(int col, double[] list)
-	{
-		for(int i=0;i<list.length;i++)
-			modeloProductos[i][col]=list[i];
-	}
-	
-	private double[] columnaArray(int col)
-	{
-		double[] list = new double[modeloProductos.length];
-		for(int i=0; i<list.length;i++)
-			list[i] = modeloProductos[i][col];
-		return list;
 	}
 	
 	private double[] vectorUnitario(double[] list)

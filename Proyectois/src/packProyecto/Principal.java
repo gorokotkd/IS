@@ -8,12 +8,13 @@ public class Principal {
 		interfaz.setVisible(true);*/
 		BaseDatos.getBd().cargarBd();
 		BaseDatos.getBd().generarFiltradoContenido();
-		System.out.println("Usuario: 4045	Pelicula: 2164	--> "+BaseDatos.getBd().filtradoContenido(4045,2164));
+		/*System.out.println("Usuario: 4045	Pelicula: 2164	--> "+BaseDatos.getBd().filtradoContenido(4045,2164));
 		System.out.println("Usuario: 4045	Pelicula: 63	--> "+BaseDatos.getBd().filtradoContenido(4045,63));
 		System.out.println("Usuario: 4045	Pelicula: 807	--> "+BaseDatos.getBd().filtradoContenido(4045,807));
 		System.out.println("Usuario: 4045	Pelicula: 187	--> "+BaseDatos.getBd().filtradoContenido(4045,187));
-		System.out.println("Usuario: 4045	Pelicula: 11	--> "+BaseDatos.getBd().filtradoContenido(4045,11));
-		//BaseDatos.getBd().recomendar(1);
+		System.out.println("Usuario: 4045	Pelicula: 11	--> "+BaseDatos.getBd().filtradoContenido(4045,11));*/
+		BaseDatos.getBd().recomendar(1);
+
 		
 /*		//BaseDatos.getBd().cargarBd();
 	//	BaseDatos.getBd().filtrar();

@@ -56,20 +56,10 @@ private Filtrado filtrado;
 		}
 	}
 	
-	public void generarTodo()
-	{
-		
-	}
 	
 	public void generarFiltradoContenido()
-	{
-		
-		tagsPorPeli.generarModeladoDeProductos();
-		System.out.println("Modelo Del producto Generado");
-		tagsPorPeli.modeloPersona();
-		System.out.println("Modelo de la persona Generado");
-		
-		
+	{	
+		tagsPorPeli.inicializarFiltradoContenido();
 	}
 	
 	public void generarFiltradoProducto()
@@ -121,18 +111,13 @@ private Filtrado filtrado;
 		return peliculas.getKeys();
 	}
 	
-	public double filtradoContenido(int pUsus, int pPeli)
+		
+	public void recomendar(int pUsus)
 	{
-		return tagsPorPeli.getIdoneidad(pUsus, pPeli);
-		//return tagsPorPeli.estimarValoracion(pUsus, pPelicula, 10);
-		//tagsPorPeli.recomendarNPeliculas(pUsus);
-		//return 0.0;
+		if(filtrado instanceof FiltradoContenido)
+			tagsPorPeli.recomendarNPeliculas(pUsus);
+		
 	}
-	
-/**	public void recomendar(int pUsus)
-	{
-		tagsPorPeli.recomendarNPeliculas(pUsus);
-	}*/
 	
 	public int cuantasPelis()
 	{

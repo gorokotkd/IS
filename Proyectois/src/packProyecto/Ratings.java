@@ -93,6 +93,11 @@ public class Ratings {
 		}
 	}
 	
+/*	public boolean haVistoLaPeli(int idUsu, int idPeli)
+	{
+		
+	}*/
+	
 	public synchronized void anadirALista(int pKey, Double pPuntuacion) {
 		ArrayList<Double> lista = valoraciones.get(pKey);
 		if (!(lista==null)) {
