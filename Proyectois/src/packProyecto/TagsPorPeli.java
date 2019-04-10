@@ -5,8 +5,15 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class TagsPorPeli {
 
@@ -48,17 +55,28 @@ public class TagsPorPeli {
 					lectura = br.readLine();
 					if(lectura!=null)
 						str = lectura.split(";");
+					else
+					{
+						aux.add(new Tupla(str[1],cont));
+						lista.put(Integer.parseInt(str[0]), aux);
+					}
 				}
 				else
 				{
-					if(tagAct.equals(str[1]))
-						cont++;
 					aux.add(new Tupla(tagAct,cont));
-					tagAct=str[1];
-					cont = 1;
+					cont=1;
 					lista.put(idAct, aux);
 					aux = new ArrayList<Tupla<String, Integer>>();
+					tagAct=str[1];
 					idAct=Integer.parseInt(str[0]);
+					lectura = br.readLine();
+					if(lectura!=null)
+						str = lectura.split(";");
+					else
+					{
+						aux.add(new Tupla(str[1],cont));
+						lista.put(Integer.parseInt(str[0]), aux);
+					}
 				}
 			}
 			
@@ -66,6 +84,7 @@ public class TagsPorPeli {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
 	public ArrayList<Integer> tagsDevolKeys() {
 		return new ArrayList<>(lista.keySet()); 
@@ -75,10 +94,10 @@ public class TagsPorPeli {
 		return lista.get(pId);
 	}
 	
-	public void modeloPersona()
+	private void modeloPersona()
 	{
 		int usu = 1;
-		while(usu<ListaUsuarios.getListaUsuarios().size()-1)
+		while(usu<ListaUsuarios.getListaUsuarios().size())
 		{
 			ArrayList<Tupla<Integer,Double>> ratingsDelUsu=BaseDatos.getBd().getRatingsPorId(usu);
 			ArrayList<Integer> pelisPorEncimaDelUmbral = calcularPelisPorEncimaDelUmbral(ratingsDelUsu,3.5);
@@ -101,6 +120,14 @@ public class TagsPorPeli {
 		}
 		
 	}
+	
+	public void inicializarFiltradoContenido()
+	{
+		this.generarModeladoDeProductos();
+		System.out.println("Modelo De productos Generado.");
+		this.modeloPersona();
+		System.out.println("Modelo De personas Generado.");
+	}
 
 	
 	private ArrayList<Double> getFilaPersona(int idUsu)
@@ -120,15 +147,73 @@ public class TagsPorPeli {
 			resul.add(modeloProductos[idPeli][i]);
 		return resul;
 	}
-	public double getIdoneidad(int idUsu, int idPeli)
+	private double getIdoneidad(int idUsu, int idPeli)
 	{
-		Pearson sim = new Pearson();
+		
 		
 		ArrayList<Double> vectorPersona = getFilaPersona(idUsu);
 		ArrayList<Double> vectorPelicula = getFilaProducto(idPeli);
 		
-		return sim.calcularSimilitud(vectorPersona, vectorPelicula);
+		return BaseDatos.getBd().getFiltrado().getSimilitud().calcularSimilitud(vectorPersona, vectorPelicula);
 	}
+	
+	public void recomendarNPeliculas(int idUsu)
+	{
+		HashMap<Integer,Double> list = peliculasIdoneasParaElUsuario(idUsu);
+		list=sortByValues(list);
+		int N = 10;
+		int i = 0;
+		ArrayList<Integer> keys = new ArrayList<Integer>(list.keySet());
+		Iterator<Integer> itr = keys.iterator();
+		System.out.println("Las mejores peliculas para el usuario: " + idUsu+" son: \n");
+		while(i<N && itr.hasNext())
+		{
+			int id = itr.next();
+			System.out.println(i+": IdPelicula: "+id+" Idoneidad: "+list.get(id));
+			i++;
+		}
+		
+	}
+	
+	
+	private HashMap<Integer,Double> peliculasIdoneasParaElUsuario(int idUsu)
+	{
+		int i = 0;
+		HashMap<Integer,Double> list = new HashMap<Integer,Double>();
+		ArrayList<Integer> keys = BaseDatos.getBd().getIdPeliculas();
+		Iterator<Integer> itr = keys.iterator();
+		
+		while(itr.hasNext())
+		{
+			i=itr.next();
+			list.put(i, getIdoneidad(idUsu, i));
+		}
+			
+		return list;
+	}
+	
+	
+	
+	
+	private static HashMap<Integer, Double> sortByValues(HashMap<Integer, Double> map) { 
+	       List list = new LinkedList(map.entrySet());
+	       // Defined Custom Comparator here
+	       Collections.sort(list, new Comparator() {
+	            public int compare(Object o1, Object o2) {
+	               return (-1)*((Comparable) ((Map.Entry) (o1)).getValue())
+	                  .compareTo(((Map.Entry) (o2)).getValue());
+	            }
+	       });
+
+	       // Here I am copying the sorted list in HashMap
+	       // using LinkedHashMap to preserve the insertion order
+	       HashMap sortedHashMap = new LinkedHashMap();
+	       for (Iterator it = list.iterator(); it.hasNext();) {
+	              Map.Entry entry = (Map.Entry) it.next();
+	              sortedHashMap.put(entry.getKey(), entry.getValue());
+	       } 
+	       return sortedHashMap;
+	  }
 	
 	private double getTfidfDe(int pIdPeli, String pTag)
 	{
@@ -154,7 +239,7 @@ public class TagsPorPeli {
 	}
 
 	
-	public void generarModeladoDeProductos()
+	private void generarModeladoDeProductos()
 	{
 		Iterator<Integer> itr = tagsDevolKeys().iterator();
 		while(itr.hasNext())
@@ -169,8 +254,8 @@ public class TagsPorPeli {
 				modeloProductos[i][idTag] = resul;
 			}
 			modeloProductos[i] = vectorUnitario(modeloProductos[i]);
-			
 		}
+	//	vectorUnitarioMatriz();
 	
 	}
 	
@@ -190,9 +275,9 @@ public class TagsPorPeli {
 	private double moduloVector(double[] list)
 	{
 		double resul = 0.0;
-		for (int i=1;i<list.length;i++)
-			resul = Math.sqrt(resul+Math.pow((list[i]),2.0));
-		return resul;
+		for (int i=0;i<list.length;i++)
+			resul = resul+Math.pow((list[i]),2.0);
+		return Math.sqrt(resul);
 	}
 	
 	private double tfidf(Integer pPeli, String pTag)
@@ -257,6 +342,34 @@ public class TagsPorPeli {
 	{
 		if(!lista.containsKey(key))
 			lista.put(key, entrada);
+}
+	public boolean estoyVacia() {
+		return lista.isEmpty();
 	}
-	
+	public void imprimirlista() {
+		Iterator<Integer> itr = tagsDevolKeys().iterator();
+		while(itr.hasNext())
+		{
+			int i = itr.next();
+			Iterator<Tupla<String,Integer>> itr2 = lista.get(i).iterator();
+			while(itr2.hasNext())
+			{
+				Tupla<String,Integer> tupla = itr2.next();
+				System.out.println(i+","+tupla.getX()+","+tupla.getY());
+
+			}
+			System.out.println(" ");
+		}
+	}
+	public void imprimirModeloProducto() {
+		for (int x=0; x < modeloProductos.length; x++) {
+			  for (int y=0; y < modeloProductos[x].length; y++) {
+			    System.out.print ("|"+modeloProductos[x][y]+"|");
+			  }
+			  System.out.println("Fila " + x);
+			}
+	}
+	public double[] getFilaModeloProductos(int pFila) {
+		return this.modeloProductos[pFila];
+	}
 }

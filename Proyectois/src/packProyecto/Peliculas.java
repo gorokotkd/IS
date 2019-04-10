@@ -32,6 +32,11 @@ public class Peliculas {
 	public HashMap<Integer,String> getLista(){
 		return lista;
 	}
+	
+	public int getIdMayor()
+	{
+		return idMayor;
+	}
 
 	public void leerFichero(){
 		try
@@ -57,19 +62,6 @@ public class Peliculas {
 		}
 	}
 	
-	public int getIdMayor()
-	{
-		return idMayor;
-	}
-	
-	public Set<Entry<Integer,String>> entrySet() {
-		return lista.entrySet();
-	}	
-	
-	private Double buscarSimilitud(int pPro1, int pPro2) {
-		return this.similiProductos.get(pPro1).get(pPro2);
-	}
-	
 	public void initMatrizSimilitudes() {
 		Set<Map.Entry<Integer,String>> mapaEntrada = lista.entrySet();
 		Iterator<Map.Entry<Integer, String>> itr = mapaEntrada.iterator();
@@ -84,7 +76,7 @@ public class Peliculas {
 		}		 
 	}
 	
-	public HashMap<Integer,Double> getFilaSimilitudes(Map.Entry<Integer, String> entrada){
+	private HashMap<Integer,Double> getFilaSimilitudes(Map.Entry<Integer, String> entrada){
 		HashMap<Integer,Double> hashAux = new HashMap<Integer, Double>();
 		Set<Map.Entry<Integer,String>> mapaEntrada2 = lista.entrySet();
 		Iterator<Map.Entry<Integer, String>> itr2 = mapaEntrada2.iterator();
@@ -163,19 +155,13 @@ public class Peliculas {
 	       return sortedHashMap;
 	  }
 	
+	public Set<Entry<Integer,String>> entrySet() {
+		return lista.entrySet();
+	}	
 	
-	
-	/*private ArrayList<Double> obtenerNProductos(int pProducto,int pCant){ //NO SE UTILIZA EN ESTE SPRINT. TODO LO QUE HAY A PARTIR DE AQUI ES PARA LUEGO
-		ArrayList<Double> lista = this.ordenarHash(pProducto);
-		ArrayList<Double> rdo = new ArrayList<Double>();
-		for (int i = lista.size()-1; i >= lista.size()-pCant; i--) {
-			rdo.add(lista.get(i));
-		}
-		for (int i = 0; i < rdo.size(); i++) {
-			System.out.println(" -> "+rdo.get(i));
-		}
-		return rdo;
-	}*/
+	private Double buscarSimilitud(int pPro1, int pPro2) {
+		return this.similiProductos.get(pPro1).get(pPro2);
+	}
 	
 	private void imprimir(ArrayList<Integer> listOfKeys) {
 		int i =0;
@@ -184,6 +170,11 @@ public class Peliculas {
 			System.out.println(similiProductos.get(listOfKeys.get(i)));
 		}
 		System.out.println(i);
+	}
+	
+	public boolean estaId(int id)
+	{
+		return lista.containsKey(id);
 	}
 	
 	public ArrayList<Integer> getKeys()

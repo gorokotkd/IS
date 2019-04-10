@@ -13,13 +13,12 @@ public class Principal {
 		System.out.println("Usuario: 4045	Pelicula: 187	--> "+BaseDatos.getBd().getIdoneidad(4045,187));
 		System.out.println("Usuario: 4045	Pelicula: 11	--> "+BaseDatos.getBd().getIdoneidad(4045,11));
 		*/
-		FiltradoProductos filtrado = new FiltradoProductos();
-		filtrado.setSimilitud(new Pearson());
+		FiltradoContenido filtrado = new FiltradoContenido();
+		filtrado.setSimilitud(new Cos());
 		BaseDatos.getBd().setFiltrado(filtrado);
-		BaseDatos.getBd().cargarBd();
-		BaseDatos.getBd().getFiltrado();
-		
-		BaseDatos.getBd().getFiltrado().filtrar(1,640);
+		BaseDatos.getBd().cargarBd();		
+		//BaseDatos.getBd().getFiltrado().filtrar(4045,161);
+		BaseDatos.getBd().recomendar(4045, 0);
 		
 		/*System.out.println("Antes daba: 3.037939937776456");
 		BaseDatos.getBd().getFiltrado().filtrar(2048, 788);

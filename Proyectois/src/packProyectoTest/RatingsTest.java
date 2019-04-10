@@ -30,7 +30,7 @@ public class RatingsTest {
 
 	@After
 	public void tearDown() throws Exception {
-		BaseDatos.getBd().eliminarParaRatings();
+		BaseDatos.getBd().eliminarRatingsPeliculas();
 	}
 
 	@Test

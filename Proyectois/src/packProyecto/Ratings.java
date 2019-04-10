@@ -44,7 +44,7 @@ public class Ratings {
 	{
 		try
 		{
-			String path = System.getProperty("user.dir")+"/movie-ratings-small.csv";
+			String path = System.getProperty("user.dir")+"/movie-ratings.csv";
 			BufferedReader br = new BufferedReader(new FileReader(path));
 			String lectura=" ";
 			ArrayList<Tupla<Integer,Double>> aux = new ArrayList<Tupla<Integer,Double>>();
@@ -82,7 +82,7 @@ public class Ratings {
 		valoraciones = new HashMap();
 		try
 		{
-			String path = System.getProperty("user.dir")+"/movie-ratings-small.csv";
+			String path = System.getProperty("user.dir")+"/movie-ratings.csv";
 			BufferedReader br = new BufferedReader(new FileReader(path));
 			String lectura=" ";
 			ArrayList<Double> aux = new ArrayList<>();

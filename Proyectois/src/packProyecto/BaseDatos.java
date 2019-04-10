@@ -24,25 +24,46 @@ private Filtrado filtrado;
 		return mBd;
 	}
 	
-
+	public SimilitudStrategy getSimilitud() {
+		return filtrado.getSimilitud();
+	}
+	
+	public Ratings getRatings(){
+		if (this.ratings==null) {
+			ratings = new Ratings();
+		}
+		return ratings;
+	}
+	
+	public Peliculas getPeliculas() {
+		return peliculas;
+	}
+	
+	public Filtrado getFiltrado() {
+		return filtrado;
+	}
+	
+	public void setFiltrado(Filtrado pFil) {
+		this.filtrado = pFil;
+	}
+	
 	public void cargarBd()
 	{
 		try
 		{
+			
+			peliculas = new Peliculas();
+			peliculas.leerFichero();
+			ratings = new Ratings();
+			ratings.leerFichero();
 			if (filtrado instanceof FiltradoProductos) {
-				peliculas = new Peliculas();
-				peliculas.leerFichero();
-				
-				ratings = new Ratings();
-				ratings.leerFichero();
 				ratings.normalizar();
-				
 				ratings.cargarValoraciones();
 				peliculas.initMatrizSimilitudes();
 			}else {
-				tagsPorPeli.generarModeladoDeProductos();
-				
-				tagsPorPeli.modeloPersona();
+				tagsPorPeli = new TagsPorPeli();
+				tagsPorPeli.leerFichero();
+				tagsPorPeli.inicializarFiltradoContenido();
 			}
 			
 		}
@@ -50,6 +71,23 @@ private Filtrado filtrado;
 		{
 			e.printStackTrace();
 		}
+	}
+	
+	public void generarFiltradoContenido()
+	{	
+		filtrado = new FiltradoContenido();
+		filtrado.setSimilitud(new Cos());
+		tagsPorPeli.inicializarFiltradoContenido();
+	}
+	
+	public void generarFiltradoProducto()
+	{
+		ratings.normalizar();
+		filtrado = new FiltradoProductos();
+		filtrado.setSimilitud(new Cos());
+		System.out.println("Creado filtrado");
+		ratings.cargarValoraciones();
+		peliculas.initMatrizSimilitudes();
 	}
 	
 	public void cargarTodo() {
@@ -63,15 +101,35 @@ private Filtrado filtrado;
 		ratings.cargarValoraciones();
 		peliculas.initMatrizSimilitudes();
 		
-		
 	}
+	
+	public void recomendar(int pUsus,int pPeli)
+	{
+		if(filtrado instanceof FiltradoContenido)
+			((FiltradoContenido)filtrado).recomendar(pUsus);
+		else
+			((FiltradoProductos)filtrado).filtrar(pUsus, pPeli);
+	}
+	
+	public void recomendarContenido(int pUsu)
+	{
+		tagsPorPeli.recomendarNPeliculas(pUsu);
+	}
+	
+	public boolean estaPeli(int id) //por que, si puedes hacer BaseDatos.getBD.getPeliculas.estaId(id);
+	{
+		return peliculas.estaId(id);
+	}
+	
+	public ArrayList<Tupla<Integer,Double>> getRatingsPorId(Integer pId) {
+		return ratings.getRatingsPorId(pId);
+	}
+	
 	
 	public ArrayList<Integer> ratingsDevolKeys() {
 		return ratings.devolKeys();
 	}
-	public ArrayList<Tupla<Integer,Double>> getRatingsPorId(Integer pId) {
-		return ratings.getRatingsPorId(pId);
-	}
+	
 	
 	public Set<Entry<Integer,String>> entrySet() {
 		return peliculas.entrySet();
@@ -85,27 +143,16 @@ private Filtrado filtrado;
 		return tagsPorPeli.getTagsPorId(pId);
 	}
 	
-	public Ratings getRatings(){
-		if (this.ratings==null) {
-			ratings = new Ratings();
-		}
-		return ratings;
-	}
-	
-	
-	public Peliculas getPeliculas() {
-		return peliculas;
+	public double obtenerNotaPeliculas(int idUsu, int idPeli)
+	{
+		return ratings.obtenerNota(idUsu, idPeli);
 	}
 	
 	public ArrayList<Integer> getIdPeliculas()
 	{
 		return peliculas.getKeys();
 	}
-	
-	public double getIdoneidad(int pUsus, int pPelicula)
-	{
-		return tagsPorPeli.getIdoneidad(pUsus, pPelicula);
-	}
+
 	
 	public int cuantasPelis()
 	{
@@ -117,6 +164,7 @@ private Filtrado filtrado;
 		return peliculas.getIdMayor();
 	}
 	
+	//TODO A partir de aqui solo hay metodos de los jUnit
 	public void eliminarBd()
 	{
 		peliculas.eliminar();
@@ -124,7 +172,7 @@ private Filtrado filtrado;
 		tagsPorPeli.eliminar();
 	}
 	
-	public void eliminarParaRatings() {
+	public void eliminarRatingsPeliculas() {
 		peliculas.eliminar();
 		ratings.eliminar();
 	}
@@ -133,18 +181,6 @@ private Filtrado filtrado;
 	{
 		peliculas = new Peliculas();
 		peliculas.leerFichero();
-	}
-
-	public SimilitudStrategy getSimilitud() {
-		return filtrado.getSimilitud();
-	}
-	
-	public Filtrado getFiltrado() {
-		return filtrado;
-	}
-	
-	public void setFiltrado(Filtrado pFil) {
-		this.filtrado = pFil;
 	}
 
 }
