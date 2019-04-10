@@ -284,8 +284,9 @@ public class TagsPorPeli {
 	{
 		double tf = (double) cuantasVecesTieneTag(pPeli,pTag);
 		double nt = (double) cuantasConEseTag(pTag);
-	//	double n = (double) lista.size();
-		double n = (double) BaseDatos.getBd().cuantasPelis();
+		//double n = (double) lista.size();
+		//double n = (double) BaseDatos.getBd().cuantasPelis();
+		double n = (double) BaseDatos.getBd().getPeliculas().getLista().size();
 		return tf*Math.log10(n/nt);
 		
 	}

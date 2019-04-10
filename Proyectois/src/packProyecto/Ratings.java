@@ -185,6 +185,7 @@ public class Ratings {
 	
 	}
 	
+	//TODO A partir de aqui solo hay metodos de los jUnit
 	public void eliminar()
 	{
 		lista.clear();

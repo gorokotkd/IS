@@ -115,7 +115,7 @@ public class Peliculas {
 			pSimilares = sortByValues(pSimilares); 
 			Set<Map.Entry<Integer,Double>> mapaEntrada = pSimilares.entrySet();
 			Iterator<Map.Entry<Integer, Double>> itr = mapaEntrada.iterator();
-			Ratings rating = BaseDatos.getBd().ge8tRatings();
+			Ratings rating = BaseDatos.getBd().getRatings();
 			Double nota = 0.0;
 			Double sumaNumerador = 0.0;
 			Double sumaDenominador = 0.0;

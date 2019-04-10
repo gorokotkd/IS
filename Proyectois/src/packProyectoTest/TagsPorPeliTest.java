@@ -8,14 +8,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import packProyecto.BaseDatos;
-import packProyecto.ListaTags;
-import packProyecto.ListaUsuarios;
-import packProyecto.Similitud;
 import packProyecto.TagsPorPeli;
 import packProyecto.Tupla;
 
 public class TagsPorPeliTest {
-	
+
 	TagsPorPeli tags;
 	ArrayList<Tupla<String,Integer>> aux;
 	@Before
@@ -30,11 +27,11 @@ public class TagsPorPeliTest {
 		tags.eliminar();
 		aux.clear();
 	}
-
 	@Test
 	public void testLeerFichero() {
 		tags.leerFichero();
-		fail("mirar alguna posicion");
+		assertNotNull(tags.getTagsPorId(11));//comprobamos que se ha llenado el hashmap con  nuestros datos//
+		assertNotNull(tags.getTagsPorId(24));
 	}
 
 	@Test
@@ -69,33 +66,13 @@ public class TagsPorPeliTest {
 	}
 
 	@Test
-	public void testModeloPersona() {
-		fail("-------------");
+	public void testInicializarFiltradoContenido() {
+		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetIdoneidad() {
-		fail();
-	}
-
-	@Test
-	public void testGenerarModeladoDeProductos() {
-		BaseDatos.getBd().cargarBd();
-		ListaTags.getListaTags();
-		ListaUsuarios.getListaUsuarios();
-		tags.leerFichero();
-		tags.imprimirlista();
-		System.out.println("Arriba el hashmap^^");
-		tags.inicializarFiltradoContenido();
-		tags.imprimirModeloProducto();
-		
-		double[] aux = new double[8];
-		aux[0] = 0.7758209126545023; //mas o menos 0.7781512504 con calculadora//
-		aux[1] = 0.30012849797165825; //mas o menos 0.30102995 con calculadora//
-		aux[2] = 0.9513848293656879; //mas o menos 0.952425094 con calculadora//
-		for (int i=0; i<aux.length; i++) {
-			assertTrue(aux[i]==tags.getFilaModeloProductos(11)[i]);//prueba para la fila 11//
-		}
+	public void testRecomendarNPeliculas() {
+		fail("Not yet implemented");
 	}
 
 	@Test
@@ -112,12 +89,10 @@ public class TagsPorPeliTest {
 		 tags.eliminar();
 		 
 		 assertTrue(tags.estoyVacia());
-
 	}
 
 	@Test
 	public void testAnadirEntrada() {
-		 
 		 aux.add(new Tupla<String,Integer>("Peli1",1));
 		 aux.add(new Tupla<String,Integer>("Peli2",2));
 		 
@@ -131,7 +106,10 @@ public class TagsPorPeliTest {
 		 tags.anadirEntrada(1, aux);
 		 
 		 assertTrue(tags.getTagsPorId(1)==aux);
-		 
 	}
 
+	@Test
+	public void testGetFilaModeloProductos() {
+		fail("Not yet implemented");
+	}
 }
