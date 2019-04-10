@@ -44,7 +44,7 @@ public class Ratings {
 	{
 		try
 		{
-			String path = System.getProperty("user.dir")+"/movie-ratings.csv";
+			String path = System.getProperty("user.dir")+"/testRatings.csv";
 			BufferedReader br = new BufferedReader(new FileReader(path));
 			String lectura=" ";
 			ArrayList<Tupla<Integer,Double>> aux = new ArrayList<Tupla<Integer,Double>>();
@@ -82,7 +82,7 @@ public class Ratings {
 		valoraciones = new HashMap();
 		try
 		{
-			String path = System.getProperty("user.dir")+"/movie-ratings-small.csv";
+			String path = System.getProperty("user.dir")+"/movie-ratings.csv";
 			BufferedReader br = new BufferedReader(new FileReader(path));
 			String lectura=" ";
 			ArrayList<Double> aux = new ArrayList<>();
@@ -115,7 +115,7 @@ public class Ratings {
 		}
 	}
 	
-	public void normalizar() { //normalización de las valoraciones
+	public void normalizar() { //normalizaci�n de las valoraciones
 		if (lista.size()!=0) {
 			medias = new HashMap<Integer,Double>();
 			Set<Map.Entry<Integer,ArrayList<Tupla<Integer,Double>>>> mapaEntrada = lista.entrySet();
@@ -137,7 +137,7 @@ public class Ratings {
 		}
 	}
 	
-	public ArrayList<Tupla<Integer,Double>> desnormalizar(Integer pUsuario) { //desnormalización de las valoraciones
+	public ArrayList<Tupla<Integer,Double>> desnormalizar(Integer pUsuario) { //desnormalizaci�n de las valoraciones
 		Double media = this.medias.get(pUsuario);
 		ArrayList<Tupla<Integer,Double>> aux = lista.get(pUsuario);
 		ArrayList<Tupla<Integer,Double>> aux1 = new ArrayList<Tupla<Integer,Double>>();
@@ -185,6 +185,7 @@ public class Ratings {
 	
 	}
 	
+	//TODO A partir de aqui solo hay metodos de los jUnit
 	public void eliminar()
 	{
 		lista.clear();

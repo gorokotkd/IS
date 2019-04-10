@@ -1,10 +1,5 @@
 package packProyecto;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.Map.Entry;
@@ -29,30 +24,33 @@ private Filtrado filtrado;
 		return mBd;
 	}
 	
-
-	/**public void cargarBd()
-	{
-		try
-		{
-			
-			peliculas = new Peliculas();
-			peliculas.leerFichero();
-			System.out.println("Leido peliculas");
+	public SimilitudStrategy getSimilitud() {
+		return filtrado.getSimilitud();
+	}
+	
+	public Ratings getRatings(){
+		if (this.ratings==null) {
 			ratings = new Ratings();
-			ratings.leerFichero();
-			System.out.println("Leido ratings");
-			tagsPorPeli = new TagsPorPeli();
-			tagsPorPeli.leerFichero();
-			System.out.println("Leido TagsPorPeli");
-			
-			
 		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-	}*/
-
+		return ratings;
+	}
+	
+	public Peliculas getPeliculas() {
+		return peliculas;
+	}
+	
+	public Filtrado getFiltrado() {
+		return filtrado;
+	}
+	
+	public TagsPorPeli getTagsPorPeli() {
+		return tagsPorPeli;
+	}
+	
+	public void setFiltrado(Filtrado pFil) {
+		this.filtrado = pFil;
+	}
+	
 	public void cargarBd()
 	{
 		try
@@ -77,8 +75,7 @@ private Filtrado filtrado;
 		{
 			e.printStackTrace();
 		}
-}
-	
+	}
 	
 	public void generarFiltradoContenido()
 	{	
@@ -96,16 +93,37 @@ private Filtrado filtrado;
 		ratings.cargarValoraciones();
 		peliculas.initMatrizSimilitudes();
 	}
-	public boolean estaPeli(int id)
+	
+	public void cargarTodo() {
+		peliculas = new Peliculas();
+		peliculas.leerFichero();
+		
+		ratings = new Ratings();
+		ratings.leerFichero();
+		ratings.normalizar();
+		
+		ratings.cargarValoraciones();
+		peliculas.initMatrizSimilitudes();
+		
+	}
+	
+	public void recomendar(int pUsus,int pPeli)
 	{
-		return peliculas.estaId(id);
+		if(filtrado instanceof FiltradoContenido)
+			((FiltradoContenido)filtrado).recomendar(pUsus);
+		else
+			((FiltradoProductos)filtrado).filtrar(pUsus, pPeli);
 	}
-	public ArrayList<Integer> ratingsDevolKeys() {
-		return ratings.devolKeys();
-	}
+	
 	public ArrayList<Tupla<Integer,Double>> getRatingsPorId(Integer pId) {
 		return ratings.getRatingsPorId(pId);
 	}
+	
+	
+	public ArrayList<Integer> ratingsDevolKeys() {
+		return ratings.devolKeys();
+	}
+	
 	
 	public Set<Entry<Integer,String>> entrySet() {
 		return peliculas.entrySet();
@@ -119,38 +137,30 @@ private Filtrado filtrado;
 		return tagsPorPeli.getTagsPorId(pId);
 	}
 	
-	public Ratings getRatings(){
-		if (this.ratings==null) {
-			ratings = new Ratings();
-		}
-		return ratings;
-	}
-	
-	
-	public Peliculas getPeliculas() {
-		return peliculas;
+	public double obtenerNotaPeliculas(int idUsu, int idPeli)
+	{
+		return ratings.obtenerNota(idUsu, idPeli);
 	}
 	
 	public ArrayList<Integer> getIdPeliculas()
 	{
 		return peliculas.getKeys();
 	}
+
 	
-		
-	public void recomendar(int pUsus,int pPeli)
+	//TODO A partir de aqui solo hay metodos de los jUnit
+	public int idMayorPelicula()
 	{
-		if(filtrado instanceof FiltradoContenido)
-			((FiltradoContenido)filtrado).recomendar(pUsus);
-		else
-			((FiltradoProductos)filtrado).filtrar(pUsus, pPeli);
+		return peliculas.getIdMayor();
+	}
+	public void eliminarBd()
+	{
+		peliculas.eliminar();
+		ratings.eliminar();
+		tagsPorPeli.eliminar();
 	}
 	
-	public void recomendarContenido(int pUsu)
-	{
-		tagsPorPeli.recomendarNPeliculas(pUsu);
-	}
-	public void eliminarParaRatings() 
-	{
+	public void eliminarRatingsPeliculas() {
 		peliculas.eliminar();
 		ratings.eliminar();
 	}
@@ -160,41 +170,5 @@ private Filtrado filtrado;
 		peliculas = new Peliculas();
 		peliculas.leerFichero();
 	}
-
-	
-	public int cuantasPelis()
-	{
-		return peliculas.size();
-	}
-	
-	public int idMayorPelicula()
-	{
-		return peliculas.getIdMayor();
-	}
-	
-	public void eliminarBd()
-	{
-		peliculas.eliminar();
-		ratings.eliminar();
-		tagsPorPeli.eliminar();
-	}
-	
-	public double obtenerNotaPeliculas(int idUsu, int idPeli)
-	{
-		return ratings.obtenerNota(idUsu, idPeli);
-	}
-
-	public SimilitudStrategy getSimilitud() {
-		return filtrado.getSimilitud();
-	}
-	
-	public Filtrado getFiltrado() {
-		return filtrado;
-	}
-	
-	public void setFiltrado(Filtrado pFiltrado) {
-		this.filtrado = pFiltrado;
-	}
-
 
 }

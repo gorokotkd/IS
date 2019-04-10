@@ -28,7 +28,7 @@ public class ListaUsuariosTest {
 
 	@Test
 	public void testSize() {
-		assertEquals(ListaUsuarios.getListaUsuarios().size(),6);		
+		assertEquals(ListaUsuarios.getListaUsuarios().size(),5);		
 	}
 
 }

@@ -1,6 +1,8 @@
-package packProyecto;
+package packProyectoInterfaces;
 
 import java.awt.BorderLayout;
+import packProyecto.*;
+
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

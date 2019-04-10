@@ -22,13 +22,14 @@ public class ListTagsTest {
 
 	@Test
 	public void testTamano() {
-		assertEquals(ListaTags.getListaTags().tamano(),10);
+		assertEquals(ListaTags.getListaTags().tamano(),8);
 	}
 
 	@Test
 	public void testGetIdTag() {
-		assertEquals(ListaTags.getListaTags().getIdTag("capitalism"),1);
-		assertNull(ListaTags.getListaTags().getIdTag("Jamondeyork"));
+		assertEquals(ListaTags.getListaTags().getIdTag("divertida"),5);
+		//assertNull(ListaTags.getListaTags().getIdTag("Jamon de york"));
+		assertEquals(ListaTags.getListaTags().getIdTag("dinamica"),4);
 	}
 
 	@Test

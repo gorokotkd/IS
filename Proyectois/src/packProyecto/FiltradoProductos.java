@@ -6,8 +6,8 @@ public class FiltradoProductos extends Filtrado {
 		
 	}
 
-	
-	public double filtrar(int pUsuario, int pPelicula) {
+	@Override
+	public Double filtrar(int pUsuario, int pPelicula) {
 		double nota = BaseDatos.getBd().getRatings().obtenerNota(pUsuario, pPelicula);
 		if (nota!=-1) {
 			nota = nota +BaseDatos.getBd().getRatings().getMedia(pUsuario);
@@ -18,6 +18,5 @@ public class FiltradoProductos extends Filtrado {
 			Double idoneidad = BaseDatos.getBd().getPeliculas().calcularIdoneidad(pUsuario, pPelicula);
 			return idoneidad;
 		}
-}
-	
+	}
 }

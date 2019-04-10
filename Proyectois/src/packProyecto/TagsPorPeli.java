@@ -30,7 +30,7 @@ public class TagsPorPeli {
 	
 	public void leerFichero()
 	{
-		String path = System.getProperty("user.dir")+"/movie-tags.csv";
+		String path = System.getProperty("user.dir")+"/testTags.csv";
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(path));
 			String lectura = " ";
@@ -255,7 +255,6 @@ public class TagsPorPeli {
 			}
 			modeloProductos[i] = vectorUnitario(modeloProductos[i]);
 		}
-	//	vectorUnitarioMatriz();
 	
 	}
 	
@@ -284,8 +283,9 @@ public class TagsPorPeli {
 	{
 		double tf = (double) cuantasVecesTieneTag(pPeli,pTag);
 		double nt = (double) cuantasConEseTag(pTag);
-	//	double n = (double) lista.size();
-		double n = (double) BaseDatos.getBd().cuantasPelis();
+		//double n = (double) lista.size();
+		//double n = (double) BaseDatos.getBd().cuantasPelis();
+		double n = (double) BaseDatos.getBd().getPeliculas().getLista().size();
 		return tf*Math.log10(n/nt);
 		
 	}
@@ -342,6 +342,34 @@ public class TagsPorPeli {
 	{
 		if(!lista.containsKey(key))
 			lista.put(key, entrada);
+}
+	public boolean estoyVacia() {
+		return lista.isEmpty();
 	}
-	
+	public void imprimirlista() {
+		Iterator<Integer> itr = tagsDevolKeys().iterator();
+		while(itr.hasNext())
+		{
+			int i = itr.next();
+			Iterator<Tupla<String,Integer>> itr2 = lista.get(i).iterator();
+			while(itr2.hasNext())
+			{
+				Tupla<String,Integer> tupla = itr2.next();
+				System.out.println(i+","+tupla.getX()+","+tupla.getY());
+
+			}
+			System.out.println(" ");
+		}
+	}
+	public void imprimirModeloProducto() {
+		for (int x=0; x < modeloProductos.length; x++) {
+			  for (int y=0; y < modeloProductos[x].length; y++) {
+			    System.out.print ("|"+modeloProductos[x][y]+"|");
+			  }
+			  System.out.println("Fila " + x);
+			}
+	}
+	public double[] getFilaModeloProductos(int pFila) {
+		return this.modeloProductos[pFila];
+	}
 }

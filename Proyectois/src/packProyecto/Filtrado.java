@@ -16,7 +16,5 @@ public abstract class Filtrado {
 		return similitud;
 	}
 
-	//public abstract Double filtrar(int parametro1, int parametro2);
-	
-	
+	public abstract Double filtrar(int parametro1, int parametro2);
 }
