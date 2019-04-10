@@ -150,12 +150,12 @@ public class TagsPorPeli {
 	private double getIdoneidad(int idUsu, int idPeli)
 	{
 		
-		Cos sim = new Cos();
+		//Cos sim = new Cos();
 		
 		ArrayList<Double> vectorPersona = getFilaPersona(idUsu);
 		ArrayList<Double> vectorPelicula = getFilaProducto(idPeli);
 		
-		return sim.calcularSimilitud(vectorPersona, vectorPelicula);
+		return BaseDatos.getBd().getFiltrado().getSimilitud().calcularSimilitud(vectorPersona, vectorPelicula);
 	}
 	
 	public void recomendarNPeliculas(int idUsu)

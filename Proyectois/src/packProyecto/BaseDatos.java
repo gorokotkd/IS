@@ -59,6 +59,8 @@ private Filtrado filtrado;
 	
 	public void generarFiltradoContenido()
 	{	
+		filtrado = new FiltradoContenido();
+		filtrado.setSimilitud(new Cos());
 		tagsPorPeli.inicializarFiltradoContenido();
 	}
 	
