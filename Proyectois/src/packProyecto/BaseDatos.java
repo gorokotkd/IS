@@ -30,7 +30,7 @@ private Filtrado filtrado;
 	}
 	
 
-	public void cargarBd()
+	/**public void cargarBd()
 	{
 		try
 		{
@@ -40,10 +40,7 @@ private Filtrado filtrado;
 			System.out.println("Leido peliculas");
 			ratings = new Ratings();
 			ratings.leerFichero();
-		//	ratings.normalizar();
 			System.out.println("Leido ratings");
-		//	filtrado = new FiltradoProductos();
-		//	filtrado.setSimilitud(new Cos());
 			tagsPorPeli = new TagsPorPeli();
 			tagsPorPeli.leerFichero();
 			System.out.println("Leido TagsPorPeli");
@@ -54,7 +51,32 @@ private Filtrado filtrado;
 		{
 			e.printStackTrace();
 		}
-	}
+	}*/
+
+	public void cargarBd()
+	{
+		try
+		{
+			peliculas = new Peliculas();
+			peliculas.leerFichero();
+			ratings = new Ratings();
+			ratings.leerFichero();
+			if (filtrado instanceof FiltradoProductos) {
+				ratings.normalizar();
+				ratings.cargarValoraciones();
+				peliculas.initMatrizSimilitudes();
+			}else {
+				tagsPorPeli = new TagsPorPeli();
+				tagsPorPeli.leerFichero();
+				tagsPorPeli.inicializarFiltradoContenido();
+			}
+			
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+}
 	
 	
 	public void generarFiltradoContenido()
@@ -114,12 +136,30 @@ private Filtrado filtrado;
 	}
 	
 		
-	public void recomendar(int pUsus)
+	public void recomendar(int pUsus,int pPeli)
 	{
 		if(filtrado instanceof FiltradoContenido)
-			tagsPorPeli.recomendarNPeliculas(pUsus);
-		
+			((FiltradoContenido)filtrado).recomendar(pUsus);
+		else
+			((FiltradoProductos)filtrado).filtrar(pUsus, pPeli);
 	}
+	
+	public void recomendarContenido(int pUsu)
+	{
+		tagsPorPeli.recomendarNPeliculas(pUsu);
+	}
+	public void eliminarParaRatings() 
+	{
+		peliculas.eliminar();
+		ratings.eliminar();
+	}
+	
+	public void cargarSoloPelis()
+	{
+		peliculas = new Peliculas();
+		peliculas.leerFichero();
+	}
+
 	
 	public int cuantasPelis()
 	{
@@ -149,6 +189,10 @@ private Filtrado filtrado;
 	
 	public Filtrado getFiltrado() {
 		return filtrado;
+	}
+	
+	public void setFiltrado(Filtrado pFiltrado) {
+		this.filtrado = pFiltrado;
 	}
 
 

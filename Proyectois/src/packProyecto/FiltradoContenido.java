@@ -5,7 +5,7 @@ public class FiltradoContenido extends Filtrado {
 	
 	public void recomendar(int pUsu) {
 		
-		BaseDatos.getBd().recomendar(pUsu);
+		BaseDatos.getBd().recomendarContenido(pUsu);
 	}
 
 }

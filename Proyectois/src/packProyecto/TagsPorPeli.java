@@ -150,7 +150,6 @@ public class TagsPorPeli {
 	private double getIdoneidad(int idUsu, int idPeli)
 	{
 		
-		//Cos sim = new Cos();
 		
 		ArrayList<Double> vectorPersona = getFilaPersona(idUsu);
 		ArrayList<Double> vectorPelicula = getFilaProducto(idPeli);
