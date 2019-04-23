@@ -9,7 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import packProyecto.BaseDatos;
+import packProyecto.Gestor;
 import packProyecto.Cos;
 import packProyecto.FiltradoProductos;
 import packProyecto.Ratings;
@@ -23,26 +23,26 @@ public class RatingsTest {
 	public void setUp() throws Exception {
 		FiltradoProductos fil = new FiltradoProductos();
 		fil.setSimilitud(new Cos());
-		BaseDatos.getBd().setFiltrado(fil);
-		BaseDatos.getBd().cargarTodo();
-		ratings = BaseDatos.getBd().getRatings();
+		Gestor.getBd().setFiltrado(fil);
+		Gestor.getBd().cargarTodo();
+		ratings = Gestor.getBd().getRatings();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		BaseDatos.getBd().eliminarRatingsPeliculas();
+		Gestor.getBd().eliminarRatingsPeliculas();
 	}
 
 	@Test
 	public void testLeerFichero() {
 		assertNotEquals(ratings.getLista(), null);
-		System.out.println("La dimensión de la lista es: " + ratings.getLista().size());
+		System.out.println("La dimensiï¿½n de la lista es: " + ratings.getLista().size());
 	}
 
 	@Test
 	public void testCargarValoraciones() {
 		assertNotEquals(ratings.getValoraciones(), null);
-		System.out.println("La dimensión de la lista es: " + ratings.getValoraciones().size());
+		System.out.println("La dimensiï¿½n de la lista es: " + ratings.getValoraciones().size());
 	}
 
 	@Test

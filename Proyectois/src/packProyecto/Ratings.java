@@ -5,12 +5,16 @@ import java.io.FileReader;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 public class Ratings {
 	
@@ -166,7 +170,7 @@ public class Ratings {
 	public double obtenerNota(int pIdUsu, int pIdPeli)
 	{
 		double nota = -1;
-		if (lista.get(pIdUsu)!=null && BaseDatos.getBd().getPeliculas().getLista()!=null) {
+		if (lista.get(pIdUsu)!=null && Gestor.getBd().getPeliculas().getLista()!=null) {
 			ArrayList<Tupla<Integer,Double>> listaAux = lista.get(pIdUsu);
 			Iterator<Tupla<Integer,Double>> itr = listaAux.iterator();
 			boolean salir = false;
@@ -183,6 +187,156 @@ public class Ratings {
 		}
 		return nota;
 	
+	}
+	/**
+	 METODOS RELACIONADOS CON EL FILTRADO COLABORATIVO BASADO EN PERSONAS
+	 */
+	
+/*	private void generarMatrizDeMedias()
+	{
+		medias = new HashMap<Integer,Double>();
+		double mediaDelUsu=0.0;
+		ArrayList<Integer> keysUsus = new ArrayList<Integer>(lista.keySet());
+		Iterator<Integer> itr = keysUsus.iterator();
+		
+		while(itr.hasNext())
+		{
+			int usuAct = itr.next();
+			mediaDelUsu=mediaDeArray(valoraciones.get(usuAct));
+			
+		}
+		
+		
+		
+	}
+	
+	private double mediaDeArray(ArrayList<Double> list)
+	{
+		double resul = 0.0;
+		
+		Iterator<Double> itr = list.iterator();
+		
+		while(itr.hasNext())
+			resul = resul +itr.next();
+		return resul/list.size();
+	}
+	*/
+	
+	public double valoracionEstimada(int usu, int peli)
+	{
+		HashMap<Integer,Double> similitudes = obtenerLasNMasSimiliares(usu, 10);
+		double numerador = numeradorValoracion(peli, similitudes);
+		double denom = denomValoracion(similitudes);
+		return numerador/denom;
+	}
+	
+	private double numeradorValoracion(int peli, HashMap<Integer,Double> similitudes)
+	{
+		double sumatorio = 0.0;
+		ArrayList<Integer> keys = new ArrayList<Integer>(similitudes.keySet());
+		Iterator<Integer> itr = keys.iterator();
+		while(itr.hasNext())
+		{
+			int usuAct = itr.next();
+			sumatorio = sumatorio + (obtenerNota(usuAct, peli)*similitudes.get(usuAct));
+		}
+		return sumatorio;
+	}
+	
+	private double denomValoracion(HashMap<Integer,Double> similitudes)
+	{
+		Double sumatorio = 0.0;
+		ArrayList<Integer> keys = new ArrayList<Integer>(similitudes.keySet());
+		Iterator<Integer> itr = keys.iterator();
+		
+		while(itr.hasNext())
+			sumatorio = sumatorio + itr.next();
+		
+		return sumatorio;
+		
+		
+	}
+	
+	private HashMap<Integer,Double> obtenerLasNMasSimiliares(int usu, int N)
+	{
+		SimilitudStrategy sim = Gestor.getBd().getSimilitud();
+		ArrayList<Double> valoracionesDelUsu = valoraciones.get(usu);
+		int i = 1;
+		
+		HashMap<Integer,Double> similitudes = new HashMap<>();
+		
+		while(i<valoraciones.size())
+		{
+			if(i!=usu)
+			{
+				ArrayList<Double> aux = valoraciones.get(i);
+				if(aux!=null)
+					similitudes.put(i,sim.calcularSimilitud(valoracionesDelUsu, aux));
+				
+			}
+		}
+		
+		similitudes=sortByValues(similitudes);
+		return soloLasNPrimeras(N, similitudes);
+	}
+	private static HashMap<Integer, Double> sortByValues(HashMap<Integer, Double> map) { 
+	       List list = new LinkedList(map.entrySet());
+	       // Defined Custom Comparator here
+	       Collections.sort(list, new Comparator() {
+	            public int compare(Object o1, Object o2) {
+	               return (-1)*((Comparable) ((Map.Entry) (o1)).getValue())
+	                  .compareTo(((Map.Entry) (o2)).getValue());
+	            }
+	       });
+
+	       // Here I am copying the sorted list in HashMap
+	       // using LinkedHashMap to preserve the insertion order
+	       HashMap sortedHashMap = new LinkedHashMap();
+	       for (Iterator it = list.iterator(); it.hasNext();) {
+	              Map.Entry entry = (Map.Entry) it.next();
+	              sortedHashMap.put(entry.getKey(), entry.getValue());
+	       } 
+	       return sortedHashMap;
+	  }
+	
+	private HashMap<Integer,Double>  soloLasNPrimeras(int N, HashMap<Integer,Double> list)
+	{
+		HashMap<Integer,Double> aux = new HashMap<Integer,Double> ();
+		ArrayList<Integer> keys = new ArrayList<Integer>(list.keySet());
+		Iterator<Integer> itr = keys.iterator();
+		int i = 0;
+		while(i<N&&itr.hasNext())
+		{
+			int j = itr.next();
+			aux.put(j,list.get(j));
+		}
+		return aux;
+	}
+	
+	
+	private boolean haCalificadoLaPeli(int usu, int peli)
+	{
+		boolean salir = false;
+		ArrayList<Integer> usuarios = new ArrayList<Integer>(lista.keySet());
+		Iterator<Integer> itr = usuarios.iterator();
+		
+		while(itr.hasNext()&&!salir)
+		{
+			int usuAct = itr.next();
+			if(usuAct==usu)
+			{
+				ArrayList<Tupla<Integer,Double>> susRatings = lista.get(usuAct);
+				Iterator<Tupla<Integer,Double>> itr2 = susRatings.iterator();
+				while(itr2.hasNext()&&!salir)
+				{
+					Tupla<Integer,Double> tupla = itr2.next();
+					if(tupla.getX()==peli)
+						salir=true;
+				}
+			}
+		}
+		return salir;
+		
 	}
 	
 	//TODO A partir de aqui solo hay metodos de los jUnit

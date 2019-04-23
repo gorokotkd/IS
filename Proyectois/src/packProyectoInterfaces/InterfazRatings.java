@@ -75,8 +75,8 @@ public class InterfazRatings extends JDialog {
 					String valor = txtIntroduceId.getText();
 					if (isNumeric(valor)) {
 							Integer numero = Integer.parseInt(valor);
-						if (BaseDatos.getBd().ratingsDevolKeys().contains(numero)){
-							ArrayList<Tupla<Integer,Double>> listaaux = BaseDatos.getBd().getRatingsPorId(numero);
+						if (Gestor.getBd().ratingsDevolKeys().contains(numero)){
+							ArrayList<Tupla<Integer,Double>> listaaux = Gestor.getBd().getRatingsPorId(numero);
 							Vector<ListPeliNota> items1 = new Vector<>();
 							for (int i=0;i<listaaux.size();i++) {
 								items1.add(new ListPeliNota(listaaux.get(i).getX(),listaaux.get(i).getY()));
@@ -149,7 +149,7 @@ public class InterfazRatings extends JDialog {
 	private JList getList_1() {
 		if (list == null) {
 			DefaultListModel listModel = new DefaultListModel();
-			ArrayList<Integer> lista = BaseDatos.getBd().ratingsDevolKeys();
+			ArrayList<Integer> lista = Gestor.getBd().ratingsDevolKeys();
 			for (int i=0; i<lista.size();i++) {
 				listModel.add(i, lista.get(i));
 			}
@@ -201,7 +201,7 @@ public class InterfazRatings extends JDialog {
 			btnResetId.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					DefaultListModel listModel = new DefaultListModel();
-					ArrayList<Integer> lista = BaseDatos.getBd().ratingsDevolKeys();
+					ArrayList<Integer> lista = Gestor.getBd().ratingsDevolKeys();
 					for (int i=0; i<lista.size();i++) {
 						listModel.add(i, lista.get(i));}
 					list.setModel(listModel);

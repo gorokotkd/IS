@@ -80,7 +80,7 @@ public class Peliculas {
 		HashMap<Integer,Double> hashAux = new HashMap<Integer, Double>();
 		Set<Map.Entry<Integer,String>> mapaEntrada2 = lista.entrySet();
 		Iterator<Map.Entry<Integer, String>> itr2 = mapaEntrada2.iterator();
-		Ratings ratings = BaseDatos.getBd().getRatings();
+		Ratings ratings = Gestor.getBd().getRatings();
 		Double simil = 0.0;
 		ArrayList<Double> aux1,aux2;
 		
@@ -90,8 +90,8 @@ public class Peliculas {
 				aux1 = ratings.getValoraciones(entrada.getKey());
 				aux2 = ratings.getValoraciones(entrada2.getKey());
 				if (aux1!=null && aux2!=null) {
-					if (entrada.getKey()>entrada2.getKey()) {simil = BaseDatos.getBd().getFiltrado().getSimilitud().calcularSimilitud(aux1,aux2);
-					}else {simil = BaseDatos.getBd().getFiltrado().getSimilitud().calcularSimilitud(aux2,aux1);}
+					if (entrada.getKey()>entrada2.getKey()) {simil = Gestor.getBd().getFiltrado().getSimilitud().calcularSimilitud(aux1,aux2);
+					}else {simil = Gestor.getBd().getFiltrado().getSimilitud().calcularSimilitud(aux2,aux1);}
 					
 					hashAux.put(entrada2.getKey(), simil);
 				}
@@ -102,7 +102,7 @@ public class Peliculas {
 	
 	public Double calcularIdoneidad(int pUsuario, int pProducto) {		
 		Double rdo = this.calcularFormula(this.similiProductos.get(pProducto), pUsuario, pProducto);
-		rdo = rdo + BaseDatos.getBd().getRatings().getMedia(pUsuario);
+		rdo = rdo + Gestor.getBd().getRatings().getMedia(pUsuario);
 		
 		System.out.println("El resultado de la similitud entre el producto :" +pProducto+ " del usuario: "+pUsuario+" es de --> "+rdo);
 		return rdo;
@@ -115,7 +115,7 @@ public class Peliculas {
 			pSimilares = sortByValues(pSimilares); 
 			Set<Map.Entry<Integer,Double>> mapaEntrada = pSimilares.entrySet();
 			Iterator<Map.Entry<Integer, Double>> itr = mapaEntrada.iterator();
-			Ratings rating = BaseDatos.getBd().getRatings();
+			Ratings rating = Gestor.getBd().getRatings();
 			Double nota = 0.0;
 			Double sumaNumerador = 0.0;
 			Double sumaDenominador = 0.0;

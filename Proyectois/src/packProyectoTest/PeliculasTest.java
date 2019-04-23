@@ -8,7 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import packProyecto.BaseDatos;
+import packProyecto.Gestor;
 import packProyecto.Cos;
 import packProyecto.FiltradoProductos;
 import packProyecto.Peliculas;
@@ -20,14 +20,14 @@ public class PeliculasTest {
 	public void setUp() throws Exception {
 		FiltradoProductos fil = new FiltradoProductos();
 		fil.setSimilitud(new Cos());
-		BaseDatos.getBd().setFiltrado(fil);
-		BaseDatos.getBd().cargarTodo();
-		peliculas = BaseDatos.getBd().getPeliculas();
+		Gestor.getBd().setFiltrado(fil);
+		Gestor.getBd().cargarTodo();
+		peliculas = Gestor.getBd().getPeliculas();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		BaseDatos.getBd().eliminarRatingsPeliculas();
+		Gestor.getBd().eliminarRatingsPeliculas();
 	}
 
 	@Test
@@ -44,7 +44,7 @@ public class PeliculasTest {
 	public void testGetIdMayor() {
 		int maxKey = Collections.max(peliculas.getLista().keySet());
 		assertEquals(peliculas.getIdMayor(), maxKey,0);
-		System.out.println("La id más grande de la lista es: "+maxKey);
+		System.out.println("La id mï¿½s grande de la lista es: "+maxKey);
 	}
 
 	@Test

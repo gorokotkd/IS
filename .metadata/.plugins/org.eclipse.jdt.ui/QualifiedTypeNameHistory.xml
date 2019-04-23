@@ -19,11 +19,13 @@
     <fullyQualifiedTypeName name="java.util.LinkedList"/>
     <fullyQualifiedTypeName name="com.sun.xml.internal.bind.v2.schemagen.xmlschema.List"/>
     <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="java.util.Collections"/>
     <fullyQualifiedTypeName name="java.util.LinkedHashMap"/>
     <fullyQualifiedTypeName name="packProyecto.ListaTags"/>
-    <fullyQualifiedTypeName name="packProyecto.FiltradoContenido"/>
-    <fullyQualifiedTypeName name="packProyecto.BaseDatos"/>
     <fullyQualifiedTypeName name="packProyecto.FiltradoProductos"/>
     <fullyQualifiedTypeName name="packProyecto.Cos"/>
+    <fullyQualifiedTypeName name="packProyecto.BaseDatos"/>
+    <fullyQualifiedTypeName name="java.util.Collections"/>
+    <fullyQualifiedTypeName name="java.util.Collection"/>
+    <fullyQualifiedTypeName name="packProyecto.FiltradoStrategy"/>
+    <fullyQualifiedTypeName name="packProyecto.FiltradoContenido"/>
 </qualifiedTypeNameHistroy>

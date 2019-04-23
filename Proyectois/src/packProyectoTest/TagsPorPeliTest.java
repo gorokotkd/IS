@@ -7,7 +7,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import packProyecto.BaseDatos;
+import packProyecto.Gestor;
 import packProyecto.TagsPorPeli;
 import packProyecto.Tupla;
 
@@ -17,7 +17,7 @@ public class TagsPorPeliTest {
 	ArrayList<Tupla<String,Integer>> aux;
 	@Before
 	public void setUp() throws Exception {
-		BaseDatos.getBd().cargarBd();
+		Gestor.getBd().cargarBd();
 		tags = new TagsPorPeli();
 		aux = new ArrayList<Tupla<String,Integer>>();
 	}

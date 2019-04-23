@@ -12,18 +12,26 @@ public class Principal {
 		/**FILTRADO BASADO EN CONTENIDO*/
 		FiltradoContenido filtrado = new FiltradoContenido();
 		filtrado.setSimilitud(new Pearson());
-		BaseDatos.getBd().setFiltrado(filtrado);
-		BaseDatos.getBd().cargarBd();		
+		Gestor.getBd().setFiltrado(filtrado);
+		Gestor.getBd().cargarBd();		
 		System.out.println("Recomendacion basada en un filtrado por contenido: \n");
-		BaseDatos.getBd().recomendar(1, 0);
+		Gestor.getBd().recomendar(1, 0);
 		System.out.println("=====================================================================");
 		/**FILTRADO BASADO EN PRODUCTO*/
 		FiltradoProductos filtradoProducto = new FiltradoProductos();
 		filtradoProducto.setSimilitud(new Cos());
-		BaseDatos.getBd().setFiltrado(filtradoProducto);
-		BaseDatos.getBd().cargarBd();
+		Gestor.getBd().setFiltrado(filtradoProducto);
+		Gestor.getBd().cargarBd();
 		System.out.println("Nota esperada del usuario 1 para la peli 24 basandose en un filtrado por porducto: \n");
-		BaseDatos.getBd().recomendar(1, 24);
+		Gestor.getBd().recomendar(1, 24);
+		/**FILTRADO BASADO EN PERSONA*/
+		//FiltradoProductos filtradoProducto = new FiltradoProductos();
+		filtradoProducto.setSimilitud(new Cos());
+		Gestor.getBd().setFiltrado(filtradoProducto);
+		Gestor.getBd().cargarBd();
+		System.out.println("ALAAAA");
+		System.out.println(Gestor.getBd().recomendarPersonas(2048,550));
+		
 	}
 
 }

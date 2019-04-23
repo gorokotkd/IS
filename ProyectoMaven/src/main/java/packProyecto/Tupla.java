@@ -16,4 +16,8 @@ public class Tupla<X, Y> {
 	
 	public Y getY()
 	{return y;}
+	
+	public void imprimir() {
+		System.out.print("( "+x+ " - "+y+ " )");
+	}
 }
