@@ -4,21 +4,21 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.Map.Entry;
 
-public class Gestor {
+public class BaseDatos {
 
-	private static Gestor mBd = new Gestor();
+	private static BaseDatos mBd = new BaseDatos();
 	private Peliculas peliculas;
 	private Ratings ratings;
 	private TagsPorPeli tagsPorPeli;
 	private Filtrado filtrado;
 
-	private Gestor() {
+	private BaseDatos() {
 
 	}
 
-	public static Gestor getBd() {
+	public static BaseDatos getBd() {
 		if (mBd == null) {
-			mBd = new Gestor();
+			mBd = new BaseDatos();
 		}
 		return mBd;
 	}

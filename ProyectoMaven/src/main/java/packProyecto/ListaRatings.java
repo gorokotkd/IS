@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class ListaRatings implements LeerFichero {
 
@@ -62,6 +63,51 @@ public class ListaRatings implements LeerFichero {
 	
 	public ArrayList<Tupla<Integer,Double>> getRatingsPorId(Integer pId) {
 		return lista.get(pId);
+	}
+	
+	public double obtenerNota(int pIdUsu, int pIdPeli)
+	{
+		double nota = -1;
+		if (lista.get(pIdUsu)!=null && ListaPeliculas.getListaPeliculas().size()!=0) {
+			ArrayList<Tupla<Integer,Double>> listaAux = lista.get(pIdUsu);
+			Iterator<Tupla<Integer,Double>> itr = listaAux.iterator();
+			boolean salir = false;
+			
+			while(!salir && itr.hasNext())
+			{
+				Tupla<Integer,Double> tAux = itr.next();
+				if(tAux.getX()==pIdPeli)
+				{
+					nota=tAux.getY();
+					salir = true;
+				}
+			}
+		}
+		return nota;
+	
+	}
+	
+	public boolean haValoradoLaPelicula(int pIdUsu, int pIdPeli)
+	{
+		double nota = -1;
+		boolean salir = false;
+		if (lista.get(pIdUsu)!=null && ListaPeliculas.getListaPeliculas().size()!=0) {
+			ArrayList<Tupla<Integer,Double>> listaAux = lista.get(pIdUsu);
+			Iterator<Tupla<Integer,Double>> itr = listaAux.iterator();
+			
+			
+			while(!salir && itr.hasNext())
+			{
+				Tupla<Integer,Double> tAux = itr.next();
+				if(tAux.getX()==pIdPeli)
+				{
+					nota=tAux.getY();
+					salir = true;
+				}
+			}
+		}
+		return salir;
+	
 	}
 
 }

@@ -170,7 +170,7 @@ public class Ratings {
 	public double obtenerNota(int pIdUsu, int pIdPeli)
 	{
 		double nota = -1;
-		if (lista.get(pIdUsu)!=null && Gestor.getBd().getPeliculas().getLista()!=null) {
+		if (lista.get(pIdUsu)!=null && BaseDatos.getBd().getPeliculas().getLista()!=null) {
 			ArrayList<Tupla<Integer,Double>> listaAux = lista.get(pIdUsu);
 			Iterator<Tupla<Integer,Double>> itr = listaAux.iterator();
 			boolean salir = false;
@@ -259,7 +259,7 @@ public class Ratings {
 	
 	private HashMap<Integer,Double> obtenerLasNMasSimiliares(int usu, int N)
 	{
-		SimilitudStrategy sim = Gestor.getBd().getSimilitud();
+		SimilitudStrategy sim = BaseDatos.getBd().getSimilitud();
 		ArrayList<Double> valoracionesDelUsu = valoraciones.get(usu);
 		int i = 1;
 		

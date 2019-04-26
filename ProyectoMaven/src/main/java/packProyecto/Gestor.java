@@ -23,15 +23,21 @@ public class Gestor {
 		 * es decir, todos los modelos de persona, producto, similitudes etc.
 		 */
 		
-		filtrado = new FiltradoContenido();
-		((FiltradoContenido) filtrado).setSimilitud(new Cos());
+		/*filtrado = new FiltradoContenido();
+		((FiltradoContenido) filtrado).setSimilitud(new Cos());*/
+		filtrado = new FiltradoPersonas();
+		((FiltradoPersonas) filtrado).setSimilitud(new Cos());
 	}
 	
 	public void recomendarPeliculasAlUsuario(int pUsu)
 	{
 		if(filtrado instanceof FiltradoPersonas)
 		{
-			
+			System.out.println(((FiltradoPersonas) filtrado).valoracionEstimada(pUsu, 161));
+			System.out.println(((FiltradoPersonas) filtrado).valoracionEstimada(pUsu, 640));
+			System.out.println(((FiltradoPersonas) filtrado).valoracionEstimada(pUsu, 9331));
+			System.out.println(((FiltradoPersonas) filtrado).valoracionEstimada(pUsu, 1422));
+			System.out.println(((FiltradoPersonas) filtrado).valoracionEstimada(pUsu, 462));
 		}
 		else if(filtrado instanceof FiltradoProductos)
 		{

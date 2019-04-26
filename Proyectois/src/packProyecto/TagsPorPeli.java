@@ -24,7 +24,7 @@ public class TagsPorPeli {
 	public TagsPorPeli()
 	{
 		lista = new HashMap<Integer,ArrayList<Tupla<String, Integer>>>();
-		modeloProductos = new double[Gestor.getBd().idMayorPelicula()+1][ListaTags.getListaTags().tamano()];
+		modeloProductos = new double[BaseDatos.getBd().idMayorPelicula()+1][ListaTags.getListaTags().tamano()];
 		modeladoPersona = new double[ListaUsuarios.getListaUsuarios().size()][ListaTags.getListaTags().tamano()];
 	}
 	
@@ -99,7 +99,7 @@ public class TagsPorPeli {
 		int usu = 1;
 		while(usu<ListaUsuarios.getListaUsuarios().size())
 		{
-			ArrayList<Tupla<Integer,Double>> ratingsDelUsu=Gestor.getBd().getRatingsPorId(usu);
+			ArrayList<Tupla<Integer,Double>> ratingsDelUsu=BaseDatos.getBd().getRatingsPorId(usu);
 			ArrayList<Integer> pelisPorEncimaDelUmbral = calcularPelisPorEncimaDelUmbral(ratingsDelUsu,3.5);
 			if(pelisPorEncimaDelUmbral!=null)
 			{
@@ -154,7 +154,7 @@ public class TagsPorPeli {
 		ArrayList<Double> vectorPersona = getFilaPersona(idUsu);
 		ArrayList<Double> vectorPelicula = getFilaProducto(idPeli);
 		
-		return Gestor.getBd().getFiltrado().getSimilitud().calcularSimilitud(vectorPersona, vectorPelicula);
+		return BaseDatos.getBd().getFiltrado().getSimilitud().calcularSimilitud(vectorPersona, vectorPelicula);
 	}
 	
 	public void recomendarNPeliculas(int idUsu)
@@ -180,7 +180,7 @@ public class TagsPorPeli {
 	{
 		int i = 0;
 		HashMap<Integer,Double> list = new HashMap<Integer,Double>();
-		ArrayList<Integer> keys = Gestor.getBd().getIdPeliculas();
+		ArrayList<Integer> keys = BaseDatos.getBd().getIdPeliculas();
 		Iterator<Integer> itr = keys.iterator();
 		
 		while(itr.hasNext())
@@ -285,7 +285,7 @@ public class TagsPorPeli {
 		double nt = (double) cuantasConEseTag(pTag);
 		//double n = (double) lista.size();
 		//double n = (double) BaseDatos.getBd().cuantasPelis();
-		double n = (double) Gestor.getBd().getPeliculas().getLista().size();
+		double n = (double) BaseDatos.getBd().getPeliculas().getLista().size();
 		return tf*Math.log10(n/nt);
 		
 	}

@@ -57,5 +57,10 @@ public class ListaUsuarios implements LeerFichero{
 		
 	}
 	
+	public ArrayList<Integer> todosLosUsus()
+	{
+		return lista;
+	}
+	
 	
 }

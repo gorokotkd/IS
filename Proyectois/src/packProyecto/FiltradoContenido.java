@@ -5,7 +5,7 @@ public class FiltradoContenido extends Filtrado {
 	
 	public void recomendar(int pUsu) {
 		
-		Gestor.getBd().getTagsPorPeli().recomendarNPeliculas(pUsu);;
+		BaseDatos.getBd().getTagsPorPeli().recomendarNPeliculas(pUsu);;
 	}
 
 	@Override

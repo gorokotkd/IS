@@ -8,7 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import packProyecto.Gestor;
+import packProyecto.BaseDatos;
 import packProyecto.Cos;
 import packProyecto.FiltradoProductos;
 import packProyecto.Peliculas;
@@ -20,14 +20,14 @@ public class PeliculasTest {
 	public void setUp() throws Exception {
 		FiltradoProductos fil = new FiltradoProductos();
 		fil.setSimilitud(new Cos());
-		Gestor.getBd().setFiltrado(fil);
-		Gestor.getBd().cargarTodo();
-		peliculas = Gestor.getBd().getPeliculas();
+		BaseDatos.getBd().setFiltrado(fil);
+		BaseDatos.getBd().cargarTodo();
+		peliculas = BaseDatos.getBd().getPeliculas();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		Gestor.getBd().eliminarRatingsPeliculas();
+		BaseDatos.getBd().eliminarRatingsPeliculas();
 	}
 
 	@Test
