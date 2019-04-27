@@ -15,32 +15,62 @@ import java.util.Map;
 public class FiltradoPersonas extends FiltradoStrategy {
 	
 	private SimilitudStrategy sim ;
+	private NormalizarStrategy norm;
 	private HashMap<Integer,ArrayList<Double>> valoraciones; //usuario + lista de valoraciones
+	private HashMap<Integer, ArrayList<Tupla<Integer,Double>>> matrizNormalizada;
 
 
 	public void recomendarNPeliculas(int pUsu) {
-		// TODO Auto-generated method stub
 		
+		HashMap<Integer,Double> list = peliculasIdoneasParaElUsuario(pUsu);
+		list=sortByValues(list);
+		int N = 5;
+		int i = 0;
+		ArrayList<Integer> keys = new ArrayList<Integer>(list.keySet());
+		Iterator<Integer> itr = keys.iterator();
+		System.out.println("Las mejores peliculas para el usuario: " + pUsu+" son: \n");
+		while(i<N && itr.hasNext())
+		{
+			int id = itr.next();
+			System.out.println(i+": IdPelicula: "+id+" Nota: "+list.get(id));
+			i++;
+		}
 	}
 	
-	public void setSimilitud(SimilitudStrategy sim)
+	private HashMap<Integer,Double> peliculasIdoneasParaElUsuario(int idUsu)
 	{
-		this.sim=sim;
+		int i = 0;
+		HashMap<Integer,Double> list = new HashMap<Integer,Double>();
+		ArrayList<Integer> keys = ListaPeliculas.getListaPeliculas().getKeys();
+		Iterator<Integer> itr = keys.iterator();
+		
+		while(itr.hasNext())
+		{
+			i=itr.next();
+			if(!ListaRatings.getListaRatings().haValoradoLaPelicula(idUsu, i))
+				list.put(i, valoracionEstimada(idUsu, i));
+			
+		}
+			
+		return list;
 	}
 	
-	public FiltradoPersonas()
+	public FiltradoPersonas(SimilitudStrategy pSim)
 	{
+		sim = pSim;
+		this.normalizar();
 		this.generarListaValoraciones();
 	}
 	
 	
-	public double valoracionEstimada(int usu, int peli)
+	private double valoracionEstimada(int usu, int peli)
 	{
 		
-		HashMap<Integer,Double> similitudes = obtenerLasNMasSimiliares(usu, 10, peli);
+		HashMap<Integer,Double> similitudes = obtenerLasNMasSimiliares(usu, 30, peli);
 		double numerador = numeradorValoracion(peli, similitudes);
 		double denom = denomValoracion(similitudes);
-		return numerador/denom;
+		return norm.desnormalizar(usu, numerador/denom);
+		//return numerador/denom;
 	}
 	
 	private double numeradorValoracion(int peli, HashMap<Integer,Double> similitudes)
@@ -51,9 +81,31 @@ public class FiltradoPersonas extends FiltradoStrategy {
 		while(itr.hasNext())
 		{
 			int usuAct = itr.next();
-			sumatorio = sumatorio + (ListaRatings.getListaRatings().obtenerNota(usuAct, peli)*similitudes.get(usuAct));
+			sumatorio = sumatorio + (obtenerNota(usuAct, peli)*similitudes.get(usuAct));
 		}
 		return sumatorio;
+	}
+	
+	private double obtenerNota(int pIdUsu, int pIdPeli)
+	{
+		double nota = -1;
+		if (matrizNormalizada.get(pIdUsu)!=null && ListaPeliculas.getListaPeliculas().size()!=0) {
+			ArrayList<Tupla<Integer,Double>> listaAux = matrizNormalizada.get(pIdUsu);
+			Iterator<Tupla<Integer,Double>> itr = listaAux.iterator();
+			boolean salir = false;
+			
+			while(!salir && itr.hasNext())
+			{
+				Tupla<Integer,Double> tAux = itr.next();
+				if(tAux.getX()==pIdPeli)
+				{
+					nota=tAux.getY();
+					salir = true;
+				}
+			}
+		}
+		return nota;
+	
 	}
 	
 	private double denomValoracion(HashMap<Integer,Double> similitudes)
@@ -63,7 +115,7 @@ public class FiltradoPersonas extends FiltradoStrategy {
 		Iterator<Integer> itr = keys.iterator();
 		
 		while(itr.hasNext())
-			sumatorio = sumatorio + itr.next();
+			sumatorio = sumatorio + similitudes.get(itr.next());
 		
 		return sumatorio;
 		
@@ -106,7 +158,7 @@ public class FiltradoPersonas extends FiltradoStrategy {
 		while(itr.hasNext())
 		{
 			int usuAct = itr.next();
-			ArrayList<Tupla<Integer,Double>> listaValoraciones = ListaRatings.getListaRatings().getRatingsPorId(usuAct);
+			ArrayList<Tupla<Integer,Double>> listaValoraciones = matrizNormalizada.get(usuAct);
 			if(listaValoraciones != null)
 			{
 				Iterator<Tupla<Integer,Double>> itr2 = listaValoraciones.iterator();
@@ -120,6 +172,11 @@ public class FiltradoPersonas extends FiltradoStrategy {
 		
 	}
 	
+	private void normalizar()
+	{
+		norm = new Media(ListaRatings.getListaRatings().obtenerLista());
+		matrizNormalizada = ((Media) norm).normalizar();
+	}
 	
 	private static HashMap<Integer, Double> sortByValues(HashMap<Integer, Double> map) { 
 	       List list = new LinkedList(map.entrySet());

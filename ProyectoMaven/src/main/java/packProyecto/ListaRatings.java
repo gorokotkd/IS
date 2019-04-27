@@ -37,6 +37,10 @@ public class ListaRatings implements LeerFichero {
 					aux = new ArrayList<Tupla<Integer,Double>>();
 					usuAct = Integer.parseInt(str[0]);
 				}
+				if(lectura == null)
+				{
+					lista.put(usuAct, aux);
+				}
 				
 			}
 		}
@@ -110,4 +114,8 @@ public class ListaRatings implements LeerFichero {
 	
 	}
 
+	public HashMap<Integer, ArrayList<Tupla<Integer,Double>>> obtenerLista()
+	{
+		return lista;
+	}
 }

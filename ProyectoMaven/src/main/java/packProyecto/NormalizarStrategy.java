@@ -3,19 +3,15 @@ package packProyecto;
 import java.util.*;
 public abstract class NormalizarStrategy {
 
-	private ArrayList<Double> listaDiferencias;	
+	protected HashMap<Integer, ArrayList<Tupla<Integer,Double>>> listaValoraciones;
 	
 
-	public abstract ArrayList<Double> normalizar(ArrayList<Double> pV);
-	public abstract ArrayList<Double> desnormalizar(ArrayList<Double> pV);
+	public abstract HashMap<Integer, ArrayList<Tupla<Integer,Double>>> normalizar();
+	public abstract double desnormalizar(int usu, double valor);
 	
-	public ArrayList<Double> getListaDiferencias()
+	public NormalizarStrategy(HashMap<Integer, ArrayList<Tupla<Integer,Double>>> pValoraciones)
 	{
-		return listaDiferencias;
+		listaValoraciones = pValoraciones;
 	}
-	
-	public void setListaDiferencias(ArrayList<Double> pV)
-	{
-		listaDiferencias=pV;
-	}
+
 }
