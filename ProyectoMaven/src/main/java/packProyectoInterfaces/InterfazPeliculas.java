@@ -64,7 +64,7 @@ public class InterfazPeliculas extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			
 			{
-				JButton cancelButton = new JButton("Cancel");
+				final JButton cancelButton = new JButton("Cancel");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if (e.getSource().equals(cancelButton)) {
@@ -87,8 +87,8 @@ public class InterfazPeliculas extends JDialog {
 	}
 	private JList getList() {
 		if (list == null) {
-			Vector<ListItem> items = new Vector<>();
-			for (Map.Entry<Integer,String> entry: Gestor.getBd().entrySet()) {
+			Vector<ListItem> items = new Vector<ListItem>();
+			for (Map.Entry<Integer,String> entry: ListaPeliculas.getListaPeliculas().entrySet()) {
 				items.add(new ListItem(entry.getKey(), entry.getValue()));
 			}
 			list = new JList(items);

@@ -2,9 +2,7 @@ package packProyecto;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.*;
 
 public class ListaRatings implements LeerFichero {
 
@@ -117,5 +115,9 @@ public class ListaRatings implements LeerFichero {
 	public HashMap<Integer, ArrayList<Tupla<Integer,Double>>> obtenerLista()
 	{
 		return lista;
+	}
+	public ArrayList<Integer> ratingsDevolKeys() {
+		ArrayList<Integer> keys = new ArrayList<Integer>(lista.keySet());
+		return keys;
 	}
 }

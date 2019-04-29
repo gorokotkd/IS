@@ -75,9 +75,9 @@ public class InterfazTag extends JDialog {
 					String valor = txtIntroduceId.getText();
 					if (isNumeric(valor)) {
 							Integer numero = Integer.parseInt(valor);
-						if (Gestor.getBd().tagsDevolKeys().contains(numero)){
-							ArrayList<Tupla<String, Integer>> listaaux = Gestor.getBd().getTagsPorId(numero);
-							Vector<ListTagCont> items1 = new Vector<>();
+						if (TagsPorPeli.getTagsPorPeli().tagsDevolKeys().contains(numero)){
+							ArrayList<Tupla<String, Integer>> listaaux = TagsPorPeli.getTagsPorPeli().getTagsPorId(numero);
+							Vector<ListTagCont> items1 = new Vector<ListTagCont>();
 							for (int i=0;i<listaaux.size();i++) {
 								items1.add(new ListTagCont(listaaux.get(i).getX(),listaaux.get(i).getY()));
 							}
@@ -149,7 +149,7 @@ public class InterfazTag extends JDialog {
 	private JList getList_1() {
 		if (list == null) {
 			DefaultListModel listModel = new DefaultListModel();
-			ArrayList<Integer> lista = Gestor.getBd().tagsDevolKeys();
+			ArrayList<Integer> lista = TagsPorPeli.getTagsPorPeli().tagsDevolKeys();
 			for (int i=0; i<lista.size();i++) {
 				listModel.add(i, lista.get(i));
 			}
@@ -201,7 +201,7 @@ public class InterfazTag extends JDialog {
 			btnResetId.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					DefaultListModel listModel = new DefaultListModel();
-					ArrayList<Integer> lista = Gestor.getBd().tagsDevolKeys();
+					ArrayList<Integer> lista = TagsPorPeli.getTagsPorPeli().tagsDevolKeys();
 					for (int i=0; i<lista.size();i++) {
 						listModel.add(i, lista.get(i));}
 					list.setModel(listModel);

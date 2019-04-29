@@ -62,6 +62,11 @@ public class ListaTags implements LeerFichero {
 		}
 		
 	}
+	
+	public ArrayList<String> tagsDevolKeys() {
+		ArrayList<String> keys = new ArrayList<String>(lista.keySet());
+		return keys;
+	}
 
 
 }

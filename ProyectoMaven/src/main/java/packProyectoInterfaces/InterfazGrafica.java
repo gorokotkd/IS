@@ -26,6 +26,16 @@ public class InterfazGrafica extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
+	public static void main(String[] args) {
+
+		InterfazGrafica interfaz = new InterfazGrafica();
+		interfaz.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		interfaz.setVisible(true);
+
+		 
+	}
+	
+	
 	public InterfazGrafica() {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
@@ -79,7 +89,6 @@ public class InterfazGrafica extends JDialog {
 		}
 		cancelButton.addActionListener(new ActionListener() {
 			
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource().equals(cancelButton))
 				{
@@ -91,7 +100,7 @@ public class InterfazGrafica extends JDialog {
 		
 		btnNewButton_1.addActionListener(new ActionListener() {
 			
-			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource().equals(btnNewButton_1))
 				{					
@@ -102,7 +111,7 @@ public class InterfazGrafica extends JDialog {
 		});
 		btnNewButton_2.addActionListener(new ActionListener() {
 			
-			@Override
+		
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource().equals(btnNewButton_2))
 				{
@@ -117,7 +126,7 @@ public class InterfazGrafica extends JDialog {
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			
-			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource().equals(btnNewButton))
 				{
@@ -149,4 +158,5 @@ public class InterfazGrafica extends JDialog {
 		}
 		return btnNewButton_2;
 	}
+	
 }

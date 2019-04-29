@@ -2,8 +2,8 @@ package packProyecto;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
+import java.util.Map.Entry;
 
 public class ListaPeliculas implements LeerFichero {
 	
@@ -61,6 +61,10 @@ public class ListaPeliculas implements LeerFichero {
 	public int size()
 	{
 		return lista.size();
+	}
+	
+	public Set<Entry<Integer, String>> entrySet(){
+		return lista.entrySet();
 	}
 	
 
