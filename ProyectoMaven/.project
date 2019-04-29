@@ -3,6 +3,7 @@
 	<name>ProyectoMaven</name>
 	<comment></comment>
 	<projects>
+		<project>Proyectois</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
