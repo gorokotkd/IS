@@ -12,6 +12,7 @@ public abstract class NormalizarStrategy {
 	public NormalizarStrategy(HashMap<Integer, ArrayList<Tupla<Integer,Double>>> pValoraciones)
 	{
 		listaValoraciones = pValoraciones;
+		//ulul
 	}
 
 }
