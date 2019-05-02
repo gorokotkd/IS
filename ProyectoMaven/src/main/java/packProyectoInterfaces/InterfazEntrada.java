@@ -9,7 +9,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import packProyecto.ListaContraseas;
+import packProyecto.ListaPeliculas;
+import packProyecto.ListaRatings;
+import packProyecto.ListaTags;
 import packProyecto.ListaUsuarios;
+import packProyecto.TagsPorPeli;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -112,8 +116,14 @@ public class InterfazEntrada extends JDialog {
 						 
 						 else if(ListaContraseas.getListaContraseas().contains(idUsuario)) {
 							 if (ListaContraseas.getListaContraseas().getValue(idUsuario).equals(passUsuario)) {
-								 //abrir interfaz principal
-								 lblBienvenidoAFocaflix.setText("Estas Dentro");
+									ListaPeliculas.getListaPeliculas().leerFichero();
+									ListaTags.getListaTags().leerFichero();
+									ListaRatings.getListaRatings().leerFichero();
+									ListaUsuarios.getListaUsuarios().leerFichero();
+									TagsPorPeli.getTagsPorPeli().leerFichero();
+									InterfazUsuario iu = new InterfazUsuario();
+									iu.setVisible(true);
+									dispose();
 							 }
 							 else {
 								 lblBienvenidoAFocaflix.setText("Contraseña Incorrecta");
@@ -137,7 +147,7 @@ public class InterfazEntrada extends JDialog {
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("LOG OUT");
+				JButton cancelButton = new JButton("SALIR");
 				cancelButton.setFont(new Font("Unispace", Font.PLAIN, 11));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {

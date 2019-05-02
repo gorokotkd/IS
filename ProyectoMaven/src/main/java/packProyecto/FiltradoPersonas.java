@@ -29,6 +29,7 @@ public class FiltradoPersonas extends FiltradoStrategy {
 		ArrayList<Integer> keys = new ArrayList<Integer>(list.keySet());
 		Iterator<Integer> itr = keys.iterator();
 		System.out.println("Las mejores peliculas para el usuario: " + pUsu+" son: \n");
+		ArrayList<String> devol = new ArrayList<String>();
 		while(i<N && itr.hasNext())
 		{
 			int id = itr.next();

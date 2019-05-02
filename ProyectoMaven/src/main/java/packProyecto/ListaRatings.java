@@ -160,4 +160,9 @@ public class ListaRatings implements LeerFichero {
 		ArrayList<Integer> keys = new ArrayList<Integer>(lista.keySet());
 		return keys;
 	}
+	
+	public void anadir(int pUsu,int pPeli, double pnota) {
+		ArrayList aux = lista.get(pUsu);
+		aux.add(new Tupla(pPeli, pnota));
+	}
 }
