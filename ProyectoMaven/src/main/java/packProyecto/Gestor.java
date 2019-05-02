@@ -17,6 +17,10 @@ public class Gestor {
 		return mGestor;
 	}
 	
+	public FiltradoStrategy getFiltrado() {
+		return filtrado;
+	}
+	
 	public void elegirFiltrado()
 	{
 		/**Aqui se podria elegir el filtrado que se desee e inicializar todo el filtrado,

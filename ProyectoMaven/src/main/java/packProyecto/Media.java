@@ -5,7 +5,6 @@ import java.util.*;
 
 public class Media extends NormalizarStrategy {
 
-	private HashMap<Integer,Double> listaMedias;
 	
 	public Media(HashMap<Integer, ArrayList<Tupla<Integer, Double>>> pValoraciones) {
 		super(pValoraciones);

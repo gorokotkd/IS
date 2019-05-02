@@ -6,7 +6,9 @@ import java.util.*;
 
 public class ListaRatings implements LeerFichero {
 
-	private HashMap<Integer, ArrayList<Tupla<Integer,Double>>> lista;
+	private HashMap<Integer, ArrayList<Tupla<Integer,Double>>> lista; //usuario + lista(peliculas+nota)
+	private ListaValoracionesPorPeli valoraciones;
+	private NormalizarStrategy norm;
 	private static ListaRatings mRatings;
 	
 	public void leerFichero() {
@@ -103,6 +105,10 @@ public class ListaRatings implements LeerFichero {
 		return mRatings;
 	}
 	
+	public ListaValoracionesPorPeli getValoraciones() {
+		return valoraciones;
+	}
+	
 	public ArrayList<Tupla<Integer,Double>> getRatingsPorId(Integer pId) {
 		return lista.get(pId);
 	}
@@ -156,6 +162,7 @@ public class ListaRatings implements LeerFichero {
 	{
 		return lista;
 	}
+	
 	public ArrayList<Integer> ratingsDevolKeys() {
 		ArrayList<Integer> keys = new ArrayList<Integer>(lista.keySet());
 		return keys;

@@ -3,7 +3,8 @@ package packProyecto;
 import java.util.*;
 public abstract class NormalizarStrategy {
 
-	protected HashMap<Integer, ArrayList<Tupla<Integer,Double>>> listaValoraciones;
+	HashMap<Integer,Double> listaMedias;
+	HashMap<Integer, ArrayList<Tupla<Integer,Double>>> listaValoraciones;
 	
 
 	public abstract HashMap<Integer, ArrayList<Tupla<Integer,Double>>> normalizar();

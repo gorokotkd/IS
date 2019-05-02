@@ -5,9 +5,9 @@
 		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
 		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\Users\GARCI\Desktop\backup\IS\IS"/>
 			<item value="/home/gorka/eclipse-workspace/IS/ProyectoMaven"/>
 			<item value="/home/gorka/eclipse-workspace/IS/Proyectois"/>
-			<item value="C:\Users\GARCI\Desktop\backup\IS\IS"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
 			<item value=""/>

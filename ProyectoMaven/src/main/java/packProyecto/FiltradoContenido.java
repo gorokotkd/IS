@@ -16,9 +16,7 @@ public class FiltradoContenido extends FiltradoStrategy {
 
 	private double[][] modeloProductos;
 	private double[][] modeladoPersona;
-	
-	private SimilitudStrategy similitud;
-	
+
 	
 	public FiltradoContenido()
 	{
@@ -26,10 +24,6 @@ public class FiltradoContenido extends FiltradoStrategy {
 		modeladoPersona = new double[ListaUsuarios.getListaUsuarios().size()][ListaTags.getListaTags().tamano()];
 	}
 	
-	public void setSimilitud(SimilitudStrategy sim)
-	{
-		similitud=sim;
-	}
 	
 	private void modeloPersona()
 	{
