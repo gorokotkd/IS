@@ -11,6 +11,13 @@ public class ListaRatings implements LeerFichero {
 	private NormalizarStrategy norm;
 	private static ListaRatings mRatings;
 	
+	private ListaRatings()
+	{
+		lista = new HashMap<Integer,ArrayList<Tupla<Integer,Double>>>();
+		leerFichero();
+		lista = norm.normalizar();
+	}
+	
 	public void leerFichero() {
 		try
 		{
@@ -92,12 +99,7 @@ public class ListaRatings implements LeerFichero {
 		}
 
 	}
-	
-	private ListaRatings()
-	{
-		lista = new HashMap<Integer,ArrayList<Tupla<Integer,Double>>>();
-	}
-	
+
 	public static ListaRatings getListaRatings()
 	{
 		if(mRatings==null)
@@ -107,6 +109,14 @@ public class ListaRatings implements LeerFichero {
 	
 	public ListaValoracionesPorPeli getValoraciones() {
 		return valoraciones;
+	}
+	
+	public NormalizarStrategy getNormalizar() {
+		return norm;
+	}
+
+	public void setNormalizar(NormalizarStrategy pNorm) {
+		norm = pNorm;
 	}
 	
 	public ArrayList<Tupla<Integer,Double>> getRatingsPorId(Integer pId) {
@@ -158,13 +168,9 @@ public class ListaRatings implements LeerFichero {
 	
 	}
 
-	public HashMap<Integer, ArrayList<Tupla<Integer,Double>>> obtenerLista()
+	public HashMap<Integer, ArrayList<Tupla<Integer,Double>>> getLista()
 	{
 		return lista;
 	}
-	
-	public ArrayList<Integer> ratingsDevolKeys() {
-		ArrayList<Integer> keys = new ArrayList<Integer>(lista.keySet());
-		return keys;
-	}
 }
+	

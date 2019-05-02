@@ -135,7 +135,7 @@ public class ListaPeliculas implements LeerFichero {
 	
 	public Double calcularIdoneidad(int pUsuario, int pProducto) {		
 		Double rdo = calcularFormula(productosSimilitud.getSimilitudesPorId(pProducto), pUsuario, pProducto);
-		rdo = rdo + BaseDatos.getBd().getRatings().getMedia(pUsuario);
+		rdo = ListaRatings.getListaRatings().getNormalizar().desnormalizar(pUsuario, rdo);
 		
 		System.out.println("El resultado de la similitud entre el producto :" +pProducto+ " del usuario: "+pUsuario+" es de --> "+rdo);
 		return rdo;
