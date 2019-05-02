@@ -35,11 +35,34 @@ public class ListaPeliculas implements LeerFichero {
 		}
 
 	}
+	public void leerFicheroTest() {
+		try
+		{
+			String path = System.getProperty("user.dir")+"/src/main/resources/testMovies.csv";
+			FileReader fr = new FileReader(path);
+			BufferedReader br = new BufferedReader(fr);
+			String lectura = br.readLine();
+			while(lectura!=null)
+			{	
+				String[] str = lectura.split(";");
+				String sr = str[1];
+				int key = Integer.parseInt(str[0]);
+				if(key>idMayor)
+					idMayor=key;
+				lista.put(key, sr);
+				lectura=br.readLine();
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+
+	}
 	
 	private ListaPeliculas()
 	{
 		lista = new HashMap<Integer,String>();
-		leerFichero();
 	}
 	
 	public static ListaPeliculas getListaPeliculas()

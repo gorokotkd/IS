@@ -12,7 +12,7 @@ public class ListaUsuarios implements LeerFichero{
 	private ListaUsuarios()
 	{
 		lista = new ArrayList<Integer>();
-		leerFichero();
+
 	}
 	
 	public static ListaUsuarios getListaUsuarios()
@@ -34,6 +34,32 @@ public class ListaUsuarios implements LeerFichero{
 		try
 		{
 			String path = System.getProperty("user.dir")+"/src/main/resources/movie-ratings.csv";
+			BufferedReader bf = new BufferedReader(new FileReader(path));
+			String bfread;
+			
+			
+			while((bfread = bf.readLine()) != null)
+			{				
+				String[] str = bfread.split(",");
+				if(lista.isEmpty())
+					lista.add(Integer.parseInt(str[0]));
+				else if(!lista.contains(Integer.parseInt(str[0])))
+					lista.add(Integer.parseInt(str[0]));
+				
+			}
+			bf.close();
+	
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+	}
+	public void leerFicheroTest() {
+		try
+		{
+			String path = System.getProperty("user.dir")+"/src/main/resources/testRatings.csv";
 			BufferedReader bf = new BufferedReader(new FileReader(path));
 			String bfread;
 			
