@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ListaValoracionesPorPeli extends LeerFichero {
+public class ListaValoracionesPorPeli {
 
 	private HashMap<Integer, ArrayList<Double>> lista; //pelicula + lista de valoraciones
 	

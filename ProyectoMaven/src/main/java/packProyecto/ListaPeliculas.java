@@ -34,11 +34,27 @@ public class ListaPeliculas {
 	public void setFichero(String pPath) {
 		fich = new LeerFicheroPeliculas(pPath);
 		lista = fich.leerFichero();
+		cualEsLaIdMayor();
 	}
 
 	private Iterator<Map.Entry<Integer, String>> getIterator(){
 		Set<Map.Entry<Integer,String>> mapaEntrada = lista.entrySet();
 		return mapaEntrada.iterator();
+	}
+	
+	private void cualEsLaIdMayor()
+	{
+		ArrayList<Integer> keys = new ArrayList<Integer>(lista.keySet());
+		Iterator<Integer> itr = keys.iterator();
+		int aux = 0;
+		
+		while(itr.hasNext())
+		{
+			int key = itr.next();
+			if(key>aux)
+				aux=key;
+		}
+		idMayor=aux;
 	}
 	
 	public int getIdMayor()
@@ -65,7 +81,7 @@ public class ListaPeliculas {
 			Map.Entry<Integer, String> entrada = itr.next();
 			hashAux = getColeccionSimilitudes(entrada.getKey());
 			if (!hashAux.isEmpty()) {
-				productosSimilitud.añadir(entrada.getKey(), hashAux);
+				productosSimilitud.anadir(entrada.getKey(), hashAux);
 			}
 		}
 	}

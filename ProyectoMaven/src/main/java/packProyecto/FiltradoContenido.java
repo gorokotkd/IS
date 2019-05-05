@@ -18,10 +18,13 @@ public class FiltradoContenido extends FiltradoStrategy {
 	private double[][] modeladoPersona;
 
 	
-	public FiltradoContenido()
+	public FiltradoContenido(SimilitudStrategy sim)
 	{
 		modeloProductos = new double[ListaPeliculas.getListaPeliculas().getIdMayor()+1][ListaTags.getListaTags().tamano()];
+		System.out.println(ListaPeliculas.getListaPeliculas().getIdMayor()+1);
+		System.out.println(ListaTags.getListaTags().tamano());
 		modeladoPersona = new double[ListaUsuarios.getListaUsuarios().size()][ListaTags.getListaTags().tamano()];
+		super.similitud=sim;
 	}
 	
 	
@@ -215,8 +218,6 @@ public class FiltradoContenido extends FiltradoStrategy {
 	{
 		double tf = (double) cuantasVecesTieneTag(pPeli,pTag);
 		double nt = (double) cuantasConEseTag(pTag);
-		//double n = (double) lista.size();
-		//double n = (double) BaseDatos.getBd().cuantasPelis();
 		double n = (double) ListaPeliculas.getListaPeliculas().size();
 		return tf*Math.log10(n/nt);
 		

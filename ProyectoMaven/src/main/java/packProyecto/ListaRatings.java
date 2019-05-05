@@ -26,7 +26,7 @@ public class ListaRatings {
 		//PASOS PARA INICIALIZACION
 		//1 - instanciar
 		//2 - setFichero
-		//3 - normalizar
+		//3 - normalizar  (AQUI TE LE HAS JUGADO)
 	}
 
 	public void setFichero(String pPath) {

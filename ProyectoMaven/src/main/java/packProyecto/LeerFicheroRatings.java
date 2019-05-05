@@ -7,8 +7,9 @@ import java.util.HashMap;
 
 public class LeerFicheroRatings extends LeerFichero{
 
-	public LeerFicheroRatings(String pPath) {
-		super.path = pPath;
+	public LeerFicheroRatings(String pPath)
+	{
+		super(pPath);
 	}
 	
 	public HashMap<Integer, ArrayList<Tupla<Integer,Double>>> leerFichero() {

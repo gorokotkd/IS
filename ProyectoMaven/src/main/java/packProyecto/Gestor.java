@@ -18,7 +18,7 @@ public class Gestor {
 	}
 	
 	public void cargarGestor() {
-		System.out.println("Lista Ratings");
+	/*	System.out.println("Lista Ratings");
 		ListaRatings.getListaRatings().setFichero("/src/main/resources/movie-ratings.csv");
 		System.out.println("Normalizando");
 		ListaRatings.getListaRatings().normalizar(new Media());
@@ -26,6 +26,11 @@ public class Gestor {
 		ListaPeliculas.getListaPeliculas().setFichero("/src/main/resources/movie-titles.csv");
 		System.out.println("Inicializando");
 		ListaPeliculas.getListaPeliculas().inicializar();
+		TagsPorPeli.getTagsPorPeli().setFichero("/src/main/resources/movie-tags.csv");*/
+		ListaRatings.getListaRatings().setFichero("/src/main/resources/movie-ratings.csv");
+		ListaPeliculas.getListaPeliculas().setFichero("/src/main/resources/movie-titles.csv");
+		TagsPorPeli.getTagsPorPeli().setFichero("/src/main/resources/movie-tags.csv");
+		
 	}
 	public FiltradoStrategy getFiltrado() {
 		return filtrado;
@@ -47,11 +52,6 @@ public class Gestor {
 	{
 		if(filtrado instanceof FiltradoPersonas)
 		{
-			/*System.out.println(((FiltradoPersonas) filtrado).valoracionEstimada(pUsu, 161));
-			System.out.println(((FiltradoPersonas) filtrado).valoracionEstimada(pUsu, 640));
-			System.out.println(((FiltradoPersonas) filtrado).valoracionEstimada(pUsu, 9331));
-			System.out.println(((FiltradoPersonas) filtrado).valoracionEstimada(pUsu, 1422));
-			System.out.println(((FiltradoPersonas) filtrado).valoracionEstimada(pUsu, 462));*/
 			((FiltradoPersonas) filtrado).recomendarNPeliculas(pUsu);
 		}
 		else if(filtrado instanceof FiltradoProductos)

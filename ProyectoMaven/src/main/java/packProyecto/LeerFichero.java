@@ -4,11 +4,8 @@ public abstract class LeerFichero {
 
 	String path;
 	
-	public String getPath() {
-		return path;
-	}
-
-	public void setPath(String pPath) {
+	public LeerFichero(String pPath)
+	{
 		this.path = pPath;
 	}
 

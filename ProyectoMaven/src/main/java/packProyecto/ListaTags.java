@@ -4,19 +4,22 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.*;
 
-public class ListaTags extends LeerFichero {
+public class ListaTags {
 
 	private  HashMap<String,Integer> lista;
-	private static ListaTags mLista = new ListaTags();
+	private static ListaTags mLista;
 	
 	private ListaTags()
 	{
 		lista = new HashMap<String,Integer>();
+		leerFichero();
 
 	}
 	
 	public static ListaTags getListaTags()
 	{
+		if(mLista==null)
+			mLista = new ListaTags();
 		return mLista;
 	}
 	

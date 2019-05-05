@@ -11,7 +11,7 @@ public class ProductosSimilitud {
 		lista = new HashMap<Integer, HashMap<Integer,Double>>();
 	}
 	
-	public void añadir(int pId, HashMap<Integer,Double> pHash) {
+	public void anadir(int pId, HashMap<Integer,Double> pHash) {
 		lista.put(pId, pHash);
 	}
 	

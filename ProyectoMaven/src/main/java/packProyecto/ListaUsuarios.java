@@ -4,19 +4,22 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.*;
 
-public class ListaUsuarios extends LeerFichero{
+public class ListaUsuarios{
 
 	private ArrayList<Integer> lista;
-	private static ListaUsuarios mLista = new ListaUsuarios();
+	private static ListaUsuarios mLista;
 	
 	private ListaUsuarios()
 	{
 		lista = new ArrayList<Integer>();
+		leerFichero();
 
 	}
 	
 	public static ListaUsuarios getListaUsuarios()
 	{
+		if(mLista==null)
+			mLista = new ListaUsuarios();
 		return mLista;
 	}
 	
