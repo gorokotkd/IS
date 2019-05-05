@@ -5,20 +5,25 @@ import java.io.FileReader;
 import java.util.*;
 import java.util.Map.Entry;
 
-public class ListaPeliculas implements LeerFichero {
+public class ListaPeliculas {
 	
 	private HashMap<Integer,String> lista; //idPeli + NombrePelicula
 	private ProductosSimilitud productosSimilitud;
+	private LeerFicheroPeliculas fich;
 	private int idMayor;
 	private static ListaPeliculas mPelis;
 	
 	private ListaPeliculas()
 	{
 		lista = new HashMap<Integer,String>();
-		inicializar();
-		leerFichero();
+		productosSimilitud = new ProductosSimilitud();
+		//PASOS PARA INICIALIZACION
+		//1-Instanciar
+		//2-Set fichero
+		//3-Inicializar
 	}
 	
+
 	public static ListaPeliculas getListaPeliculas()
 	{
 		if(mPelis==null)
@@ -26,53 +31,9 @@ public class ListaPeliculas implements LeerFichero {
 		return mPelis;
 	}
 	
-	public void leerFichero() {
-		try
-		{
-			String path = System.getProperty("user.dir")+"/src/main/resources/movie-titles.csv";
-			FileReader fr = new FileReader(path);
-			BufferedReader br = new BufferedReader(fr);
-			String lectura = br.readLine();
-			while(lectura!=null)
-			{	
-				String[] str = lectura.split(";");
-				String sr = str[1];
-				int key = Integer.parseInt(str[0]);
-				if(key>idMayor)
-					idMayor=key;
-				lista.put(key, sr);
-				lectura=br.readLine();
-			}
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-
-	}
-	public void leerFicheroTest() {
-		try
-		{
-			String path = System.getProperty("user.dir")+"/src/main/resources/testMovies.csv";
-			FileReader fr = new FileReader(path);
-			BufferedReader br = new BufferedReader(fr);
-			String lectura = br.readLine();
-			while(lectura!=null)
-			{	
-				String[] str = lectura.split(";");
-				String sr = str[1];
-				int key = Integer.parseInt(str[0]);
-				if(key>idMayor)
-					idMayor=key;
-				lista.put(key, sr);
-				lectura=br.readLine();
-			}
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-
+	public void setFichero(String pPath) {
+		fich = new LeerFicheroPeliculas(pPath);
+		lista = fich.leerFichero();
 	}
 
 	private Iterator<Map.Entry<Integer, String>> getIterator(){

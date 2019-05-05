@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.*;
 
-public class ListaTags implements LeerFichero {
+public class ListaTags extends LeerFichero {
 
 	private  HashMap<String,Integer> lista;
 	private static ListaTags mLista = new ListaTags();

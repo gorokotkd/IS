@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.*;
 
-public class ListaUsuarios implements LeerFichero{
+public class ListaUsuarios extends LeerFichero{
 
 	private ArrayList<Integer> lista;
 	private static ListaUsuarios mLista = new ListaUsuarios();

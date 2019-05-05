@@ -8,7 +8,7 @@ public class ProductosSimilitud {
 	private HashMap<Integer,HashMap<Integer,Double>> lista;
 	
 	public ProductosSimilitud() {
-		
+		lista = new HashMap<Integer, HashMap<Integer,Double>>();
 	}
 	
 	public void añadir(int pId, HashMap<Integer,Double> pHash) {

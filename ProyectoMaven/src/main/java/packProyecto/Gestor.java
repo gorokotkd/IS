@@ -17,11 +17,21 @@ public class Gestor {
 		return mGestor;
 	}
 	
+	public void cargarGestor() {
+		System.out.println("Lista Ratings");
+		ListaRatings.getListaRatings().setFichero("/src/main/resources/movie-ratings.csv");
+		System.out.println("Normalizando");
+		ListaRatings.getListaRatings().normalizar(new Media());
+		System.out.println("Lista Peliculas");
+		ListaPeliculas.getListaPeliculas().setFichero("/src/main/resources/movie-titles.csv");
+		System.out.println("Inicializando");
+		ListaPeliculas.getListaPeliculas().inicializar();
+	}
 	public FiltradoStrategy getFiltrado() {
 		return filtrado;
 	}
 	
-	public void elegirFiltrado()
+	public void setFiltrado(FiltradoStrategy pFiltrado)
 	{
 		/**Aqui se podria elegir el filtrado que se desee e inicializar todo el filtrado,
 		 * es decir, todos los modelos de persona, producto, similitudes etc.
@@ -29,7 +39,8 @@ public class Gestor {
 		
 		/*filtrado = new FiltradoContenido();
 		((FiltradoContenido) filtrado).setSimilitud(new Cos());*/
-		filtrado = new FiltradoPersonas(new Cos());
+		//filtrado = new FiltradoPersonas(new Cos());
+		filtrado = pFiltrado;
 	}
 	
 	public void recomendarPeliculasAlUsuario(int pUsu)
@@ -45,7 +56,7 @@ public class Gestor {
 		}
 		else if(filtrado instanceof FiltradoProductos)
 		{
-			
+			((FiltradoProductos) filtrado).recomendarNPeliculas(pUsu, 10);
 		}
 		else if(filtrado instanceof FiltradoContenido)
 		{

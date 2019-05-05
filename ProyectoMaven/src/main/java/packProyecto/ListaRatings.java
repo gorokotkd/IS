@@ -4,102 +4,36 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.*;
 
-public class ListaRatings implements LeerFichero {
+public class ListaRatings {
 
 	private HashMap<Integer, ArrayList<Tupla<Integer,Double>>> lista; //usuario + lista(peliculas+nota)
 	private ListaValoracionesPorPeli valoraciones;
 	private NormalizarStrategy norm;
+	private LeerFicheroRatings fich;
 	private static ListaRatings mRatings;
 	
 	private ListaRatings()
 	{
-		lista = new HashMap<Integer,ArrayList<Tupla<Integer,Double>>>();
-		leerFichero();
-		lista = norm.normalizar();
-	}
-	
-	public void leerFichero() {
-		try
-		{
-			String path = System.getProperty("user.dir")+"/src/main/resources/movie-ratings.csv";
-			BufferedReader br = new BufferedReader(new FileReader(path));
-			String lectura=" ";
-			ArrayList<Tupla<Integer,Double>> aux = new ArrayList<Tupla<Integer,Double>>();
-			lectura = br.readLine();
-			String[] str = lectura.split(",");
-			int usuAct = Integer.parseInt(str[0]);
-			while(lectura!=null)
-			{
-				
-				if(Integer.parseInt(str[0])==usuAct)
-				{	
-					aux.add(new Tupla(Integer.parseInt(str[1]),Double.parseDouble(str[2])));
-					lectura = br.readLine();
-					if(lectura != null)
-						str = lectura.split(",");
-				}
-				else
-				{
-					lista.put(usuAct, aux);
-					aux = new ArrayList<Tupla<Integer,Double>>();
-					usuAct = Integer.parseInt(str[0]);
-				}
-				if(lectura == null)
-				{
-					lista.put(usuAct, aux);
-				}
-				
-			}
-		}
-		catch (Exception e)
-		{
-			System.out.println("Se ha producido un error");
+		try {
+			lista = new HashMap<Integer,ArrayList<Tupla<Integer,Double>>>();
+			valoraciones = new ListaValoracionesPorPeli();
+			System.out.println("asodnosaDJ");
+		} catch (Exception e) {
+			// TODO: handle exception
 			e.printStackTrace();
 		}
+		
+		//PASOS PARA INICIALIZACION
+		//1 - instanciar
+		//2 - setFichero
+		//3 - normalizar
+	}
 
+	public void setFichero(String pPath) {
+		fich = new LeerFicheroRatings(pPath);
+		lista = fich.leerFichero();
 	}
 	
-	public void leerFicheroTest() {
-		try
-		{
-			String path = System.getProperty("user.dir")+"/src/main/resources/testRatings.csv";
-			BufferedReader br = new BufferedReader(new FileReader(path));
-			String lectura=" ";
-			ArrayList<Tupla<Integer,Double>> aux = new ArrayList<Tupla<Integer,Double>>();
-			lectura = br.readLine();
-			String[] str = lectura.split(",");
-			int usuAct = Integer.parseInt(str[0]);
-			while(lectura!=null)
-			{
-				
-				if(Integer.parseInt(str[0])==usuAct)
-				{	
-					aux.add(new Tupla(Integer.parseInt(str[1]),Double.parseDouble(str[2])));
-					lectura = br.readLine();
-					if(lectura != null)
-						str = lectura.split(",");
-				}
-				else
-				{
-					lista.put(usuAct, aux);
-					aux = new ArrayList<Tupla<Integer,Double>>();
-					usuAct = Integer.parseInt(str[0]);
-				}
-				if(lectura == null)
-				{
-					lista.put(usuAct, aux);
-				}
-				
-			}
-		}
-		catch (Exception e)
-		{
-			System.out.println("Se ha producido un error");
-			e.printStackTrace();
-		}
-
-	}
-
 	public static ListaRatings getListaRatings()
 	{
 		if(mRatings==null)
@@ -115,8 +49,10 @@ public class ListaRatings implements LeerFichero {
 		return norm;
 	}
 
-	public void setNormalizar(NormalizarStrategy pNorm) {
+	public void normalizar(NormalizarStrategy pNorm) {
 		norm = pNorm;
+		norm.setLista(lista);
+		lista = norm.normalizar();
 	}
 	
 	public ArrayList<Tupla<Integer,Double>> getRatingsPorId(Integer pId) {

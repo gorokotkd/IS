@@ -22,7 +22,7 @@ public class FiltradoPersonas extends FiltradoStrategy {
 	public FiltradoPersonas(SimilitudStrategy pSim)
 	{
 		similitud = pSim;
-		this.normalizar();
+		//this.normalizar();
 		this.generarListaValoraciones();
 	}
 	
@@ -172,10 +172,11 @@ public class FiltradoPersonas extends FiltradoStrategy {
 		
 	}
 	
-	private void normalizar()
+	private void normalizar(NormalizarStrategy pNorm)
 	{
-		norm = new Media(ListaRatings.getListaRatings().obtenerLista());
-		matrizNormalizada = ((Media) norm).normalizar();
+		norm = pNorm;
+		//norm = new Media(ListaRatings.getListaRatings().obtenerLista());
+		//matrizNormalizada = ((Media) norm).normalizar();
 	}
 	
 	private static HashMap<Integer, Double> sortByValues(HashMap<Integer, Double> map) { 

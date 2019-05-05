@@ -14,7 +14,6 @@
 <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
 <fullyQualifiedTypeName name="java.sql.SQLException"/>
 <fullyQualifiedTypeName name="packProyecto.Peliculas"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.util.LinkedList"/>
 <fullyQualifiedTypeName name="com.sun.xml.internal.bind.v2.schemagen.xmlschema.List"/>
 <fullyQualifiedTypeName name="java.util.List"/>
@@ -25,8 +24,17 @@
 <fullyQualifiedTypeName name="packProyecto.BaseDatos"/>
 <fullyQualifiedTypeName name="java.util.Collections"/>
 <fullyQualifiedTypeName name="java.util.Collection"/>
-<fullyQualifiedTypeName name="packProyecto.FiltradoStrategy"/>
 <fullyQualifiedTypeName name="packProyecto.FiltradoContenido"/>
+<fullyQualifiedTypeName name="java.io.FileReader"/>
+<fullyQualifiedTypeName name="java.io.BufferedReader"/>
+<fullyQualifiedTypeName name="packProyecto.ListaValoracionesPorPeli"/>
+<fullyQualifiedTypeName name="packProyecto.FiltradoStrategy"/>
 <fullyQualifiedTypeName name="packProyecto.ProductosSimilitud"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="packProyecto.NormalizarStrategy"/>
+<fullyQualifiedTypeName name="packProyecto.ListaRatings"/>
+<fullyQualifiedTypeName name="packProyecto.LeerFicheroPeliculas"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="packProyecto.LeerFichero"/>
+<fullyQualifiedTypeName name="packProyecto.LeerFicheroRatings"/>
 </qualifiedTypeNameHistroy>

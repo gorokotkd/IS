@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-public class TagsPorPeli implements LeerFichero {
+public class TagsPorPeli extends LeerFichero {
 
 	private HashMap<Integer,ArrayList<Tupla<String, Integer>>> lista;
 	private static TagsPorPeli mTags;

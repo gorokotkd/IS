@@ -5,18 +5,19 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ListaValoracionesPorPeli implements LeerFichero {
+public class ListaValoracionesPorPeli extends LeerFichero {
 
 	private HashMap<Integer, ArrayList<Double>> lista; //pelicula + lista de valoraciones
 	
 	public ListaValoracionesPorPeli() {
+		lista = new HashMap<Integer, ArrayList<Double>>();
 		leerFichero();
 	}
 
 	public void leerFichero() {
 		try
 		{
-			String path = System.getProperty("user.dir")+"/movie-ratings.csv";
+			String path = System.getProperty("user.dir")+"/src/main/resources/movie-ratings.csv";
 			BufferedReader br = new BufferedReader(new FileReader(path));
 			String lectura=" ";
 			ArrayList<Double> aux = new ArrayList<Double>();
