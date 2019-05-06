@@ -14,9 +14,10 @@ import java.util.Map;
 
 public class FiltradoPersonas extends FiltradoStrategy {
 	
-	private NormalizarStrategy norm;
+//	private NormalizarStrategy norm;
 	private HashMap<Integer,ArrayList<Double>> valoraciones; //usuario + lista de valoraciones
-	private HashMap<Integer, ArrayList<Tupla<Integer,Double>>> matrizNormalizada;
+//	private HashMap<Integer, ArrayList<Tupla<Integer,Double>>> matrizNormalizada; //METER EN LISTA RATINGS
+	boolean normalizado; //PREGUNTAR
 
 
 	public FiltradoPersonas(SimilitudStrategy pSim)
@@ -26,21 +27,27 @@ public class FiltradoPersonas extends FiltradoStrategy {
 		this.generarListaValoraciones();
 	}
 	
-	public void recomendarNPeliculas(int pUsu) {
+	public void seHaNormalizado(boolean pBool)
+	{
+		normalizado=pBool;
+	}
+	
+	public HashMap<Integer,Double> recomendarNPeliculas(int pUsu) {
 		
 		HashMap<Integer,Double> list = peliculasIdoneasParaElUsuario(pUsu);
 		list=sortByValues(list);
-		int N = 5;
+		int N = 10;
 		int i = 0;
 		ArrayList<Integer> keys = new ArrayList<Integer>(list.keySet());
 		Iterator<Integer> itr = keys.iterator();
-		System.out.println("Las mejores peliculas para el usuario: " + pUsu+" son: \n");
+		HashMap<Integer,Double> listAux = new HashMap<Integer,Double>();
 		while(i<N && itr.hasNext())
 		{
 			int id = itr.next();
-			System.out.println(i+": IdPelicula: "+id+" Nota: "+list.get(id));
+			listAux.put(id, list.get(id));
 			i++;
 		}
+		return listAux;
 	}
 	
 	private HashMap<Integer,Double> peliculasIdoneasParaElUsuario(int idUsu)
@@ -69,8 +76,11 @@ public class FiltradoPersonas extends FiltradoStrategy {
 		HashMap<Integer,Double> similitudes = obtenerLasNMasSimiliares(usu, 30, peli);
 		double numerador = numeradorValoracion(peli, similitudes);
 		double denom = denomValoracion(similitudes);
-		return norm.desnormalizar(usu, numerador/denom);
-		//return numerador/denom;
+		
+		if(normalizado)
+			return ListaRatings.getListaRatings().desnormalizar(usu, numerador/denom);
+		else
+			return numerador/denom;
 	}
 	
 	private double numeradorValoracion(int peli, HashMap<Integer,Double> similitudes)
@@ -81,32 +91,11 @@ public class FiltradoPersonas extends FiltradoStrategy {
 		while(itr.hasNext())
 		{
 			int usuAct = itr.next();
-			sumatorio = sumatorio + (obtenerNota(usuAct, peli)*similitudes.get(usuAct));
+			sumatorio = sumatorio + (ListaRatings.getListaRatings().obtenerNota(usuAct, peli)*similitudes.get(usuAct));
 		}
 		return sumatorio;
 	}
 	
-	private double obtenerNota(int pIdUsu, int pIdPeli)
-	{
-		double nota = -1;
-		if (matrizNormalizada.get(pIdUsu)!=null && ListaPeliculas.getListaPeliculas().size()!=0) {
-			ArrayList<Tupla<Integer,Double>> listaAux = matrizNormalizada.get(pIdUsu);
-			Iterator<Tupla<Integer,Double>> itr = listaAux.iterator();
-			boolean salir = false;
-			
-			while(!salir && itr.hasNext())
-			{
-				Tupla<Integer,Double> tAux = itr.next();
-				if(tAux.getX()==pIdPeli)
-				{
-					nota=tAux.getY();
-					salir = true;
-				}
-			}
-		}
-		return nota;
-	
-	}
 	
 	private double denomValoracion(HashMap<Integer,Double> similitudes)
 	{
@@ -158,7 +147,7 @@ public class FiltradoPersonas extends FiltradoStrategy {
 		while(itr.hasNext())
 		{
 			int usuAct = itr.next();
-			ArrayList<Tupla<Integer,Double>> listaValoraciones = matrizNormalizada.get(usuAct);
+			ArrayList<Tupla<Integer,Double>> listaValoraciones = ListaRatings.getListaRatings().getRatingsPorId(usuAct);
 			if(listaValoraciones != null)
 			{
 				Iterator<Tupla<Integer,Double>> itr2 = listaValoraciones.iterator();
@@ -172,12 +161,6 @@ public class FiltradoPersonas extends FiltradoStrategy {
 		
 	}
 	
-	private void normalizar(NormalizarStrategy pNorm)
-	{
-		norm = pNorm;
-		//norm = new Media(ListaRatings.getListaRatings().obtenerLista());
-		//matrizNormalizada = ((Media) norm).normalizar();
-	}
 	
 	private static HashMap<Integer, Double> sortByValues(HashMap<Integer, Double> map) { 
 	       List list = new LinkedList(map.entrySet());

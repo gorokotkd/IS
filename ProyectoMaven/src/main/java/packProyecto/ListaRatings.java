@@ -12,12 +12,12 @@ public class ListaRatings {
 	private LeerFicheroRatings fich;
 	private static ListaRatings mRatings;
 	
+	
 	private ListaRatings()
 	{
 		try {
 			lista = new HashMap<Integer,ArrayList<Tupla<Integer,Double>>>();
 			valoraciones = new ListaValoracionesPorPeli();
-			System.out.println("asodnosaDJ");
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -53,6 +53,11 @@ public class ListaRatings {
 		norm = pNorm;
 		norm.setLista(lista);
 		lista = norm.normalizar();
+	}
+	
+	public double desnormalizar(int pUsu, double pValor)
+	{
+		return norm.desnormalizar(pUsu, pValor);
 	}
 	
 	public ArrayList<Tupla<Integer,Double>> getRatingsPorId(Integer pId) {

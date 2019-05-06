@@ -1,4 +1,4 @@
-package packProyecto;
+package packProyectoInterfaces;
 
 import java.util.HashMap;
 

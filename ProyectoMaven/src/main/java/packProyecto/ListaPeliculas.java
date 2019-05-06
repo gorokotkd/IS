@@ -163,4 +163,9 @@ public class ListaPeliculas {
 	       } 
 	       return sortedHashMap;
 	  }
+	
+	public String idPeliAString(int pId)
+	{
+		return lista.get(pId);
+	}
 }

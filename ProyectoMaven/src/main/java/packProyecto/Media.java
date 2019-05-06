@@ -9,7 +9,7 @@ public class Media extends NormalizarStrategy {
 	@Override
 	public HashMap<Integer, ArrayList<Tupla<Integer,Double>>> normalizar() {
 		
-		/*HashMap<Integer, ArrayList<Tupla<Integer, Double>>> matrizNormalizada = new HashMap<Integer, ArrayList<Tupla<Integer, Double>>>();
+	/*	HashMap<Integer, ArrayList<Tupla<Integer, Double>>> matrizNormalizada = new HashMap<Integer, ArrayList<Tupla<Integer, Double>>>();
 		ArrayList<Integer> listaUsus = ListaUsuarios.getListaUsuarios().todosLosUsus();
 		Iterator<Integer> itr = listaUsus.iterator();		
 		HashMap<Integer, ArrayList<Double>> valoraciones = generarListaValoraciones();
@@ -17,8 +17,6 @@ public class Media extends NormalizarStrategy {
 		while(itr.hasNext())
 		{
 			int usuAct = itr.next();
-			if(valoraciones.get(usuAct)==null)
-				System.out.println("jaja");
 			double mediaUsu = calcularMediaDeArray(valoraciones.get(usuAct));
 			listaMedias.put(usuAct, mediaUsu);
 			

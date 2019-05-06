@@ -25,6 +25,7 @@ public class FiltradoContenido extends FiltradoStrategy {
 		System.out.println(ListaTags.getListaTags().tamano());
 		modeladoPersona = new double[ListaUsuarios.getListaUsuarios().size()][ListaTags.getListaTags().tamano()];
 		super.similitud=sim;
+		inicializarFiltradoContenido();/**Inicializo lo necesario para el filtrado*/
 	}
 	
 	
@@ -83,30 +84,28 @@ public class FiltradoContenido extends FiltradoStrategy {
 	}
 	private double getIdoneidad(int idUsu, int idPeli)
 	{
-		
-		
 		ArrayList<Double> vectorPersona = getFilaPersona(idUsu);
 		ArrayList<Double> vectorPelicula = getFilaProducto(idPeli);
 		
 		return similitud.calcularSimilitud(vectorPersona, vectorPelicula);
 	}
 	
-	public void recomendarNPeliculas(int idUsu)
+	public HashMap<Integer,Double> recomendarNPeliculas(int idUsu)
 	{
-		inicializarFiltradoContenido();/**Inicializo lo necesario para el filtrado*/
 		HashMap<Integer,Double> list = peliculasIdoneasParaElUsuario(idUsu);
 		list=sortByValues(list);
 		int N = 10;
 		int i = 0;
 		ArrayList<Integer> keys = new ArrayList<Integer>(list.keySet());
 		Iterator<Integer> itr = keys.iterator();
-		System.out.println("Las mejores peliculas para el usuario: " + idUsu+" son: \n");
+		HashMap<Integer,Double> listAux = new HashMap<Integer,Double>();
 		while(i<N && itr.hasNext())
 		{
 			int id = itr.next();
-			System.out.println(i+": IdPelicula: "+id+" Idoneidad: "+list.get(id));
+			listAux.put(id, list.get(id));
 			i++;
 		}
+		return listAux;
 		
 	}
 	

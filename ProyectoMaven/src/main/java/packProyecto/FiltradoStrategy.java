@@ -1,5 +1,7 @@
 package packProyecto;
 
+import java.util.*;
+
 public abstract class FiltradoStrategy {
 
 	SimilitudStrategy similitud ;
@@ -12,5 +14,7 @@ public abstract class FiltradoStrategy {
 	public void setSimilitud(SimilitudStrategy similitud) {
 		this.similitud = similitud;
 	}
+	
+	public abstract HashMap<Integer,Double> recomendarNPeliculas(int idUsu);
 	
 }

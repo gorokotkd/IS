@@ -8,7 +8,6 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import packProyecto.ListaContraseas;
 import packProyecto.ListaUsuarios;
 
 import javax.swing.GroupLayout;

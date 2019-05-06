@@ -1,4 +1,5 @@
 package packProyecto;
+import java.util.*;
 
 public class Gestor {
 
@@ -18,18 +19,20 @@ public class Gestor {
 	}
 	
 	public void cargarGestor() {
-	/*	System.out.println("Lista Ratings");
-		ListaRatings.getListaRatings().setFichero("/src/main/resources/movie-ratings.csv");
-		System.out.println("Normalizando");
-		ListaRatings.getListaRatings().normalizar(new Media());
-		System.out.println("Lista Peliculas");
-		ListaPeliculas.getListaPeliculas().setFichero("/src/main/resources/movie-titles.csv");
-		System.out.println("Inicializando");
-		ListaPeliculas.getListaPeliculas().inicializar();
-		TagsPorPeli.getTagsPorPeli().setFichero("/src/main/resources/movie-tags.csv");*/
+		System.out.println("Lista Ratings");
 		ListaRatings.getListaRatings().setFichero("/src/main/resources/movie-ratings.csv");
 		ListaPeliculas.getListaPeliculas().setFichero("/src/main/resources/movie-titles.csv");
 		TagsPorPeli.getTagsPorPeli().setFichero("/src/main/resources/movie-tags.csv");
+		System.out.println("Normalizando");
+		ListaRatings.getListaRatings().normalizar(new Media());
+		System.out.println("Lista Peliculas");
+		
+		
+		
+		ListaPeliculas.getListaPeliculas().setFichero("/src/main/resources/movie-titles.csv");
+		System.out.println("Inicializando");
+		//ListaPeliculas.getListaPeliculas().inicializar();
+	//	TagsPorPeli.getTagsPorPeli().setFichero("/src/main/resources/movie-tags.csv");
 		
 	}
 	public FiltradoStrategy getFiltrado() {
@@ -48,23 +51,24 @@ public class Gestor {
 		filtrado = pFiltrado;
 	}
 	
-	public void recomendarPeliculasAlUsuario(int pUsu)
+	public HashMap<Integer,Double> recomendarPeliculasAlUsuario(int pUsu)
 	{
 		if(filtrado instanceof FiltradoPersonas)
 		{
-			((FiltradoPersonas) filtrado).recomendarNPeliculas(pUsu);
+			return ((FiltradoPersonas) filtrado).recomendarNPeliculas(pUsu);
 		}
 		else if(filtrado instanceof FiltradoProductos)
 		{
-			((FiltradoProductos) filtrado).recomendarNPeliculas(pUsu, 10);
+			return ((FiltradoProductos) filtrado).recomendarNPeliculas(pUsu);
 		}
 		else if(filtrado instanceof FiltradoContenido)
 		{
-			((FiltradoContenido) filtrado).recomendarNPeliculas(pUsu);
+			return ((FiltradoContenido) filtrado).recomendarNPeliculas(pUsu);
 		}
 		else
 		{
 			System.out.println("Al parecer hay algo mal en el tipo de filtrado elegido.");
+			return null;
 		}
 	}
 }
