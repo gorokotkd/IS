@@ -51,7 +51,7 @@ public class Gestor {
 		filtrado = pFiltrado;
 	}
 	
-	public HashMap<Integer,Double> recomendarPeliculasAlUsuario(int pUsu)
+	public HashMap<String,Double> recomendarPeliculasAlUsuario(int pUsu)
 	{
 		if(filtrado instanceof FiltradoPersonas)
 		{

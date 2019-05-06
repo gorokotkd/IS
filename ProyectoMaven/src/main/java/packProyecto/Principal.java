@@ -6,11 +6,11 @@ public class Principal {
 	public static void main(String[] args) {
 		//System.out.println(System.getProperty("user.dir"))
 		
-		Gestor.getGestor().cargarGestor();
-		Gestor.getGestor().setFiltrado(new FiltradoPersonas(new Cos()));
 		//Gestor.getGestor().cargarGestor();
+		Gestor.getGestor().setFiltrado(new FiltradoProductos(new Cos()));
+		Gestor.getGestor().cargarGestor();
 
-		HashMap<Integer,Double> a = Gestor.getGestor().recomendarPeliculasAlUsuario(2048);
+		HashMap<String,Double> a = Gestor.getGestor().recomendarPeliculasAlUsuario(2048);
 		System.out.println(a);
 	}
 

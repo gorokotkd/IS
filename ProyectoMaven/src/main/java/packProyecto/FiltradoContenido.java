@@ -90,10 +90,10 @@ public class FiltradoContenido extends FiltradoStrategy {
 		return similitud.calcularSimilitud(vectorPersona, vectorPelicula);
 	}
 	
-	public HashMap<Integer,Double> recomendarNPeliculas(int idUsu)
+	public HashMap<String, Double> recomendarNPeliculas(int idUsu)
 	{
 		HashMap<Integer,Double> list = peliculasIdoneasParaElUsuario(idUsu);
-		list=sortByValues(list);
+		list=super.sortByValues(list);
 		int N = 10;
 		int i = 0;
 		ArrayList<Integer> keys = new ArrayList<Integer>(list.keySet());
@@ -105,7 +105,11 @@ public class FiltradoContenido extends FiltradoStrategy {
 			listAux.put(id, list.get(id));
 			i++;
 		}
-		return listAux;
+		return null;
+		
+		/**
+		 * GORKKKAAAAAA CAMBIALO PUTO
+		 */
 		
 	}
 	
@@ -129,25 +133,7 @@ public class FiltradoContenido extends FiltradoStrategy {
 	
 	
 	
-	private static HashMap<Integer, Double> sortByValues(HashMap<Integer, Double> map) { 
-	       List list = new LinkedList(map.entrySet());
-	       // Defined Custom Comparator here
-	       Collections.sort(list, new Comparator() {
-	            public int compare(Object o1, Object o2) {
-	               return (-1)*((Comparable) ((Map.Entry) (o1)).getValue())
-	                  .compareTo(((Map.Entry) (o2)).getValue());
-	            }
-	       });
-
-	       // Here I am copying the sorted list in HashMap
-	       // using LinkedHashMap to preserve the insertion order
-	       HashMap sortedHashMap = new LinkedHashMap();
-	       for (Iterator it = list.iterator(); it.hasNext();) {
-	              Map.Entry entry = (Map.Entry) it.next();
-	              sortedHashMap.put(entry.getKey(), entry.getValue());
-	       } 
-	       return sortedHashMap;
-	  }
+	
 	
 	private double getTfidfDe(int pIdPeli, String pTag)
 	{

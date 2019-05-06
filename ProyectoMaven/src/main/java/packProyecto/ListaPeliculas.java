@@ -31,6 +31,14 @@ public class ListaPeliculas {
 		return mPelis;
 	}
 	
+	public ProductosSimilitud getProductosSimilitud() {
+		return productosSimilitud;
+	}
+	
+	public HashMap<Integer, String> getLista(){
+		return lista;
+	}
+	
 	public void setFichero(String pPath) {
 		fich = new LeerFicheroPeliculas(pPath);
 		lista = fich.leerFichero();
@@ -110,59 +118,7 @@ public class ListaPeliculas {
 		return hashAux;
 	}
 	
-	public Double calcularIdoneidad(int pUsuario, int pProducto) {		
-		Double rdo = calcularFormula(productosSimilitud.getSimilitudesPorId(pProducto), pUsuario, pProducto);
-		rdo = ListaRatings.getListaRatings().getNormalizar().desnormalizar(pUsuario, rdo);
-		
-		System.out.println("El resultado de la similitud entre el producto :" +pProducto+ " del usuario: "+pUsuario+" es de --> "+rdo);
-		return rdo;
-	}
 	
-	private Double calcularFormula(HashMap<Integer,Double> pSimilares, int pUsuario, int pProducto) {
-		if (pSimilares==null) {
-			return 0.0;
-		}else {
-			pSimilares = ordenar(pSimilares); 
-			Set<Map.Entry<Integer,Double>> mapaEntrada = pSimilares.entrySet();
-			Iterator<Map.Entry<Integer, Double>> itr = mapaEntrada.iterator();
-			Double nota = 0.0;
-			Double sumaNumerador = 0.0;
-			Double sumaDenominador = 0.0;
-			Double simil = 0.0;
-			int i = 0;
-			while(itr.hasNext() && i< 20) {
-				Map.Entry<Integer, Double> entrada = itr.next();
-				nota = ListaRatings.getListaRatings().obtenerNota(pUsuario, entrada.getKey());
-				if (nota<0) {
-					nota = 0.0;
-				}
-				simil = productosSimilitud.getSimilitud(pProducto, entrada.getKey());
-				sumaNumerador = sumaNumerador +(nota*simil);
-				sumaDenominador = sumaDenominador + simil;
-			}
-			return sumaNumerador/sumaDenominador;
-		}
-	}
-	
-	private HashMap<Integer, Double> ordenar(HashMap<Integer, Double> map) { 
-	       List list = new LinkedList(map.entrySet());
-	       // Defined Custom Comparator here
-	       Collections.sort(list, new Comparator() {
-	            public int compare(Object o1, Object o2) {
-	               return (-1)*((Comparable) ((Map.Entry) (o1)).getValue())
-	                  .compareTo(((Map.Entry) (o2)).getValue());
-	            }
-	       });
-
-	       // Here I am copying the sorted list in HashMap
-	       // using LinkedHashMap to preserve the insertion order
-	       HashMap sortedHashMap = new LinkedHashMap();
-	       for (Iterator it = list.iterator(); it.hasNext();) {
-	              Map.Entry entry = (Map.Entry) it.next();
-	              sortedHashMap.put(entry.getKey(), entry.getValue());
-	       } 
-	       return sortedHashMap;
-	  }
 	
 	public String idPeliAString(int pId)
 	{
