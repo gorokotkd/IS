@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import packProyecto.BaseDatos;
+import packProyecto.Gestor;
 import packProyecto.TagsPorPeli;
 import packProyecto.Tupla;
 
@@ -18,7 +19,7 @@ public class TagsPorPeliTesteo {
 	ArrayList<Tupla<String,Integer>> aux;
 	@Before
 	public void setUp() throws Exception {
-		BaseDatos.getBd().cargarBd();
+		Gestor.getGestor();
 		tags = new TagsPorPeli();
 		aux = new ArrayList<Tupla<String,Integer>>();
 	}
@@ -28,12 +29,7 @@ public class TagsPorPeliTesteo {
 		tags.eliminar();
 		aux.clear();
 	}
-	@Test
-	public void testLeerFichero() {
-		tags.leerFichero();
-		assertNotNull(tags.getTagsPorId(11));//comprobamos que se ha llenado el hashmap con  nuestros datos//
-		assertNotNull(tags.getTagsPorId(24));
-	}
+
 
 	@Test
 	public void testTagsDevolKeys() {
@@ -66,15 +62,7 @@ public class TagsPorPeliTesteo {
 		 assertTrue(tags.getTagsPorId(2)==aux);
 	}
 
-	@Test
-	public void testInicializarFiltradoContenido() {
-		fail("Not yet implemented");
-	}
 
-	@Test
-	public void testRecomendarNPeliculas() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	public void testEliminar() {

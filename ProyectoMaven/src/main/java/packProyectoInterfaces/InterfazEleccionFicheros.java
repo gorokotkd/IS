@@ -108,26 +108,26 @@ public class InterfazEleccionFicheros extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						if (rdbtnTest.isSelected()) {
-							ListaPeliculas.getListaPeliculas().leerFicheroTest();
+							ListaPeliculas.getListaPeliculas().setFichero("/src/main/resources/testMovies.csv");
 							System.out.println("he terminado con el 1º)");
 							System.out.println("25%");
 							ListaTags.getListaTags().leerFicheroTest();
 							System.out.println("50%");
-							ListaRatings.getListaRatings().leerFicheroTest();
+							ListaRatings.getListaRatings().setFichero("/src/main/resources/testRatings.csv");;
 							System.out.println("75%");
 							ListaUsuarios.getListaUsuarios().leerFicheroTest();
 							System.out.println("100%");
-							TagsPorPeli.getTagsPorPeli().leerFicheroTest();
+							TagsPorPeli.getTagsPorPeli().setFichero("/src/main/resources/testTags.csv");;
 							InterfazGrafica ac = new InterfazGrafica();
 							ac.setVisible(true);
 							dispose();
 						}
 						else if (rdbtnStandard.isSelected()) {
-							ListaPeliculas.getListaPeliculas().leerFichero();
+							ListaPeliculas.getListaPeliculas().setFichero("/src/main/resources/movie-titles.csv");;
 							ListaTags.getListaTags().leerFichero();
-							ListaRatings.getListaRatings().leerFichero();
+							ListaRatings.getListaRatings().setFichero("/src/main/resources/movie-ratings.csv");
 							ListaUsuarios.getListaUsuarios().leerFichero();
-							TagsPorPeli.getTagsPorPeli().leerFichero();
+							TagsPorPeli.getTagsPorPeli().setFichero("/src/main/resources/movie-tags.csv");
 							InterfazGrafica ac = new InterfazGrafica();
 							ac.setVisible(true);
 							dispose();

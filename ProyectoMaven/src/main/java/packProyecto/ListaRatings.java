@@ -104,9 +104,13 @@ public class ListaRatings {
 	
 	}
 
-	public HashMap<Integer, ArrayList<Tupla<Integer,Double>>> getLista()
+	/**
+	 * METODOS INTERFACES
+	 */
+	
+	public ArrayList<Integer> ratingsDevolKeys()
 	{
-		return lista;
+		return new ArrayList<Integer>(lista.keySet());
 	}
 }
 	

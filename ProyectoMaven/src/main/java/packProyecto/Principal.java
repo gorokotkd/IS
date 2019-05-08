@@ -9,7 +9,7 @@ public class Principal {
 		Gestor.getGestor().normalizarValoraciones();
 
 	
-		System.out.println(Gestor.getGestor().recomendarPeliculasAlUsuario(4045));
+		System.out.println(Gestor.getGestor().recomendarPeliculasAlUsuario(2048));
 	}
 
 }

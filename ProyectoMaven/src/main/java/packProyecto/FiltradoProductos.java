@@ -58,6 +58,7 @@ public class FiltradoProductos extends FiltradoStrategy {
 	public void seHaNormalizado(boolean norm)
 	{
 		normalizado = norm;
+		
 	}
 	
 	public Double calcularIdoneidad(int pUsuario, int pProducto) {		

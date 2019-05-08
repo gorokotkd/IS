@@ -87,7 +87,8 @@ public class ListaPeliculas {
 
 		while (itr.hasNext()) { // recorremos el HashMap de idPeli + NombrePelicula
 			Map.Entry<Integer, String> entrada = itr.next();
-			hashAux = getColeccionSimilitudes(entrada.getKey());
+			int aux = entrada.getKey();
+			hashAux = getColeccionSimilitudes(aux);
 			if (!hashAux.isEmpty()) {
 				productosSimilitud.anadir(entrada.getKey(), hashAux);
 			}
