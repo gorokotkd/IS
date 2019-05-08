@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
+import packProyecto.*;
+import packProyecto.FiltradoProductos;
 import packProyecto.Gestor;
 import packProyectoInterfaces.ListaContraseas;
 import packProyecto.ListaPeliculas;
@@ -20,6 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
@@ -118,9 +121,11 @@ public class InterfazRecomendacion extends JDialog {
 						}
 						else if (isNumeric(txtInsertaTuId.getText())) {
 							Integer id = Integer.parseInt(txtInsertaTuId.getText());
-							if (ListaUsuarios.getListaUsuarios().contains(id)) {
-								//Gestor.getGestor().elegirFiltrado();
-								//ArrayList<String> aux = Gestor.getGestor().recomendarPeliculasAlUsuario(id);
+							if (ListaUsuarios.getListaUsuarios().contains(id)) {						
+								Gestor.getGestor().setFiltrado(new FiltradoContenido(new Cos()));
+								HashMap<String,Double> aux =  Gestor.getGestor().recomendarPeliculasAlUsuario(id);
+								Vector<String> lista = new Vector<String>(aux.keySet());								
+								list.setListData(lista);
 							}
 							else {
 								txtInsertaTuId.setText("No hemos hallado este usuario");

@@ -12,9 +12,9 @@ public class Gestor {
 		 * ESTAS LLAMADAS SE HARAN DESDE LA INTERFAZ YA QUE DEBO PASAR COMO PARAMETROS LOS 
 		 * FICHEROS QUE QUIERO LEER, QUE PUEDEN SER LOS TEST O LOS NORMALES.
 		 */
-		ListaRatings.getListaRatings().setFichero("/src/main/resources/movie-ratings.csv");
-		ListaPeliculas.getListaPeliculas().setFichero("/src/main/resources/movie-titles.csv");
-		TagsPorPeli.getTagsPorPeli().setFichero("/src/main/resources/movie-tags.csv");
+		//ListaRatings.getListaRatings().setFichero("/src/main/resources/movie-ratings.csv");
+		//ListaPeliculas.getListaPeliculas().setFichero("/src/main/resources/movie-titles.csv");
+		//TagsPorPeli.getTagsPorPeli().setFichero("/src/main/resources/movie-tags.csv");
 	}
 	
 	public static Gestor getGestor()
