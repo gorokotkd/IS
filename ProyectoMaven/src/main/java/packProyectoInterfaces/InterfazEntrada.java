@@ -8,6 +8,9 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import packProyecto.Cos;
+import packProyecto.FiltradoContenido;
+import packProyecto.Gestor;
 import packProyecto.ListaPeliculas;
 import packProyecto.ListaRatings;
 import packProyecto.ListaTags;
@@ -40,6 +43,7 @@ public class InterfazEntrada extends JDialog {
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 			ListaContraseas.getListaContraseas();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -123,6 +127,7 @@ public class InterfazEntrada extends JDialog {
 								 ListaRatings.getListaRatings().setFichero("/src/main/resources/movie-ratings.csv");
 								 ListaUsuarios.getListaUsuarios().leerFichero();
 								 TagsPorPeli.getTagsPorPeli().setFichero("/src/main/resources/movie-tags.csv");
+								 Gestor.getGestor().setFiltrado(new FiltradoContenido(new Cos()));
 								 iu.setVisible(true);
 								 dispose();
 								 

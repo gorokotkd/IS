@@ -122,7 +122,7 @@ public class InterfazRecomendacion extends JDialog {
 						else if (isNumeric(txtInsertaTuId.getText())) {
 							Integer id = Integer.parseInt(txtInsertaTuId.getText());
 							if (ListaUsuarios.getListaUsuarios().contains(id)) {						
-								Gestor.getGestor().setFiltrado(new FiltradoContenido(new Cos()));
+								
 								HashMap<String,Double> aux =  Gestor.getGestor().recomendarPeliculasAlUsuario(id);
 								Vector<String> lista = new Vector<String>(aux.keySet());								
 								list.setListData(lista);
