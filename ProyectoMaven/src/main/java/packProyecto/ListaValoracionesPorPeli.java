@@ -40,7 +40,6 @@ public class ListaValoracionesPorPeli {
 			System.out.println("Se ha producido un error");
 			e.printStackTrace();
 		}
-		
 	}
 	
 	public synchronized void anadirALista(int pKey, Double pPuntuacion) {

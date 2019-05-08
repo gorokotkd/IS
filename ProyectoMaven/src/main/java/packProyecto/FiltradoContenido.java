@@ -21,8 +21,6 @@ public class FiltradoContenido extends FiltradoStrategy {
 	public FiltradoContenido(SimilitudStrategy sim)
 	{
 		modeloProductos = new double[ListaPeliculas.getListaPeliculas().getIdMayor()+1][ListaTags.getListaTags().tamano()];
-		System.out.println(ListaPeliculas.getListaPeliculas().getIdMayor()+1);
-		System.out.println(ListaTags.getListaTags().tamano());
 		modeladoPersona = new double[ListaUsuarios.getListaUsuarios().size()][ListaTags.getListaTags().tamano()];
 		super.similitud=sim;
 		inicializarFiltradoContenido();/**Inicializo lo necesario para el filtrado*/
@@ -90,7 +88,8 @@ public class FiltradoContenido extends FiltradoStrategy {
 		return similitud.calcularSimilitud(vectorPersona, vectorPelicula);
 	}
 	
-	public HashMap<String, Double> recomendarNPeliculas(int idUsu)
+	public HashMap<String,Double> recomendarNPeliculas(int idUsu)
+
 	{
 		HashMap<Integer,Double> list = peliculasIdoneasParaElUsuario(idUsu);
 		list=super.sortByValues(list);
@@ -98,18 +97,14 @@ public class FiltradoContenido extends FiltradoStrategy {
 		int i = 0;
 		ArrayList<Integer> keys = new ArrayList<Integer>(list.keySet());
 		Iterator<Integer> itr = keys.iterator();
-		HashMap<Integer,Double> listAux = new HashMap<Integer,Double>();
+		HashMap<String,Double> listAux = new HashMap<String,Double>();
 		while(i<N && itr.hasNext())
 		{
 			int id = itr.next();
-			listAux.put(id, list.get(id));
+			listAux.put(ListaPeliculas.getListaPeliculas().idPeliAString(id), list.get(id));
 			i++;
 		}
-		return null;
-		
-		/**
-		 * GORKKKAAAAAA CAMBIALO PUTO
-		 */
+		return listAux;
 		
 	}
 	

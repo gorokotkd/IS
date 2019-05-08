@@ -17,7 +17,7 @@ public class FiltradoPersonas extends FiltradoStrategy {
 //	private NormalizarStrategy norm;
 	private HashMap<Integer,ArrayList<Double>> valoraciones; //usuario + lista de valoraciones
 //	private HashMap<Integer, ArrayList<Tupla<Integer,Double>>> matrizNormalizada; //METER EN LISTA RATINGS
-	boolean normalizado; //PREGUNTAR
+	private boolean normalizado; //PREGUNTAR
 
 
 	public FiltradoPersonas(SimilitudStrategy pSim)
@@ -40,18 +40,14 @@ public class FiltradoPersonas extends FiltradoStrategy {
 		int i = 0;
 		ArrayList<Integer> keys = new ArrayList<Integer>(list.keySet());
 		Iterator<Integer> itr = keys.iterator();
-		HashMap<Integer,Double> listAux = new HashMap<Integer,Double>();
+		HashMap<String,Double> listAux = new HashMap<String,Double>();
 		while(i<N && itr.hasNext())
 		{
 			int id = itr.next();
-			listAux.put(id, list.get(id));
+			listAux.put(ListaPeliculas.getListaPeliculas().idPeliAString(id), list.get(id));
 			i++;
 		}
-		return null;
-		
-		/**
-		 * GORKAAAAAA CAMBIAAALO PUTOOO
-		 */
+		return listAux;
 	}
 	
 	private HashMap<Integer,Double> peliculasIdoneasParaElUsuario(int idUsu)

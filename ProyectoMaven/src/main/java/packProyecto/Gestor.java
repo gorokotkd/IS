@@ -8,7 +8,13 @@ public class Gestor {
 	
 	private Gestor()
 	{
-		
+		/**
+		 * ESTAS LLAMADAS SE HARAN DESDE LA INTERFAZ YA QUE DEBO PASAR COMO PARAMETROS LOS 
+		 * FICHEROS QUE QUIERO LEER, QUE PUEDEN SER LOS TEST O LOS NORMALES.
+		 */
+		ListaRatings.getListaRatings().setFichero("/src/main/resources/movie-ratings.csv");
+		ListaPeliculas.getListaPeliculas().setFichero("/src/main/resources/movie-titles.csv");
+		TagsPorPeli.getTagsPorPeli().setFichero("/src/main/resources/movie-tags.csv");
 	}
 	
 	public static Gestor getGestor()
@@ -18,22 +24,18 @@ public class Gestor {
 		return mGestor;
 	}
 	
-	public void cargarGestor() {
-		System.out.println("Lista Ratings");
-		ListaRatings.getListaRatings().setFichero("/src/main/resources/movie-ratings.csv");
-		ListaPeliculas.getListaPeliculas().setFichero("/src/main/resources/movie-titles.csv");
-		TagsPorPeli.getTagsPorPeli().setFichero("/src/main/resources/movie-tags.csv");
-		System.out.println("Normalizando");
+	public void normalizarValoraciones()
+	{
+		/**
+		 * ESTE METODO SE INICIALIZARA TMBN EN LA INTERFAZ, YA QUE PUEDO ELEGIR ENTRE NORMALIZAR O NO, Y
+		 * SI NORMALIZAMOS PODEMOS ELEGIR ENTRE USAR Z-SCORE O MEDIA.
+		 */
 		ListaRatings.getListaRatings().normalizar(new Media());
-		System.out.println("Lista Peliculas");
 		
-		
-		
-		ListaPeliculas.getListaPeliculas().setFichero("/src/main/resources/movie-titles.csv");
-		System.out.println("Inicializando");
-		//ListaPeliculas.getListaPeliculas().inicializar();
-	//	TagsPorPeli.getTagsPorPeli().setFichero("/src/main/resources/movie-tags.csv");
-		
+		/**
+		 * SI NORMALIZO TENGO QUE PONER ESE BOOLEANO A TRUE SINO LO DEJO EN FALSE.
+		 */
+		((FiltradoProductos) filtrado).seHaNormalizado(true);
 	}
 	public FiltradoStrategy getFiltrado() {
 		return filtrado;
@@ -41,13 +43,6 @@ public class Gestor {
 	
 	public void setFiltrado(FiltradoStrategy pFiltrado)
 	{
-		/**Aqui se podria elegir el filtrado que se desee e inicializar todo el filtrado,
-		 * es decir, todos los modelos de persona, producto, similitudes etc.
-		 */
-		
-		/*filtrado = new FiltradoContenido();
-		((FiltradoContenido) filtrado).setSimilitud(new Cos());*/
-		//filtrado = new FiltradoPersonas(new Cos());
 		filtrado = pFiltrado;
 	}
 	

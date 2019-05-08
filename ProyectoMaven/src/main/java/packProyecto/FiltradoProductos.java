@@ -3,18 +3,20 @@ package packProyecto;
 import java.util.*;
 
 public class FiltradoProductos extends FiltradoStrategy {
+	
+	private boolean normalizado;
 
 	
 	public FiltradoProductos(SimilitudStrategy pSimil) {
 		// TODO Auto-generated constructor stub
 		this.similitud = pSimil;
+		ListaPeliculas.getListaPeliculas().inicializar();
 	}
 	
 	
 	public Double recomendarPelicula(int pUsu, int pProducto) {
 		
 		Double rdo = calcularIdoneidad(pUsu, pProducto);
-	//	System.out.println("El resultado obtenido: "+rdo);
 		
 		return rdo;
 	}
@@ -23,10 +25,6 @@ public class FiltradoProductos extends FiltradoStrategy {
 	@Override
 	public HashMap<String, Double> recomendarNPeliculas(int idUsu) {
 		
-		/**
-		 * HACER UN BUCLE QUE CALCULE LA IDONEIDAD CON TODAS LAS PELICULAS Y LUEGO DE TODAS ESAS OBTENER 10.
-		 * 
-		 */
 		HashMap<String, Double> rdo = new HashMap<String, Double>();
 		HashMap<Integer, Double> aux = peliculasIdoneasParaElUsuario(idUsu);
 		super.sortByValues(aux);
@@ -57,12 +55,17 @@ public class FiltradoProductos extends FiltradoStrategy {
 		return aux;
 	}
 	
+	public void seHaNormalizado(boolean norm)
+	{
+		normalizado = norm;
+	}
+	
 	public Double calcularIdoneidad(int pUsuario, int pProducto) {		
 		Double rdo = calcularFormula(ListaPeliculas.getListaPeliculas().getProductosSimilitud().getSimilitudesPorId(pProducto), pUsuario, pProducto);
-		rdo = ListaRatings.getListaRatings().getNormalizar().desnormalizar(pUsuario, rdo);
-		
-		//System.out.println("El resultado de la similitud entre el producto :" +pProducto+ " del usuario: "+pUsuario+" es de --> "+rdo);
-		return rdo;
+		if(normalizado)
+			return ListaRatings.getListaRatings().getNormalizar().desnormalizar(pUsuario, rdo);
+		else
+			return rdo;
 	}
 	
 	private Double calcularFormula(HashMap<Integer,Double> pSimilares, int pUsuario, int pProducto) {

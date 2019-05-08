@@ -15,14 +15,9 @@ public class ListaRatings {
 	
 	private ListaRatings()
 	{
-		try {
-			lista = new HashMap<Integer,ArrayList<Tupla<Integer,Double>>>();
-			valoraciones = new ListaValoracionesPorPeli();
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		
+		lista = new HashMap<Integer,ArrayList<Tupla<Integer,Double>>>();
+		valoraciones = new ListaValoracionesPorPeli();
+
 		//PASOS PARA INICIALIZACION
 		//1 - instanciar
 		//2 - setFichero
