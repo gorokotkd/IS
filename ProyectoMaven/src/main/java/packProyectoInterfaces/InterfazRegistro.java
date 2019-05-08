@@ -143,6 +143,7 @@ public class InterfazRegistro extends JDialog {
 								if (inv.equals("777")) {
 									lblAreaDeRegistro.setText("REGITRADO CORRECTAMENTE");
 									ListaContraseas.getListaContraseas().insertarNuevo(usuario, pass);
+									ListaUsuarioPass.getListaUsuarioPass().insertarNuevo(usuario);
 								}
 								else {
 									lblAreaDeRegistro.setText("Invitacion Incorrecta");

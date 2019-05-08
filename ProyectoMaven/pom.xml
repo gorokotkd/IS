@@ -10,5 +10,18 @@
   		<version>4.12</version>
   		<scope>test</scope>
   	</dependency>
+  	<dependency>
+  		<groupId>org.swinglabs.swingx</groupId>
+  		<artifactId>swingx-all</artifactId>
+  	</dependency>
   </dependencies>
+  <dependencyManagement>
+  	<dependencies>
+  		<dependency>
+  			<groupId>org.swinglabs.swingx</groupId>
+  			<artifactId>swingx-all</artifactId>
+  			<version>1.6.4</version>
+  		</dependency>
+  	</dependencies>
+  </dependencyManagement>
 </project>

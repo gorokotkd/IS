@@ -53,4 +53,8 @@ public class ListaValoracionesPorPeli {
 	public ArrayList<Double> getValoracionesPorId(int pId){
 		return lista.get(pId);
 	}
+	
+	public void clear() {
+		lista.clear();
+	}
 }

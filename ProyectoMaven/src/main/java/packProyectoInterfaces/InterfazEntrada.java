@@ -8,7 +8,11 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import packProyecto.ListaPeliculas;
+import packProyecto.ListaRatings;
+import packProyecto.ListaTags;
 import packProyecto.ListaUsuarios;
+import packProyecto.TagsPorPeli;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -113,6 +117,15 @@ public class InterfazEntrada extends JDialog {
 							 if (ListaContraseas.getListaContraseas().getValue(idUsuario).equals(passUsuario)) {
 								 //abrir interfaz principal
 								 lblBienvenidoAFocaflix.setText("Estas Dentro");
+								 InterfazUsuario iu = new InterfazUsuario();
+								 ListaPeliculas.getListaPeliculas().setFichero("/src/main/resources/movie-titles.csv");
+								 ListaTags.getListaTags().leerFichero();
+								 ListaRatings.getListaRatings().setFichero("/src/main/resources/movie-ratings.csv");
+								 ListaUsuarios.getListaUsuarios().leerFichero();
+								 TagsPorPeli.getTagsPorPeli().setFichero("/src/main/resources/movie-tags.csv");
+								 iu.setVisible(true);
+								 dispose();
+								 
 							 }
 							 else {
 								 lblBienvenidoAFocaflix.setText("Contraseña Incorrecta");

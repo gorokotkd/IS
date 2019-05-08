@@ -112,5 +112,10 @@ public class ListaRatings {
 	{
 		return new ArrayList<Integer>(lista.keySet());
 	}
+	
+	public void anadir(int pUsu,int pPeli, double pnota) {
+		ArrayList aux = lista.get(pUsu);
+		aux.add(new Tupla(pPeli, pnota));
+	}
 }
 	

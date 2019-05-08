@@ -123,7 +123,7 @@ public class InterfazEleccionFicheros extends JDialog {
 							dispose();
 						}
 						else if (rdbtnStandard.isSelected()) {
-							ListaPeliculas.getListaPeliculas().setFichero("/src/main/resources/movie-titles.csv");;
+							ListaPeliculas.getListaPeliculas().setFichero("/src/main/resources/movie-titles.csv");
 							ListaTags.getListaTags().leerFichero();
 							ListaRatings.getListaRatings().setFichero("/src/main/resources/movie-ratings.csv");
 							ListaUsuarios.getListaUsuarios().leerFichero();

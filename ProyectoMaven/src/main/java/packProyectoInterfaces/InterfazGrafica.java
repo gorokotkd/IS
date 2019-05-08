@@ -92,6 +92,8 @@ public class InterfazGrafica extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource().equals(cancelButton))
 				{
+					InterfazEntrada ie = new InterfazEntrada();
+					ie.setVisible(true);
 					dispose();
 				}
 			}
