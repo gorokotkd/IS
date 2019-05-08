@@ -120,7 +120,7 @@ public class InterfazRecomendacion extends JDialog {
 							Integer id = Integer.parseInt(txtInsertaTuId.getText());
 							if (ListaUsuarios.getListaUsuarios().contains(id)) {
 								Gestor.getGestor().elegirFiltrado();
-								ArrayList<String> aux = Gestor.getGestor().recomendarPeliculasAlUsuario(id);
+								//ArrayList<String> aux = Gestor.getGestor().recomendarPeliculasAlUsuario(id);
 							}
 							else {
 								txtInsertaTuId.setText("No hemos hallado este usuario");
