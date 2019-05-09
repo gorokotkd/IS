@@ -41,7 +41,7 @@ public class FiltradoProductos extends FiltradoStrategy {
 		
 	}
 	
-	private HashMap<Integer,Double> peliculasIdoneasParaElUsuario(int idUsu){
+	protected HashMap<Integer,Double> peliculasIdoneasParaElUsuario(int idUsu){
 		
 		HashMap<Integer,Double> aux = new HashMap<Integer, Double>();
 		HashMap<Integer, String> listaPeliculas = ListaPeliculas.getListaPeliculas().getLista();

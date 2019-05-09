@@ -15,6 +15,8 @@ public abstract class FiltradoStrategy {
 		this.similitud = similitud;
 	}
 	
+	protected abstract HashMap<Integer,Double> peliculasIdoneasParaElUsuario(int pIdUsu);
+	
 	public abstract HashMap<String,Double> recomendarNPeliculas(int idUsu);
 	
 	public HashMap<Integer, Double> sortByValues(HashMap<Integer, Double> map) { 
@@ -36,5 +38,20 @@ public abstract class FiltradoStrategy {
 	       } 
 	       return sortedHashMap;
 	  }
+	
+	public  HashMap<Integer,Double>  soloLasNPrimeras(int N, HashMap<Integer,Double> list)
+	{
+		HashMap<Integer,Double> aux = new HashMap<Integer,Double> ();
+		ArrayList<Integer> keys = new ArrayList<Integer>(list.keySet());
+		Iterator<Integer> itr = keys.iterator();
+		int i = 0;
+		while(i<N&&itr.hasNext())
+		{
+			int j = itr.next();
+			aux.put(j,list.get(j));
+			i++;
+		}
+		return aux;
+	}
 	
 }

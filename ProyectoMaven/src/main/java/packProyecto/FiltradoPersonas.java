@@ -50,7 +50,7 @@ public class FiltradoPersonas extends FiltradoStrategy {
 		return listAux;
 	}
 	
-	private HashMap<Integer,Double> peliculasIdoneasParaElUsuario(int idUsu)
+	protected HashMap<Integer,Double> peliculasIdoneasParaElUsuario(int idUsu)
 	{
 		int i = 0;
 		HashMap<Integer,Double> list = new HashMap<Integer,Double>();
@@ -159,23 +159,6 @@ public class FiltradoPersonas extends FiltradoStrategy {
 		
 		}
 		
-	}
-	
-
-	
-	private HashMap<Integer,Double>  soloLasNPrimeras(int N, HashMap<Integer,Double> list)
-	{
-		HashMap<Integer,Double> aux = new HashMap<Integer,Double> ();
-		ArrayList<Integer> keys = new ArrayList<Integer>(list.keySet());
-		Iterator<Integer> itr = keys.iterator();
-		int i = 0;
-		while(i<N&&itr.hasNext())
-		{
-			int j = itr.next();
-			aux.put(j,list.get(j));
-			i++;
-		}
-		return aux;
 	}
 
 
