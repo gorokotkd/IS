@@ -122,11 +122,10 @@ public class InterfazEntrada extends JDialog {
 								 //abrir interfaz principal
 								 lblBienvenidoAFocaflix.setText("Estas Dentro");
 								 InterfazUsuario iu = new InterfazUsuario();
-								 ListaPeliculas.getListaPeliculas().setFichero("/src/main/resources/movie-titles.csv");
-								 ListaTags.getListaTags().leerFichero();
-								 ListaRatings.getListaRatings().setFichero("/src/main/resources/movie-ratings.csv");
-								 ListaUsuarios.getListaUsuarios().leerFichero();
-								 TagsPorPeli.getTagsPorPeli().setFichero("/src/main/resources/movie-tags.csv");
+								 ListaPeliculas.getListaPeliculas().leerFichero("/src/main/resources/movie-titles.csv");
+
+								 ListaRatings.getListaRatings().leerFichero("/src/main/resources/movie-ratings.csv");
+								 TagsPorPeli.getTagsPorPeli().leerFichero("/src/main/resources/movie-tags.csv");
 								 Gestor.getGestor().setFiltrado(new FiltradoContenido(new Cos()));
 								 iu.setVisible(true);
 								 dispose();

@@ -167,7 +167,7 @@ public class InterfazRecomendacion extends JDialog {
 	private JList getList() {
 		if (list == null) {
 			Vector<ListItem> items = new Vector<ListItem>();
-			ListaPeliculas.getListaPeliculas().setFichero("/src/main/resources/movie-titles.csv");
+			ListaPeliculas.getListaPeliculas().leerFichero("/src/main/resources/movie-titles.csv");
 			for (Map.Entry<Integer,String> entry: ListaPeliculas.getListaPeliculas().entrySet()) {
 				items.add(new ListItem(entry.getKey(), entry.getValue()));
 			}

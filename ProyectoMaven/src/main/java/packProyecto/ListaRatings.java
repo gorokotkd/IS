@@ -4,12 +4,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.*;
 
-public class ListaRatings {
+public class ListaRatings implements LeerFichero{
 
 	private HashMap<Integer, ArrayList<Tupla<Integer,Double>>> lista; //usuario + lista(peliculas+nota)
 	private ListaValoracionesPorPeli valoraciones;
 	private NormalizarStrategy norm;
-	private LeerFicheroRatings fich;
 	private static ListaRatings mRatings;
 	
 	
@@ -17,16 +16,59 @@ public class ListaRatings {
 	{
 		lista = new HashMap<Integer,ArrayList<Tupla<Integer,Double>>>();
 		valoraciones = new ListaValoracionesPorPeli();
-
+		
 		//PASOS PARA INICIALIZACION
 		//1 - instanciar
 		//2 - setFichero
-		//3 - normalizar  (AQUI TE LE HAS JUGADO)
+		//3 - normalizar 
 	}
 
-	public void setFichero(String pPath) {
-		fich = new LeerFicheroRatings(pPath);
-		lista = fich.leerFichero();
+	public void leerFichero(String pPath) {
+		lista = new HashMap<Integer, ArrayList<Tupla<Integer,Double>>>();
+		try
+		{
+			String path = System.getProperty("user.dir")+pPath;
+			BufferedReader br = new BufferedReader(new FileReader(path));
+			String lectura=" ";
+			ArrayList<Tupla<Integer,Double>> aux = new ArrayList<Tupla<Integer,Double>>();
+			lectura = br.readLine();
+			String[] str = lectura.split(",");
+			int usuAct = Integer.parseInt(str[0]);
+			while(lectura!=null)
+			{
+				
+				if(Integer.parseInt(str[0])==usuAct)
+				{	
+					aux.add(new Tupla(Integer.parseInt(str[1]),Double.parseDouble(str[2])));
+					lectura = br.readLine();
+					if(lectura != null)
+						str = lectura.split(",");
+				}
+				else
+				{
+					lista.put(usuAct, aux);
+					aux = new ArrayList<Tupla<Integer,Double>>();
+					usuAct = Integer.parseInt(str[0]);
+				}
+				
+				if(lectura == null){
+					lista.put(usuAct, aux);
+				}
+				
+			}
+			
+			/**
+			 * Leo aqui la lista de usuarios y de valoraciones para poder pasarles el path del fichero a leer
+			 * que pude ser el de pruebas o el normal.
+			 */
+			ListaUsuarios.getListaUsuarios().leerFichero(pPath);
+			valoraciones.leerFichero(pPath);
+		}
+		catch (Exception e)
+		{
+			System.out.println("Se ha producido un error al leer el fichero de ratings");
+			e.printStackTrace();
+		}
 	}
 	
 	public static ListaRatings getListaRatings()

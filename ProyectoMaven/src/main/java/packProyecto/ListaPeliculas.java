@@ -5,11 +5,10 @@ import java.io.FileReader;
 import java.util.*;
 import java.util.Map.Entry;
 
-public class ListaPeliculas {
+public class ListaPeliculas implements LeerFichero{
 	
 	private HashMap<Integer,String> lista; //idPeli + NombrePelicula
 	private ProductosSimilitud productosSimilitud;
-	private LeerFicheroPeliculas fich;
 	private int idMayor;
 	private static ListaPeliculas mPelis;
 	
@@ -39,10 +38,28 @@ public class ListaPeliculas {
 		return lista;
 	}
 	
-	public void setFichero(String pPath) {
-		fich = new LeerFicheroPeliculas(pPath);
-		lista = fich.leerFichero();
-		cualEsLaIdMayor();
+	public void leerFichero(String pPath) {
+		lista = new HashMap<Integer, String>();
+			try
+			{
+				String path = System.getProperty("user.dir")+pPath;
+				FileReader fr = new FileReader(path);
+				BufferedReader br = new BufferedReader(fr);
+				String lectura = br.readLine();
+				while(lectura!=null)
+				{	
+					String[] str = lectura.split(";");
+					String sr = str[1];
+					int key = Integer.parseInt(str[0]);
+					lista.put(key, sr);
+					lectura=br.readLine();
+				}
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			cualEsLaIdMayor();
 	}
 
 	private Iterator<Map.Entry<Integer, String>> getIterator(){

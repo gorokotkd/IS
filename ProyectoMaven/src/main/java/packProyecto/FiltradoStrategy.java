@@ -15,7 +15,7 @@ public abstract class FiltradoStrategy {
 		this.similitud = similitud;
 	}
 	
-	protected abstract HashMap<Integer,Double> peliculasIdoneasParaElUsuario(int pIdUsu);
+	public abstract HashMap<Integer,Double> peliculasIdoneasParaElUsuario(int pIdUsu);
 	
 	public abstract HashMap<String,Double> recomendarNPeliculas(int idUsu);
 	

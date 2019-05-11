@@ -1,12 +1,8 @@
 package packProyecto;
 
-public abstract class LeerFichero {
+public interface LeerFichero {
 
-	String path;
 	
-	public LeerFichero(String pPath)
-	{
-		this.path = pPath;
-	}
+	public void leerFichero(String pPath);
 
 }

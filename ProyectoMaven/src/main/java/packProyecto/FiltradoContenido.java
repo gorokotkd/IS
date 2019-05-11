@@ -109,7 +109,7 @@ public class FiltradoContenido extends FiltradoStrategy {
 	}
 	
 	
-	protected HashMap<Integer,Double> peliculasIdoneasParaElUsuario(int idUsu)
+	public HashMap<Integer,Double> peliculasIdoneasParaElUsuario(int idUsu)
 	{
 		int i = 0;
 		HashMap<Integer,Double> list = new HashMap<Integer,Double>();

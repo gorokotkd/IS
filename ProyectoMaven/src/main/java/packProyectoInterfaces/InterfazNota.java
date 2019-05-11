@@ -201,7 +201,7 @@ public class InterfazNota extends JDialog {
 	private void getBox() {
 
 			Vector<ListItems> items = new Vector<ListItems>();
-			ListaPeliculas.getListaPeliculas().setFichero("/src/main/resources/movie-titles.csv");
+			ListaPeliculas.getListaPeliculas().leerFichero("/src/main/resources/movie-titles.csv");
 			for (Map.Entry<Integer,String> entry: ListaPeliculas.getListaPeliculas().entrySet()) {
 				items.add(new ListItems(entry.getKey(), entry.getValue()));
 			}
