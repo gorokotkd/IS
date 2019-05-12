@@ -121,6 +121,13 @@ public class InterfazUsuario extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			
 			JButton btnAreaDeOpciones = new JButton("AREA DE OPCIONES");
+			btnAreaDeOpciones.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					InterfazConfig ic = new InterfazConfig();
+					ic.setVisible(true);
+					dispose();
+				}
+			});
 			btnAreaDeOpciones.setFont(new Font("Unispace", Font.PLAIN, 11));
 			buttonPane.add(btnAreaDeOpciones);
 			{

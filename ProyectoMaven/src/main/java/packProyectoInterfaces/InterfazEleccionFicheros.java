@@ -134,8 +134,8 @@ public class InterfazEleccionFicheros extends JDialog {
 							dispose();
 						}
 						else {
-							lblPorFavorSelecciones.setText("ELIGE UNA DE LAS DOS O");
-							lblStandardOIzquierda.setText("TE ARRANCO LA CABEZA PAYASO"); 
+							lblPorFavorSelecciones.setText("ELIGE UNA DE LAS DOS");
+
 						}
 						
 					}

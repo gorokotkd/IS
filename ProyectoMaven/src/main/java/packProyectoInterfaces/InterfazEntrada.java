@@ -19,6 +19,7 @@ import packProyecto.TagsPorPeli;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -69,24 +70,31 @@ public class InterfazEntrada extends JDialog {
 		final JLabel lblBienvenidoAFocaflix = new JLabel("FOCAFLIX ");
 		lblBienvenidoAFocaflix.setFont(new Font("Unispace", Font.PLAIN, 16));
 		lblBienvenidoAFocaflix.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		final JLabel lblImage = new JLabel("");
 		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
 		gl_contentPanel.setHorizontalGroup(
-			gl_contentPanel.createParallelGroup(Alignment.LEADING)
+			gl_contentPanel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPanel.createSequentialGroup()
-					.addGap(153)
-					.addComponent(txtUsuario, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
-					.addGap(29)
-					.addComponent(pwdContrasea)
-					.addContainerGap())
-				.addGroup(Alignment.TRAILING, gl_contentPanel.createSequentialGroup()
-					.addContainerGap(24, Short.MAX_VALUE)
-					.addComponent(lblBienvenidoAFocaflix, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(71, Short.MAX_VALUE)
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addComponent(txtUsuario, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
+							.addGap(29)
+							.addComponent(pwdContrasea, 116, 116, 116)
+							.addContainerGap())
+						.addComponent(lblBienvenidoAFocaflix, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE)
+						.addGroup(Alignment.TRAILING, gl_contentPanel.createSequentialGroup()
+							.addComponent(lblImage, GroupLayout.PREFERRED_SIZE, 308, GroupLayout.PREFERRED_SIZE)
+							.addGap(45))))
 		);
 		gl_contentPanel.setVerticalGroup(
-			gl_contentPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_contentPanel.createSequentialGroup()
+			gl_contentPanel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPanel.createSequentialGroup()
 					.addComponent(lblBienvenidoAFocaflix, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
+					.addGap(18)
+					.addComponent(lblImage, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(pwdContrasea, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
 						.addComponent(txtUsuario, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
@@ -119,8 +127,7 @@ public class InterfazEntrada extends JDialog {
 						 
 						 else if(ListaContraseas.getListaContraseas().contains(idUsuario)) {
 							 if (ListaContraseas.getListaContraseas().getValue(idUsuario).equals(passUsuario)) {
-								 //abrir interfaz principal
-								 lblBienvenidoAFocaflix.setText("Estas Dentro");
+								 //abrir interfaz principal							 
 								 InterfazUsuario iu = new InterfazUsuario();
 								 ListaPeliculas.getListaPeliculas().leerFichero("/src/main/resources/movie-titles.csv");
 
