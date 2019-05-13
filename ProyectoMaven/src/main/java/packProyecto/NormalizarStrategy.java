@@ -12,7 +12,7 @@ public abstract class NormalizarStrategy {
 	
 	public NormalizarStrategy()
 	{
-		
+		listaMedias = new HashMap<Integer,Double>();
 	}
 	
 	public void setLista(HashMap<Integer, ArrayList<Tupla<Integer,Double>>> pValoraciones) {

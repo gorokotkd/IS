@@ -129,8 +129,10 @@ public class InterfazEntrada extends JDialog {
 							 if (ListaContraseas.getListaContraseas().getValue(idUsuario).equals(passUsuario)) {
 								 //abrir interfaz principal							 
 								 InterfazUsuario iu = new InterfazUsuario();
+								 /**
+								  * HACEMOS QUE POR DEFECTO HAGA UN UNICO FILTRADO UTILIZANDO EL COSENO PARA COMPARAR
+								  */
 								 ListaPeliculas.getListaPeliculas().leerFichero("/src/main/resources/movie-titles.csv");
-
 								 ListaRatings.getListaRatings().leerFichero("/src/main/resources/movie-ratings.csv");
 								 TagsPorPeli.getTagsPorPeli().leerFichero("/src/main/resources/movie-tags.csv");
 								 Gestor.getGestor().setFiltrado(new FiltradoContenido(new Cos()));

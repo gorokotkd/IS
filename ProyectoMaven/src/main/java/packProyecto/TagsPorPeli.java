@@ -28,8 +28,6 @@ public class TagsPorPeli implements LeerFichero{
 	{
 		String path = System.getProperty("user.dir")+pPath;
 		try {
-			
-			HashMap<Integer,ArrayList<Tupla<String, Integer>>> lista = new HashMap<Integer,ArrayList<Tupla<String, Integer>>>();
 			BufferedReader br = new BufferedReader(new FileReader(path));
 			String lectura = " ";
 			int cont = 0;

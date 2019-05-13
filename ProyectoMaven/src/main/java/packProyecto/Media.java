@@ -9,17 +9,13 @@ public class Media extends NormalizarStrategy {
 	@Override
 	public HashMap<Integer, ArrayList<Tupla<Integer,Double>>> normalizar() {
 		
-		listaMedias = new HashMap<Integer,Double>();
 		Set<Map.Entry<Integer,ArrayList<Tupla<Integer,Double>>>> mapaEntrada = listaValoraciones.entrySet();
 		Iterator<Map.Entry<Integer, ArrayList<Tupla<Integer,Double>>>> itr = mapaEntrada.iterator();
 		while (itr.hasNext()) {
 			Map.Entry<Integer, ArrayList<Tupla<Integer,Double>>> entrada = itr.next();
-			double aux = 0;
-			for (int i = 0; i < entrada.getValue().size(); i++) {
-				aux = aux + entrada.getValue().get(i).getY();
-			}
-			double media = (float) (aux/entrada.getValue().size());
+			double media = mediaVector(entrada.getValue());
 			listaMedias.put(entrada.getKey(),media);
+			
 			ArrayList<Tupla<Integer,Double>> aux2 = new ArrayList<Tupla<Integer,Double>>();
 			for (int j = 0; j < entrada.getValue().size(); j++) {
 				aux2.add(new Tupla<Integer, Double>(entrada.getValue().get(j).getX(), entrada.getValue().get(j).getY()-media));
@@ -31,7 +27,14 @@ public class Media extends NormalizarStrategy {
 		
 	}
 	
-
+	private double mediaVector(ArrayList<Tupla<Integer,Double>> list)
+	{
+		double resul = 0.0;
+		for(int i = 0; i<list.size();i++)
+			resul = resul+list.get(i).getY();
+		return resul/list.size();
+	}
+	
 	@Override
 	public double desnormalizar(int usu, double valor) {
 		

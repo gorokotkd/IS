@@ -119,7 +119,8 @@ public class FiltradoContenido extends FiltradoStrategy {
 		while(itr.hasNext())
 		{
 			i=itr.next();
-			list.put(i, getIdoneidad(idUsu, i));
+			if(!ListaRatings.getListaRatings().haValoradoLaPelicula(idUsu, i));
+				list.put(i, getIdoneidad(idUsu, i));
 		}
 			
 		return list;

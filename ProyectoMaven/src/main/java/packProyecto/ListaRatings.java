@@ -24,7 +24,7 @@ public class ListaRatings implements LeerFichero{
 	}
 
 	public void leerFichero(String pPath) {
-		lista = new HashMap<Integer, ArrayList<Tupla<Integer,Double>>>();
+	//	lista = new HashMap<Integer, ArrayList<Tupla<Integer,Double>>>();
 		try
 		{
 			String path = System.getProperty("user.dir")+pPath;
