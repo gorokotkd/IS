@@ -98,7 +98,7 @@ public class ListaPeliculas implements LeerFichero{
 		return lista.entrySet();
 	}
 	 
-	public void inicializar() {
+	public void inicializarMatrizSimilitudes() {
 		Iterator<Map.Entry<Integer, String>> itr = getIterator();
 		HashMap<Integer,Double> hashAux = new HashMap<Integer, Double>();
 

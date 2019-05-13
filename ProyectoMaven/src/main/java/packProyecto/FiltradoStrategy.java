@@ -45,7 +45,7 @@ public abstract class FiltradoStrategy {
 		ArrayList<Integer> keys = new ArrayList<Integer>(list.keySet());
 		Iterator<Integer> itr = keys.iterator();
 		int i = 0;
-		while(i<N&&itr.hasNext())
+		while(i<N && itr.hasNext())
 		{
 			int j = itr.next();
 			aux.put(j,list.get(j));

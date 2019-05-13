@@ -35,7 +35,7 @@ public class Gestor {
 		/**
 		 * SI NORMALIZO TENGO QUE PONER ESE BOOLEANO A TRUE SINO LO DEJO EN FALSE.
 		 */
-		((FiltradoProductos) filtrado).seHaNormalizado(true);
+		((FiltradoProductos) filtrado).cambiarEstadoNormalizar(true);
 	}
 	public FiltradoStrategy getFiltrado() {
 		return filtrado;
