@@ -30,6 +30,21 @@ public class Intermediario {
 	}
 
 	
+	public void leerFicheroPeliculasTest()
+	{
+		ListaPeliculas.getListaPeliculas().leerFichero("testMovies.csv");
+	}
+	
+	public void leerFicheroRatingsTest()
+	{
+		ListaRatings.getListaRatings().leerFichero("testRatings.csv");
+	}
+	
+	public void leerFicheroTagsTest()
+	{
+		TagsPorPeli.getTagsPorPeli().leerFichero("testTags.csv");
+	}
+	
 	public void leerFicheroPeliculas()
 	{
 		ListaPeliculas.getListaPeliculas().leerFichero("movie-titles.csv");
