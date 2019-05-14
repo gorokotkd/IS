@@ -57,7 +57,7 @@ public class InterfazRecomendacion extends JDialog {
 	 * Create the dialog.
 	 */
 	public InterfazRecomendacion() {
-		setBounds(100, 100, 450, 300);
+		setBounds(400, 400, 600, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -76,21 +76,26 @@ public class InterfazRecomendacion extends JDialog {
 		txtInsertaTuId.setColumns(10);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
+		
+		scrollPane_1.setViewportView(getList());
 		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
 		gl_contentPanel.setHorizontalGroup(
-			gl_contentPanel.createParallelGroup(Alignment.TRAILING)
+			gl_contentPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_contentPanel.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
+					.addGap(18)
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addComponent(txtInsertaTuId, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
+							.addGap(31))
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addComponent(txtpnEstasSonLas, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())))
 				.addGroup(gl_contentPanel.createSequentialGroup()
-					.addContainerGap(99, Short.MAX_VALUE)
+					.addGap(113)
 					.addComponent(lblAreaDeRecomendacion, GroupLayout.PREFERRED_SIZE, 237, GroupLayout.PREFERRED_SIZE)
-					.addGap(88))
-				.addGroup(gl_contentPanel.createSequentialGroup()
-					.addGap(30)
-					.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 227, GroupLayout.PREFERRED_SIZE)
-					.addGap(32)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(txtpnEstasSonLas, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtInsertaTuId, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(11, Short.MAX_VALUE))
+					.addContainerGap(224, Short.MAX_VALUE))
 		);
 		gl_contentPanel.setVerticalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
@@ -98,15 +103,15 @@ public class InterfazRecomendacion extends JDialog {
 					.addComponent(lblAreaDeRecomendacion, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-						.addGroup(Alignment.TRAILING, gl_contentPanel.createSequentialGroup()
+						.addGroup(gl_contentPanel.createSequentialGroup()
 							.addComponent(txtInsertaTuId, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(41)
-							.addComponent(txtpnEstasSonLas, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE))
-						.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(23, Short.MAX_VALUE))
+							.addPreferredGap(ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+							.addComponent(txtpnEstasSonLas, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
+							.addGap(30))
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+							.addContainerGap())))
 		);
-		
-		scrollPane_1.setViewportView(getList());
 		contentPanel.setLayout(gl_contentPanel);
 		{
 			JPanel buttonPane = new JPanel();
@@ -172,6 +177,7 @@ public class InterfazRecomendacion extends JDialog {
 				items.add(new ListItem(entry.getKey(), entry.getValue()));
 			}
 			list = new JList(items);
+			list.setVisibleRowCount(5);
 			list.setListData(items);
 		}
 		return list;

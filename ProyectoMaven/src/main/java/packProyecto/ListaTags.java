@@ -68,6 +68,10 @@ public class ListaTags implements LeerFichero{
 		ArrayList<String> keys = new ArrayList<String>(lista.keySet());
 		return keys;
 	}
+	
+	public void clear() {
+		lista.clear();
+	}
 
 
 }

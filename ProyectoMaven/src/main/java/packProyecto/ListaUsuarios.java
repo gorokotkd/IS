@@ -64,5 +64,9 @@ public class ListaUsuarios implements LeerFichero{
 		return lista;
 	}
 	
+	public void clear() {
+		lista.clear();
+	}
+	
 	
 }

@@ -39,7 +39,7 @@ public class InterfazUsuario extends JDialog {
 	 * Create the dialog.
 	 */
 	public InterfazUsuario() {
-		setBounds(100, 100, 450, 300);
+		setBounds(500, 500, 500, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);

@@ -46,14 +46,14 @@ public class InterfazEleccionFicheros extends JDialog {
 	 * Create the dialog.
 	 */
 	public InterfazEleccionFicheros() {
-		setBounds(100, 100, 450, 300);
+		setBounds(500, 500, 500, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		
-		final JLabel lblPorFavorSelecciones = new JLabel("Por favor selecciones derecha se desea los ficheros");
+		final JLabel lblPorFavorSelecciones = new JLabel("Por favor selecciones izquierda se desea los ficheros");
 		
-		final JLabel lblStandardOIzquierda = new JLabel("standard o izquierda si desea los de tipo test");
+		final JLabel lblStandardOIzquierda = new JLabel("standard o derecha si desea los de tipo test");
 		
 		final JRadioButton rdbtnStandard = new JRadioButton("Standard");
 		
@@ -71,19 +71,19 @@ public class InterfazEleccionFicheros extends JDialog {
 		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
 		gl_contentPanel.setHorizontalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_contentPanel.createSequentialGroup()
+				.addGroup(Alignment.LEADING, gl_contentPanel.createSequentialGroup()
 					.addGap(90)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPanel.createSequentialGroup()
-							.addComponent(rdbtnStandard)
-							.addPreferredGap(ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
-							.addComponent(rdbtnTest)
-							.addGap(95))
 						.addGroup(gl_contentPanel.createSequentialGroup()
 							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblPorFavorSelecciones)
 								.addComponent(lblStandardOIzquierda, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE))
-							.addContainerGap(58, Short.MAX_VALUE))))
+							.addContainerGap(96, Short.MAX_VALUE))
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addComponent(rdbtnStandard)
+							.addPreferredGap(ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
+							.addComponent(rdbtnTest)
+							.addGap(97))))
 		);
 		gl_contentPanel.setVerticalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
@@ -92,11 +92,11 @@ public class InterfazEleccionFicheros extends JDialog {
 					.addComponent(lblPorFavorSelecciones, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblStandardOIzquierda)
-					.addGap(56)
+					.addGap(63)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(rdbtnStandard)
 						.addComponent(rdbtnTest))
-					.addContainerGap(90, Short.MAX_VALUE))
+					.addGap(83))
 		);
 		contentPanel.setLayout(gl_contentPanel);
 		{
@@ -125,6 +125,7 @@ public class InterfazEleccionFicheros extends JDialog {
 						}
 						else {
 							lblPorFavorSelecciones.setText("ELIGE UNA DE LAS DOS");
+							lblStandardOIzquierda.setText("");
 
 						}
 						

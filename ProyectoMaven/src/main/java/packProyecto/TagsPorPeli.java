@@ -135,4 +135,8 @@ public class TagsPorPeli implements LeerFichero{
 			System.out.println(" ");
 		}
 	}
+	
+	public void clear() {
+		lista.clear();
+	}
 }

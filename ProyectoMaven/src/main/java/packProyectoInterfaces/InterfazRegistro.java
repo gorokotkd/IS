@@ -43,7 +43,7 @@ public class InterfazRegistro extends JDialog {
 	 * Create the dialog.
 	 */
 	public InterfazRegistro() {
-		setBounds(100, 100, 450, 300);
+		setBounds(500, 500, 500, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -93,11 +93,11 @@ public class InterfazRegistro extends JDialog {
 						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
 						.addComponent(passwordField_1, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
 						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(235, Short.MAX_VALUE))
+					.addContainerGap(258, Short.MAX_VALUE))
 				.addGroup(gl_contentPanel.createSequentialGroup()
-					.addContainerGap(32, Short.MAX_VALUE)
+					.addContainerGap(64, Short.MAX_VALUE)
 					.addComponent(lblAreaDeRegistro, GroupLayout.PREFERRED_SIZE, 363, GroupLayout.PREFERRED_SIZE)
-					.addGap(29))
+					.addGap(47))
 		);
 		gl_contentPanel.setVerticalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
@@ -122,7 +122,7 @@ public class InterfazRegistro extends JDialog {
 						.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
 							.addComponent(lblPassword)
 							.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(38, Short.MAX_VALUE))
+					.addContainerGap(41, Short.MAX_VALUE))
 		);
 		contentPanel.setLayout(gl_contentPanel);
 		{

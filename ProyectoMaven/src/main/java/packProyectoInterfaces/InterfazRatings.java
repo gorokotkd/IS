@@ -62,7 +62,7 @@ public class InterfazRatings extends JDialog {
 	 * Create the dialog.
 	 */
 	public InterfazRatings() {
-		setBounds(100, 100, 450, 300);
+		setBounds(500, 500, 500, 300);
 		setSize(600, 350);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
