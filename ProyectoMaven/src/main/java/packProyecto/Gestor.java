@@ -30,12 +30,20 @@ public class Gestor {
 		 * ESTE METODO SE INICIALIZARA TMBN EN LA INTERFAZ, YA QUE PUEDO ELEGIR ENTRE NORMALIZAR O NO, Y
 		 * SI NORMALIZAMOS PODEMOS ELEGIR ENTRE USAR Z-SCORE O MEDIA.
 		 */
-		ListaRatings.getListaRatings().normalizar(new Media());
+		ListaRatings.getListaRatings().normalizar(new ZScore());
 		
 		/**
 		 * SI NORMALIZO TENGO QUE PONER ESE BOOLEANO A TRUE SINO LO DEJO EN FALSE.
 		 */
-		((FiltradoProductos) filtrado).cambiarEstadoNormalizar(true);
+		if(filtrado instanceof FiltradoPersonas)
+		{
+			((FiltradoPersonas) filtrado).cambiarEstadoNormalizar(true);
+		}
+		else if(filtrado instanceof FiltradoProductos)
+		{
+			((FiltradoProductos) filtrado).cambiarEstadoNormalizar(true);
+		}
+		
 	}
 	public FiltradoStrategy getFiltrado() {
 		return filtrado;

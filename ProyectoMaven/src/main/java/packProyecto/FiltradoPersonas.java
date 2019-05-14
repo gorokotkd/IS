@@ -27,9 +27,9 @@ public class FiltradoPersonas extends FiltradoStrategy {
 		this.generarListaValoraciones();
 	}
 	
-	public void seHaNormalizado(boolean pBool)
+	public void cambiarEstadoNormalizar(boolean norm)
 	{
-		normalizado=pBool;
+		normalizado = norm;
 	}
 	
 	public HashMap<String,Double> recomendarNPeliculas(int pUsu) {

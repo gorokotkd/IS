@@ -27,13 +27,7 @@ public class Media extends NormalizarStrategy {
 		
 	}
 	
-	private double mediaVector(ArrayList<Tupla<Integer,Double>> list)
-	{
-		double resul = 0.0;
-		for(int i = 0; i<list.size();i++)
-			resul = resul+list.get(i).getY();
-		return resul/list.size();
-	}
+	
 	
 	@Override
 	public double desnormalizar(int usu, double valor) {

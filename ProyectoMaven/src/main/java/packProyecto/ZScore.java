@@ -44,13 +44,6 @@ public class ZScore extends NormalizarStrategy {
 		return valor*desv + media;
 	}
 
-	private double mediaVector(ArrayList<Tupla<Integer,Double>> list)
-	{
-		double resul = 0.0;
-		for(int i = 0; i<list.size();i++)
-			resul = resul+list.get(i).getY();
-		return resul/list.size();
-	}
 	
 	private double desvTipica(ArrayList<Tupla<Integer,Double>> list,double media)
 	{

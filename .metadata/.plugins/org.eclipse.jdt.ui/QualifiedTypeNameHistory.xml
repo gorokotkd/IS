@@ -19,7 +19,6 @@
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.util.LinkedHashMap"/>
 <fullyQualifiedTypeName name="packProyecto.ListaTags"/>
-<fullyQualifiedTypeName name="packProyecto.FiltradoProductos"/>
 <fullyQualifiedTypeName name="packProyecto.Cos"/>
 <fullyQualifiedTypeName name="packProyecto.BaseDatos"/>
 <fullyQualifiedTypeName name="java.util.Collections"/>
@@ -32,9 +31,11 @@
 <fullyQualifiedTypeName name="packProyecto.ProductosSimilitud"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="packProyecto.NormalizarStrategy"/>
-<fullyQualifiedTypeName name="packProyecto.ListaRatings"/>
 <fullyQualifiedTypeName name="packProyecto.LeerFicheroPeliculas"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="packProyecto.LeerFichero"/>
 <fullyQualifiedTypeName name="packProyecto.LeerFicheroRatings"/>
+<fullyQualifiedTypeName name="packProyecto.FiltradoProductos"/>
+<fullyQualifiedTypeName name="packProyecto.ListaRatings"/>
+<fullyQualifiedTypeName name="packProyecto.ListaPeliculas"/>
 </qualifiedTypeNameHistroy>
