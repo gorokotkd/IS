@@ -54,7 +54,7 @@ public class InterfazNota extends JDialog {
 	 * Create the dialog.
 	 */
 	public InterfazNota() {
-		setBounds(100, 100, 450, 300);
+		setBounds(500, 500, 500, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -91,16 +91,16 @@ public class InterfazNota extends JDialog {
 					.addContainerGap()
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPanel.createSequentialGroup()
-							.addComponent(jcb, 0, 414, Short.MAX_VALUE)
-							.addContainerGap())
-						.addGroup(gl_contentPanel.createSequentialGroup()
 							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
 								.addComponent(txtIdDelUsuario, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
 								.addComponent(txtIdDeLa, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
 								.addComponent(txtNota, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
 							.addComponent(txtpnIntroduzcaLosDatos, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
-							.addGap(22))))
+							.addGap(22))
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addComponent(jcb, 0, 454, Short.MAX_VALUE)
+							.addContainerGap())))
 		);
 		gl_contentPanel.setVerticalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
@@ -114,9 +114,9 @@ public class InterfazNota extends JDialog {
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(txtNota, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addComponent(txtpnIntroduzcaLosDatos, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
+					.addGap(28)
 					.addComponent(jcb, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(85, Short.MAX_VALUE))
+					.addContainerGap(75, Short.MAX_VALUE))
 		);
 		contentPanel.setLayout(gl_contentPanel);
 		{
@@ -201,7 +201,7 @@ public class InterfazNota extends JDialog {
 	private void getBox() {
 
 			Vector<ListItems> items = new Vector<ListItems>();
-		//	ListaPeliculas.getListaPeliculas().leerFichero("/src/main/resources/movie-titles.csv");
+			//ListaPeliculas.getListaPeliculas().leerFichero("/src/main/resources/movie-titles.csv");
 			for (Map.Entry<Integer,String> entry: Intermediario.getIntermediario().peliculasEntrySet()) {
 				items.add(new ListItems(entry.getKey(), entry.getValue()));
 			}

@@ -44,6 +44,7 @@ public class InterfazEntrada extends JDialog {
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 			ListaContraseas.getListaContraseas();
+			Intermediario.getIntermediario().clear();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -54,7 +55,7 @@ public class InterfazEntrada extends JDialog {
 	 * Create the dialog.
 	 */
 	public InterfazEntrada() {
-		setBounds(100, 100, 450, 300);
+		setBounds(500, 500, 500, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -70,34 +71,29 @@ public class InterfazEntrada extends JDialog {
 		final JLabel lblBienvenidoAFocaflix = new JLabel("FOCAFLIX ");
 		lblBienvenidoAFocaflix.setFont(new Font("Unispace", Font.PLAIN, 16));
 		lblBienvenidoAFocaflix.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		final JLabel lblImage = new JLabel("");
 		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
 		gl_contentPanel.setHorizontalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPanel.createSequentialGroup()
-					.addContainerGap(71, Short.MAX_VALUE)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPanel.createSequentialGroup()
-							.addComponent(txtUsuario, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
-							.addGap(29)
-							.addComponent(pwdContrasea, 116, 116, 116)
-							.addContainerGap())
-						.addComponent(lblBienvenidoAFocaflix, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE)
-						.addGroup(Alignment.TRAILING, gl_contentPanel.createSequentialGroup()
-							.addComponent(lblImage, GroupLayout.PREFERRED_SIZE, 308, GroupLayout.PREFERRED_SIZE)
-							.addGap(45))))
+					.addContainerGap(29, Short.MAX_VALUE)
+					.addComponent(lblBienvenidoAFocaflix, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE)
+					.addGap(45))
+				.addGroup(Alignment.LEADING, gl_contentPanel.createSequentialGroup()
+					.addGap(66)
+					.addComponent(txtUsuario, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
+					.addGap(87)
+					.addComponent(pwdContrasea, 116, 116, 116)
+					.addContainerGap(89, Short.MAX_VALUE))
 		);
 		gl_contentPanel.setVerticalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPanel.createSequentialGroup()
+					.addGap(20)
 					.addComponent(lblBienvenidoAFocaflix, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(lblImage, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(pwdContrasea, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtUsuario, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtUsuario, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+						.addComponent(pwdContrasea, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
 					.addGap(42))
 		);
 		contentPanel.setLayout(gl_contentPanel);

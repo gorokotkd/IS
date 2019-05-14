@@ -141,4 +141,8 @@ public class ListaPeliculas implements LeerFichero{
 	{
 		return lista.get(pId);
 	}
+	
+	public void clear() {
+		lista.clear();
+	}
 }

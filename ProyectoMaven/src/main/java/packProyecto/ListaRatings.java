@@ -159,5 +159,9 @@ public class ListaRatings implements LeerFichero{
 		ArrayList aux = lista.get(pUsu);
 		aux.add(new Tupla(pPeli, pnota));
 	}
+	
+	public void clear() {
+		lista.clear();
+	}
 }
 	

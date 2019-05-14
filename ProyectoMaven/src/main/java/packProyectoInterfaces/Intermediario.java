@@ -10,7 +10,9 @@ import packProyecto.FiltradoContenido;
 import packProyecto.Gestor;
 import packProyecto.ListaPeliculas;
 import packProyecto.ListaRatings;
+import packProyecto.ListaTags;
 import packProyecto.ListaUsuarios;
+import packProyecto.ListaValoracionesPorPeli;
 import packProyecto.TagsPorPeli;
 import packProyecto.Tupla;
 
@@ -108,5 +110,14 @@ public class Intermediario {
 	public ArrayList<Tupla<Integer,Double>> getRatingsPorId(int pId)
 	{
 		return ListaRatings.getListaRatings().getRatingsPorId(pId);
+	}
+	
+	public void clear() {
+		ListaPeliculas.getListaPeliculas().clear();
+		ListaRatings.getListaRatings().clear();
+		TagsPorPeli.getTagsPorPeli().clear();
+		ListaTags.getListaTags().clear();
+		ListaUsuarios.getListaUsuarios().clear();
+		TagsPorPeli.getTagsPorPeli().clear();
 	}
 }
