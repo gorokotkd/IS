@@ -63,7 +63,7 @@ public class InterfazNota extends JDialog {
 		jcb.setFont(new Font("Unispace", Font.PLAIN, 11));
 		jcb.setEditable(true);
 		getBox();
-		AutoCompleteDecorator.decorate(jcb);
+	//	AutoCompleteDecorator.decorate(jcb);
 		
 		txtIdDeLa = new JTextField();
 		txtIdDeLa.setText("Id De La Pelicula");
