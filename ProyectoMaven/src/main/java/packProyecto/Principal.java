@@ -45,6 +45,14 @@ public class Principal {
 		
 	}
 */
+	/**
+	 * USUARIO ---- CONTRASEÑA
+	 * 	ADMIN 		123456
+	 * 	ANDER		456789
+	 * 
+	 * Se pueden añadir mas usuarios, con codigo de invitacion: 777
+	 * 
+	 */
 	public static void main(String[] args) {
 		try {
 			InterfazEntrada dialog = new InterfazEntrada();
