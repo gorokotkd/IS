@@ -2,6 +2,7 @@ package packProyecto;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public class ListaRatings implements LeerFichero{
@@ -27,8 +28,7 @@ public class ListaRatings implements LeerFichero{
 	//	lista = new HashMap<Integer, ArrayList<Tupla<Integer,Double>>>();
 		try
 		{
-			String path = System.getProperty("user.dir")+pPath;
-			BufferedReader br = new BufferedReader(new FileReader(path));
+			BufferedReader br = new BufferedReader(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream(pPath)));
 			String lectura=" ";
 			ArrayList<Tupla<Integer,Double>> aux = new ArrayList<Tupla<Integer,Double>>();
 			lectura = br.readLine();

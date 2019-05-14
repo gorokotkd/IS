@@ -20,8 +20,8 @@ public class FiltradoContenido extends FiltradoStrategy {
 	
 	public FiltradoContenido(SimilitudStrategy sim)
 	{
-		modeloProductos = new double[ListaPeliculas.getListaPeliculas().getIdMayor()+1][ListaTags.getListaTags().tamano()];
-		modeladoPersona = new double[ListaUsuarios.getListaUsuarios().size()][ListaTags.getListaTags().tamano()];
+		modeloProductos = new double[ListaPeliculas.getListaPeliculas().getIdMayor()+1][ListaTags.getListaTags().tamano()+1];
+		modeladoPersona = new double[ListaUsuarios.getListaUsuarios().size()+1][ListaTags.getListaTags().tamano()+1];
 		super.similitud=sim;
 		inicializarFiltradoContenido();/**Inicializo lo necesario para el filtrado*/
 	}
@@ -30,7 +30,7 @@ public class FiltradoContenido extends FiltradoStrategy {
 	private void modeloPersona()
 	{
 		int usu = 1;
-		while(usu<ListaUsuarios.getListaUsuarios().size())
+		while(usu<ListaUsuarios.getListaUsuarios().size()+1)
 		{
 			ArrayList<Tupla<Integer,Double>> ratingsDelUsu=ListaRatings.getListaRatings().getRatingsPorId(usu);
 			ArrayList<Integer> pelisPorEncimaDelUmbral = calcularPelisPorEncimaDelUmbral(ratingsDelUsu,3.5);
@@ -67,7 +67,7 @@ public class FiltradoContenido extends FiltradoStrategy {
 	{
 		ArrayList<Double> resul = new ArrayList<Double>();
 		
-		for(int i=0;i<ListaTags.getListaTags().tamano()-1;i++)
+		for(int i=0;i<ListaTags.getListaTags().tamano();i++)
 			resul.add(modeladoPersona[idUsu][i]);
 		return resul;
 	}
@@ -76,7 +76,7 @@ public class FiltradoContenido extends FiltradoStrategy {
 	{
 		ArrayList<Double> resul = new ArrayList<Double>();
 		
-		for(int i=0;i<ListaTags.getListaTags().tamano()-1;i++)
+		for(int i=0;i<ListaTags.getListaTags().tamano();i++)
 			resul.add(modeloProductos[idPeli][i]);
 		return resul;
 	}

@@ -2,6 +2,7 @@ package packProyecto;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public class ListaUsuarios implements LeerFichero{
@@ -35,8 +36,7 @@ public class ListaUsuarios implements LeerFichero{
 	public void leerFichero(String pPath) {
 		try
 		{
-			String path = System.getProperty("user.dir")+pPath;
-			BufferedReader bf = new BufferedReader(new FileReader(path));
+			BufferedReader bf = new BufferedReader(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream(pPath)));
 			String bfread;
 			
 			

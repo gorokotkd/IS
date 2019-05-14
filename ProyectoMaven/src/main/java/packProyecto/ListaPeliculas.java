@@ -2,6 +2,7 @@ package packProyecto;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.util.*;
 import java.util.Map.Entry;
 
@@ -42,9 +43,7 @@ public class ListaPeliculas implements LeerFichero{
 		lista = new HashMap<Integer, String>();
 			try
 			{
-				String path = System.getProperty("user.dir")+pPath;
-				FileReader fr = new FileReader(path);
-				BufferedReader br = new BufferedReader(fr);
+				BufferedReader br = new BufferedReader(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream(pPath)));
 				String lectura = br.readLine();
 				while(lectura!=null)
 				{	

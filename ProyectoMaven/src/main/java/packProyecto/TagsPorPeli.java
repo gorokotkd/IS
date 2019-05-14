@@ -2,6 +2,7 @@ package packProyecto;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -26,9 +27,8 @@ public class TagsPorPeli implements LeerFichero{
 	
 	public void leerFichero(String pPath)
 	{
-		String path = System.getProperty("user.dir")+pPath;
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(path));
+			BufferedReader br = new BufferedReader(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream(pPath)));
 			String lectura = " ";
 			int cont = 0;
 			ArrayList<Tupla<String, Integer>> aux = new ArrayList<Tupla<String, Integer>>();

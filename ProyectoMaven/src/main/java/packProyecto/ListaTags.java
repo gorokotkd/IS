@@ -2,6 +2,7 @@ package packProyecto;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public class ListaTags implements LeerFichero{
@@ -38,9 +39,8 @@ public class ListaTags implements LeerFichero{
 	}
 
 	public void leerFichero(String pPath) {
-		String path = System.getProperty("user.dir")+pPath;
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(path));
+			BufferedReader br = new BufferedReader(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream(pPath)));
 			String lectura = br.readLine();
 			int i = 0;
 			while(lectura != null)
