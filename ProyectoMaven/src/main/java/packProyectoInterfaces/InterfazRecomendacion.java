@@ -121,9 +121,9 @@ public class InterfazRecomendacion extends JDialog {
 						}
 						else if (isNumeric(txtInsertaTuId.getText())) {
 							Integer id = Integer.parseInt(txtInsertaTuId.getText());
-							if (ListaUsuarios.getListaUsuarios().contains(id)) {						
+							if (Intermediario.getIntermediario().existeUsu(id)) {						
 								
-								HashMap<String,Double> aux =  Gestor.getGestor().recomendarPeliculasAlUsuario(id);
+								HashMap<String,Double> aux =  Intermediario.getIntermediario().recomendarPeliculasAlUsu(id);
 								Vector<String> lista = new Vector<String>(aux.keySet());								
 								list.setListData(lista);
 							}
@@ -167,8 +167,8 @@ public class InterfazRecomendacion extends JDialog {
 	private JList getList() {
 		if (list == null) {
 			Vector<ListItem> items = new Vector<ListItem>();
-			ListaPeliculas.getListaPeliculas().leerFichero("/src/main/resources/movie-titles.csv");
-			for (Map.Entry<Integer,String> entry: ListaPeliculas.getListaPeliculas().entrySet()) {
+			//ListaPeliculas.getListaPeliculas().leerFichero("/src/main/resources/movie-titles.csv");
+			for (Map.Entry<Integer,String> entry: Intermediario.getIntermediario().peliculasEntrySet()) {
 				items.add(new ListItem(entry.getKey(), entry.getValue()));
 			}
 			list = new JList(items);

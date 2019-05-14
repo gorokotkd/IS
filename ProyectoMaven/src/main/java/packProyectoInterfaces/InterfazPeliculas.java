@@ -88,7 +88,7 @@ public class InterfazPeliculas extends JDialog {
 	private JList getList() {
 		if (list == null) {
 			Vector<ListItem> items = new Vector<ListItem>();
-			for (Map.Entry<Integer,String> entry: ListaPeliculas.getListaPeliculas().entrySet()) {
+			for (Map.Entry<Integer,String> entry: Intermediario.getIntermediario().peliculasEntrySet()) {
 				items.add(new ListItem(entry.getKey(), entry.getValue()));
 			}
 			list = new JList(items);

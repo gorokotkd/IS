@@ -114,7 +114,6 @@ public class InterfazEntrada extends JDialog {
 						 String passUsuario = pwdContrasea.getText();
 						 
 						 if (idUsuario.equals("Admin")) {
-							 System.out.println("Entro 1er if");
 							 if (ListaContraseas.getListaContraseas().getValue(idUsuario).equals(passUsuario)) {
 								 InterfazEleccionFicheros interfazFicheros = new InterfazEleccionFicheros();
 								 interfazFicheros.setVisible(true);
@@ -132,10 +131,12 @@ public class InterfazEntrada extends JDialog {
 								 /**
 								  * HACEMOS QUE POR DEFECTO HAGA UN UNICO FILTRADO UTILIZANDO EL COSENO PARA COMPARAR
 								  */
-								 ListaPeliculas.getListaPeliculas().leerFichero("/src/main/resources/movie-titles.csv");
-								 ListaRatings.getListaRatings().leerFichero("/src/main/resources/movie-ratings.csv");
-								 TagsPorPeli.getTagsPorPeli().leerFichero("/src/main/resources/movie-tags.csv");
-								 Gestor.getGestor().setFiltrado(new FiltradoContenido(new Cos()));
+								 
+								
+								 Intermediario.getIntermediario().leerFicheroPeliculas();
+								 Intermediario.getIntermediario().leerFicheroRatings();
+								 Intermediario.getIntermediario().leerFicheroTags();
+								 Intermediario.getIntermediario().crearFiltradoContenido();
 								 iu.setVisible(true);
 								 dispose();
 								 

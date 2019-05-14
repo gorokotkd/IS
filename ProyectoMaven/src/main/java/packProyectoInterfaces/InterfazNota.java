@@ -139,14 +139,14 @@ public class InterfazNota extends JDialog {
 							
 							else if (isNumeric(idUsu)) {
 								Integer idU = Integer.parseInt(idUsu);
-								if (ListaUsuarios.getListaUsuarios().contains(idU)) {									
+								if (Intermediario.getIntermediario().existeUsu(idU)) {									
 									if (isNumeric(idPeli)) {
 										Integer iPe = Integer.parseInt(idPeli);
-										if (!ListaRatings.getListaRatings().haValoradoLaPelicula(idU, iPe)) {
+										if (!Intermediario.getIntermediario().haValoradoLaPelicula(idU, iPe)) {
 											if (isNumeric(nota)) {
 												Double not = Double.parseDouble(nota);			
 												if ((not>=0.0)&&(not<=5.0)) {
-													ListaRatings.getListaRatings().anadir(idU, iPe, not);
+													Intermediario.getIntermediario().calificar(idU, iPe, not);
 													txtpnIntroduzcaLosDatos.setText("INTRODUCIDO CORRECTAMENTE, GRACIAS");
 												}
 												else {
@@ -201,8 +201,8 @@ public class InterfazNota extends JDialog {
 	private void getBox() {
 
 			Vector<ListItems> items = new Vector<ListItems>();
-			ListaPeliculas.getListaPeliculas().leerFichero("/src/main/resources/movie-titles.csv");
-			for (Map.Entry<Integer,String> entry: ListaPeliculas.getListaPeliculas().entrySet()) {
+		//	ListaPeliculas.getListaPeliculas().leerFichero("/src/main/resources/movie-titles.csv");
+			for (Map.Entry<Integer,String> entry: Intermediario.getIntermediario().peliculasEntrySet()) {
 				items.add(new ListItems(entry.getKey(), entry.getValue()));
 			}
 			for (int i=0; i<items.size(); i++) {
