@@ -46,7 +46,7 @@ public class InterfazEleccionFicheros extends JDialog {
 	 * Create the dialog.
 	 */
 	public InterfazEleccionFicheros() {
-		setBounds(500, 500, 500, 300);
+		setBounds(600, 600, 600, 400);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -77,7 +77,7 @@ public class InterfazEleccionFicheros extends JDialog {
 						.addGroup(gl_contentPanel.createSequentialGroup()
 							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblPorFavorSelecciones)
-								.addComponent(lblStandardOIzquierda, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE))
+								.addComponent(lblStandardOIzquierda, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE))
 							.addContainerGap(96, Short.MAX_VALUE))
 						.addGroup(gl_contentPanel.createSequentialGroup()
 							.addComponent(rdbtnStandard)

@@ -207,7 +207,6 @@ public class InterfazNota extends JDialog {
 			}
 			for (int i=0; i<items.size(); i++) {
 				jcb.addItem(items.get(i).toString());
-				System.out.println(items.get(i).toString());
 		}
 	}
 	
