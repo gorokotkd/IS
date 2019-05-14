@@ -67,7 +67,7 @@ public class FiltradoContenido extends FiltradoStrategy {
 	{
 		ArrayList<Double> resul = new ArrayList<Double>();
 		
-		for(int i=0;i<ListaTags.getListaTags().tamano();i++)
+		for(int i=0;i<ListaTags.getListaTags().tamano()+1;i++)
 			resul.add(modeladoPersona[idUsu][i]);
 		return resul;
 	}
@@ -76,7 +76,7 @@ public class FiltradoContenido extends FiltradoStrategy {
 	{
 		ArrayList<Double> resul = new ArrayList<Double>();
 		
-		for(int i=0;i<ListaTags.getListaTags().tamano();i++)
+		for(int i=0;i<ListaTags.getListaTags().tamano()+1;i++)
 			resul.add(modeloProductos[idPeli][i]);
 		return resul;
 	}

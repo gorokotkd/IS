@@ -12,7 +12,7 @@ public class ListaUsuariosTest {
 
 	@Before
 	public void setUp() throws Exception {
-		ListaUsuarios.getListaUsuarios();
+		ListaUsuarios.getListaUsuarios().leerFichero("testRatings.csv");;
 	}
 
 	@After

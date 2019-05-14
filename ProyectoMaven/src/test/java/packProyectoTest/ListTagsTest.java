@@ -12,7 +12,7 @@ public class ListTagsTest {
 
 	@Before
 	public void setUp() throws Exception {
-		ListaTags.getListaTags();
+		ListaTags.getListaTags().leerFichero("testTags.csv");;
 	}
 
 	@After
@@ -31,9 +31,5 @@ public class ListTagsTest {
 		assertEquals(ListaTags.getListaTags().getIdTag("dinamica"),4);
 	}
 
-	@Test
-	public void testKeySet() {
-		fail("Not yet implemented");
-	}
 
 }

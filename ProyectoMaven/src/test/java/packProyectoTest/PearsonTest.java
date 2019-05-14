@@ -56,7 +56,6 @@ public class PearsonTest {
 		lista2.add(4.0);
 		lista2.add(2.0);
 		lista2.add(1.0);
-		System.out.println(aux.sumatorio(lista1, lista2));
 		assertEquals(aux.sumatorio(lista1, lista2),(7/3.0),0.00001);//tomamos 7/3 con calculadora como valido//
 		
 		lista1.clear();

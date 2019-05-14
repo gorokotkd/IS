@@ -34,7 +34,6 @@ public class CosTest {
 		lista2.add(4.0);
 		lista2.add(2.0);
 		lista2.add(1.0);
-		System.out.println(aux.calcularSimilitud(lista1, lista2));
 		assertEquals(aux.calcularSimilitud(lista1, lista2),14/Math.sqrt(273),0.00001);//tomamos 14/raiz(273) con calculadora como valido//
 		
 		lista1.clear();
