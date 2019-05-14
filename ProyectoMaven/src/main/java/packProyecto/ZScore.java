@@ -27,6 +27,7 @@ public class ZScore extends NormalizarStrategy {
 			double media = mediaVector(entrada.getValue());
 			listaMedias.put(entrada.getKey(),media);
 			double desvTipica = desvTipica(entrada.getValue(), media);
+			listaDesviaciones.put(entrada.getKey(), desvTipica);
 			
 			ArrayList<Tupla<Integer,Double>> aux = new ArrayList<Tupla<Integer,Double>>();
 			for (int i = 0; i < entrada.getValue().size(); i++) {

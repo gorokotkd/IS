@@ -8,13 +8,7 @@ public class Gestor {
 	
 	private Gestor()
 	{
-		/**
-		 * ESTAS LLAMADAS SE HARAN DESDE LA INTERFAZ YA QUE DEBO PASAR COMO PARAMETROS LOS 
-		 * FICHEROS QUE QUIERO LEER, QUE PUEDEN SER LOS TEST O LOS NORMALES.
-		 */
-		//ListaRatings.getListaRatings().setFichero("/src/main/resources/movie-ratings.csv");
-		//ListaPeliculas.getListaPeliculas().setFichero("/src/main/resources/movie-titles.csv");
-		//TagsPorPeli.getTagsPorPeli().setFichero("/src/main/resources/movie-tags.csv");
+
 	}
 	
 	public static Gestor getGestor()
@@ -26,10 +20,6 @@ public class Gestor {
 	
 	public void normalizarValoraciones()
 	{
-		/**
-		 * ESTE METODO SE INICIALIZARA TMBN EN LA INTERFAZ, YA QUE PUEDO ELEGIR ENTRE NORMALIZAR O NO, Y
-		 * SI NORMALIZAMOS PODEMOS ELEGIR ENTRE USAR Z-SCORE O MEDIA.
-		 */
 		ListaRatings.getListaRatings().normalizar(new ZScore());
 		
 		/**

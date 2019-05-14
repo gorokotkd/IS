@@ -9,19 +9,20 @@ public class Principal {
 
 /*	public static void main(String[] args) {
 		
-		ListaPeliculas.getListaPeliculas().leerFichero("testMovies.csv");
-		ListaRatings.getListaRatings().leerFichero("testRatings.csv");
-		//ListaPeliculas.getListaPeliculas().inicializarMatrizSimilitudes();
-		TagsPorPeli.getTagsPorPeli().leerFichero("testTags.csv");
-		Gestor.getGestor().setFiltrado(new FiltradoContenido(new Cos()));
-		/*ListaPeliculas.getListaPeliculas().leerFichero("movie-titles.csv");
+		ListaPeliculas.getListaPeliculas().leerFichero("movie-titles.csv");
 		ListaRatings.getListaRatings().leerFichero("movie-ratings.csv");
-		//ListaPeliculas.getListaPeliculas().inicializarMatrizSimilitudes();
 		TagsPorPeli.getTagsPorPeli().leerFichero("movie-tags.csv");
-		//Gestor.getGestor().setFiltrado(new FiltradoPersonas(new Cos()));
+		Gestor.getGestor().setFiltrado(new FiltradoPersonas(new Cos()));
 		Gestor.getGestor().normalizarValoraciones();
+		
+		//ListaPeliculas.getListaPeliculas().inicializarMatrizSimilitudes();
+		//ListaPeliculas.getListaPeliculas().leerFichero("movie-titles.csv");
+		//ListaRatings.getListaRatings().leerFichero("movie-ratings.csv");
+		//TagsPorPeli.getTagsPorPeli().leerFichero("movie-tags.csv");
+		//Gestor.getGestor().setFiltrado(new FiltradoPersonas(new Cos()));
+		
 	
-		System.out.println(Gestor.getGestor().recomendarPeliculasAlUsuario(2));
+	//	System.out.println(Gestor.getGestor().recomendarPeliculasAlUsuario(2048));
 		
 	}*/
 		/**

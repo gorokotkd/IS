@@ -14,22 +14,20 @@ import java.util.Map;
 
 public class FiltradoPersonas extends FiltradoStrategy {
 	
-//	private NormalizarStrategy norm;
 	private HashMap<Integer,ArrayList<Double>> valoraciones; //usuario + lista de valoraciones
-//	private HashMap<Integer, ArrayList<Tupla<Integer,Double>>> matrizNormalizada; //METER EN LISTA RATINGS
-	private boolean normalizado; //PREGUNTAR
+	private boolean normalizado; 
 
 
 	public FiltradoPersonas(SimilitudStrategy pSim)
 	{
 		similitud = pSim;
-		//this.normalizar();
-		this.generarListaValoraciones();
+		//this.generarListaValoraciones();
 	}
 	
 	public void cambiarEstadoNormalizar(boolean norm)
 	{
 		normalizado = norm;
+		this.generarListaValoraciones();
 	}
 	
 	public HashMap<String,Double> recomendarNPeliculas(int pUsu) {
@@ -91,7 +89,9 @@ public class FiltradoPersonas extends FiltradoStrategy {
 		while(itr.hasNext())
 		{
 			int usuAct = itr.next();
-			sumatorio = sumatorio + (ListaRatings.getListaRatings().obtenerNota(usuAct, peli)*similitudes.get(usuAct));
+			double nota = ListaRatings.getListaRatings().obtenerNota(usuAct, peli);
+			if(nota!=-1)
+				sumatorio = sumatorio + (nota*similitudes.get(usuAct));
 		}
 		return sumatorio;
 	}
